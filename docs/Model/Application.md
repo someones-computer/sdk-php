@@ -1,0 +1,35 @@
+# # Application
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**organization** | **string** | Re-home this application. Callers own everything the uniqueness constraint and the trust invariant elsewhere in the platform expect of a move — the entity itself only holds the pointer. | [optional]
+**slug** | **string** |  | [optional]
+**name** | **string** |  | [optional]
+**isolation_level** | **string** |  | [optional] [default to 'shared']
+**service_adoption** | **string** | Whether a deploy&#39;s compose file is watched for services a managed equivalent could replace. | [optional] [default to 'off']
+**access_gate** | **string** | How this application&#39;s routed HTTP services are gated at the edge — &#x60;None&#x60; by default, so an application behaves exactly as it always has until an org manager opts it in ({@see AccessGateMode}). | [optional] [default to 'none']
+**current_deployment** | **string** | Pointer to the currently active revision; null before the first deploy. | [optional]
+**first_running_at** | **\DateTime** | The first moment any revision of this application ever reached &#x60;running&#x60; — null until it has. What {@see \\App\\Service\\Teardown\\TeardownGracePeriod} measures grace-period uptime from, in place of the current revision&#39;s own &#x60;createdAt&#x60; (#1307): a revision row is stamped at bundle ingest and a fresh one is created on every &#x60;sc deploy&#x60;, so measuring off it gave a six-month-old production application a ten-minute grace period the moment it was redeployed. This is set once and never moved — a redeploy, or reactivating an old revision, does not reset it, because the application&#39;s history is what earns the longer grace, not whichever revision happens to be current. | [optional] [readonly]
+**primary_deployment_name** | **string** | Which deployment *name* owns the application&#39;s apex identity — the stack, network and hostname that carry no revision component ({@see \\App\\Service\\Placement\\StackNaming}). | [optional]
+**legacy_stack_base** | **string** | The &#x60;&lt;prefix&gt;-&lt;org&gt;-&lt;app&gt;&#x60; join this application&#39;s stacks were **already named from**, before the separator was made unambiguous — or null, meaning nothing of this application has ever been on a swarm under the old name and {@see \\App\\Service\\Placement\\StackNaming} is free to derive the current one. | [optional]
+**icon_key** | **string** | Object key of this application&#39;s stored icon, or null when nobody has given it one — in which case {@see \\App\\Service\\Icon\\GeneratedIcon} draws one from the name and slug, so every application has an icon either way. | [optional] [readonly]
+**icon_source** | **string** | Where {@see $iconKey} came from — null exactly when there is no stored icon. | [optional] [readonly]
+**build_bucket** | **string** | This application&#39;s own Garage build-context bucket — where &#x60;sc deploy&#x60;&#39;s uploaded contexts and forwarded images are parked, and the only bucket the build key below can read. Null until the first upload provisions it ({@see \\App\\Service\\Bundle\\ApplicationBuildBucketProvisioner}); every application predating #996 looks like that too, and provisions on its next deploy. | [optional]
+**build_key_id** | **string** | The access-key id of the read-only Garage key scoped to {@see $buildBucket}, handed to build tasks. Doubles as Garage&#39;s own identifier for the key (the same way {@see ManagedService::$externalKeyId} does), so nothing separate is persisted for it. | [optional]
+**deployments** | **string[]** |  | [optional]
+**variables** | [**\SomeonesComputer\Sdk\Model\Variable[]**](Variable.md) |  | [optional]
+**port_allocations** | [**\SomeonesComputer\Sdk\Model\PortAllocation[]**](PortAllocation.md) |  | [optional]
+**id** | **string** |  | [optional] [readonly]
+**deleted_at** | **\DateTime** |  | [optional] [readonly]
+**created_at** | **\DateTime** |  | [optional] [readonly]
+**updated_at** | **\DateTime** |  | [optional] [readonly]
+**build_credential** | [**\SomeonesComputer\Sdk\Model\SealedSecret**](SealedSecret.md) |  | [optional]
+**access_gate_credential** | [**\SomeonesComputer\Sdk\Model\SealedSecret**](SealedSecret.md) |  | [optional]
+**icon** | **string** | Point the application at a stored icon, or at none. | [optional]
+**operator_chosen_icon** | **bool** | Whether the stored icon was chosen by a person, and so must survive the next deploy&#39;s favicon extraction. | [optional] [readonly]
+**icon_version** | **string** | A short, stable token for the icon a caller is looking at — the cache-busting half of the icon URL, and null when there is nothing stored to bust. | [optional] [readonly]
+**deleted** | **bool** |  | [optional] [readonly]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
