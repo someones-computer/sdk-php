@@ -334,6 +334,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const RESOURCE_KIND_COMPUTE = 'compute';
     public const RESOURCE_KIND_STORAGE = 'storage';
     public const RESOURCE_KIND_ENGINE_LOAD = 'engine_load';
+    public const RESOURCE_KIND_REGISTRY_STORAGE = 'registry_storage';
 
     /**
      * Gets allowable values of the enum
@@ -374,6 +375,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::RESOURCE_KIND_COMPUTE,
             self::RESOURCE_KIND_STORAGE,
             self::RESOURCE_KIND_ENGINE_LOAD,
+            self::RESOURCE_KIND_REGISTRY_STORAGE,
         ];
     }
 
