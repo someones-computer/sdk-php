@@ -24,7 +24,6 @@ Name | Type | Description | Notes
 **tier_pinned_at** | **\DateTime** |  | [optional] [readonly]
 **tier_pinned_by** | [**\SomeonesComputer\Sdk\Model\User**](User.md) |  | [optional]
 **tier_pin_reason** | **string** |  | [optional] [readonly]
-**memberships** | [**\SomeonesComputer\Sdk\Model\Membership[]**](Membership.md) |  | [optional]
 **oauth_identities** | [**\SomeonesComputer\Sdk\Model\OAuthIdentity[]**](OAuthIdentity.md) |  | [optional]
 **totp_secret** | **string** | The TOTP shared secret, **encrypted at rest** ({@see \\App\\Service\\TwoFactor\\TotpSecretCipher}), or null for an account that has not enabled a second factor. | [optional]
 **totp_secret_key_id** | **string** | Which key wrapped {@see self::$totpSecret}, so a key rotation can re-wrap it without users re-enrolling ({@see \\App\\Service\\TwoFactor\\TotpSecretCipher}). | [optional] [readonly]

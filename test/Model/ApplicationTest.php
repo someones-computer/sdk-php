@@ -233,6 +233,24 @@ class ApplicationTest extends TestCase
     }
 
     /**
+     * Test attribute "pool_domain"
+     */
+    public function testPropertyPoolDomain()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "pool_label"
+     */
+    public function testPropertyPoolLabel()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()

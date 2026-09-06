@@ -75,6 +75,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'deployments' => 'string[]',
         'variables' => '\SomeonesComputer\Sdk\Model\Variable[]',
         'port_allocations' => '\SomeonesComputer\Sdk\Model\PortAllocation[]',
+        'pool_domain' => 'string',
+        'pool_label' => 'string',
         'id' => 'string',
         'deleted_at' => '\DateTime',
         'created_at' => '\DateTime',
@@ -112,6 +114,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'deployments' => 'iri-reference',
         'variables' => null,
         'port_allocations' => null,
+        'pool_domain' => null,
+        'pool_label' => null,
         'id' => 'uuid',
         'deleted_at' => 'date-time',
         'created_at' => 'date-time',
@@ -147,6 +151,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'deployments' => false,
         'variables' => false,
         'port_allocations' => false,
+        'pool_domain' => true,
+        'pool_label' => true,
         'id' => false,
         'deleted_at' => true,
         'created_at' => false,
@@ -262,6 +268,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'deployments' => 'deployments',
         'variables' => 'variables',
         'port_allocations' => 'portAllocations',
+        'pool_domain' => 'poolDomain',
+        'pool_label' => 'poolLabel',
         'id' => 'id',
         'deleted_at' => 'deletedAt',
         'created_at' => 'createdAt',
@@ -297,6 +305,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'deployments' => 'setDeployments',
         'variables' => 'setVariables',
         'port_allocations' => 'setPortAllocations',
+        'pool_domain' => 'setPoolDomain',
+        'pool_label' => 'setPoolLabel',
         'id' => 'setId',
         'deleted_at' => 'setDeletedAt',
         'created_at' => 'setCreatedAt',
@@ -332,6 +342,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'deployments' => 'getDeployments',
         'variables' => 'getVariables',
         'port_allocations' => 'getPortAllocations',
+        'pool_domain' => 'getPoolDomain',
+        'pool_label' => 'getPoolLabel',
         'id' => 'getId',
         'deleted_at' => 'getDeletedAt',
         'created_at' => 'getCreatedAt',
@@ -482,6 +494,8 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('deployments', $data ?? [], null);
         $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('port_allocations', $data ?? [], null);
+        $this->setIfExists('pool_domain', $data ?? [], null);
+        $this->setIfExists('pool_label', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('deleted_at', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -1123,6 +1137,74 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable port_allocations cannot be null');
         }
         $this->container['port_allocations'] = $port_allocations;
+
+        return $this;
+    }
+
+    /**
+     * Gets pool_domain
+     *
+     * @return string|null
+     */
+    public function getPoolDomain()
+    {
+        return $this->container['pool_domain'];
+    }
+
+    /**
+     * Sets pool_domain
+     *
+     * @param string|null $pool_domain Which of the app-hosting pool domains (`snarl.dev`, `starshp.dev` — {@see \\App\\Service\\Ingress\\DomainPoolAssigner}) this application's deployments answer under, in addition to `someones.computer`. Null until its first successful deploy assigns one, and never moved after — a redeploy must resolve to the same pool hostnames it already handed out, the same reason {@see $firstRunningAt} is a latch rather than a rolling value.
+     *
+     * @return self
+     */
+    public function setPoolDomain($pool_domain)
+    {
+        if (is_null($pool_domain)) {
+            array_push($this->openAPINullablesSetToNull, 'pool_domain');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('pool_domain', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['pool_domain'] = $pool_domain;
+
+        return $this;
+    }
+
+    /**
+     * Gets pool_label
+     *
+     * @return string|null
+     */
+    public function getPoolLabel()
+    {
+        return $this->container['pool_label'];
+    }
+
+    /**
+     * Sets pool_label
+     *
+     * @param string|null $pool_label Overrides the auto-slugified application name in the pool-domain hostname's `{service}.{deployment}.{label}.{poolDomain}` shape ({@see \\App\\Service\\Ingress\\PoolHostname}) — null for every application that has not opted into a custom one, which is what {@see poolLabelOrSlug()} falls back to. Unique platform-wide, the same reasoning as {@see \\App\\Entity\\Domain::$name}: two applications sharing a label would collide on the exact same DNS name the moment they also shared a deployment and service name.
+     *
+     * @return self
+     */
+    public function setPoolLabel($pool_label)
+    {
+        if (is_null($pool_label)) {
+            array_push($this->openAPINullablesSetToNull, 'pool_label');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('pool_label', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['pool_label'] = $pool_label;
 
         return $this;
     }

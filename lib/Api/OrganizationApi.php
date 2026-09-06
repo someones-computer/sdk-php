@@ -140,15 +140,17 @@ class OrganizationApi
      * Retrieves the collection of Organization resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $slug  (optional)
+     * @param  string[]|null $slug2  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiOrganizationsGetCollection'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\Organization[]
      */
-    public function apiOrganizationsGetCollection($page = 1, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
+    public function apiOrganizationsGetCollection($page = 1, $slug = null, $slug2 = null, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
     {
-        list($response) = $this->apiOrganizationsGetCollectionWithHttpInfo($page, $contentType);
+        list($response) = $this->apiOrganizationsGetCollectionWithHttpInfo($page, $slug, $slug2, $contentType);
         return $response;
     }
 
@@ -158,15 +160,17 @@ class OrganizationApi
      * Retrieves the collection of Organization resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $slug  (optional)
+     * @param  string[]|null $slug2  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiOrganizationsGetCollection'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\Organization[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiOrganizationsGetCollectionWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
+    public function apiOrganizationsGetCollectionWithHttpInfo($page = 1, $slug = null, $slug2 = null, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
     {
-        $request = $this->apiOrganizationsGetCollectionRequest($page, $contentType);
+        $request = $this->apiOrganizationsGetCollectionRequest($page, $slug, $slug2, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,14 +287,16 @@ class OrganizationApi
      * Retrieves the collection of Organization resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $slug  (optional)
+     * @param  string[]|null $slug2  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiOrganizationsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiOrganizationsGetCollectionAsync($page = 1, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
+    public function apiOrganizationsGetCollectionAsync($page = 1, $slug = null, $slug2 = null, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
     {
-        return $this->apiOrganizationsGetCollectionAsyncWithHttpInfo($page, $contentType)
+        return $this->apiOrganizationsGetCollectionAsyncWithHttpInfo($page, $slug, $slug2, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -304,15 +310,17 @@ class OrganizationApi
      * Retrieves the collection of Organization resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $slug  (optional)
+     * @param  string[]|null $slug2  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiOrganizationsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiOrganizationsGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
+    public function apiOrganizationsGetCollectionAsyncWithHttpInfo($page = 1, $slug = null, $slug2 = null, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\Organization[]';
-        $request = $this->apiOrganizationsGetCollectionRequest($page, $contentType);
+        $request = $this->apiOrganizationsGetCollectionRequest($page, $slug, $slug2, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -354,13 +362,17 @@ class OrganizationApi
      * Create request for operation 'apiOrganizationsGetCollection'
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $slug  (optional)
+     * @param  string[]|null $slug2  (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiOrganizationsGetCollection'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiOrganizationsGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
+    public function apiOrganizationsGetCollectionRequest($page = 1, $slug = null, $slug2 = null, string $contentType = self::contentTypes['apiOrganizationsGetCollection'][0])
     {
+
+
 
 
 
@@ -376,6 +388,24 @@ class OrganizationApi
             $page,
             'page', // param base name
             'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $slug,
+            'slug', // param base name
+            'string', // openApiType
+            'form', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $slug2,
+            'slug[]', // param base name
+            'array', // openApiType
             'form', // style
             true, // explode
             false // required

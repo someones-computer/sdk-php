@@ -260,15 +260,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test attribute "memberships"
-     */
-    public function testPropertyMemberships()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "oauth_identities"
      */
     public function testPropertyOauthIdentities()

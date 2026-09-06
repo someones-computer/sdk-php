@@ -68,11 +68,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'capacity_bytes' => '\SomeonesComputer\Sdk\Model\ServiceInstanceCapacityBytes',
         'observed_usage_bytes' => '\SomeonesComputer\Sdk\Model\ServiceInstanceObservedUsageBytes',
         'observed_at' => '\DateTime',
+        'in_flight_since' => '\DateTime',
         'id' => 'string',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'catalogue_entry' => 'string',
         'serving' => 'bool',
+        'in_flight_stale' => 'bool',
         'admin_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
     ];
 
@@ -95,11 +97,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'capacity_bytes' => null,
         'observed_usage_bytes' => null,
         'observed_at' => 'date-time',
+        'in_flight_since' => 'date-time',
         'id' => 'uuid',
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
         'catalogue_entry' => null,
         'serving' => null,
+        'in_flight_stale' => null,
         'admin_credential' => null
     ];
 
@@ -120,11 +124,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'capacity_bytes' => true,
         'observed_usage_bytes' => true,
         'observed_at' => true,
+        'in_flight_since' => true,
         'id' => false,
         'created_at' => false,
         'updated_at' => true,
         'catalogue_entry' => false,
         'serving' => false,
+        'in_flight_stale' => false,
         'admin_credential' => false
     ];
 
@@ -225,11 +231,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'capacity_bytes' => 'capacityBytes',
         'observed_usage_bytes' => 'observedUsageBytes',
         'observed_at' => 'observedAt',
+        'in_flight_since' => 'inFlightSince',
         'id' => 'id',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
         'catalogue_entry' => 'catalogueEntry',
         'serving' => 'serving',
+        'in_flight_stale' => 'inFlightStale',
         'admin_credential' => 'adminCredential'
     ];
 
@@ -250,11 +258,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'capacity_bytes' => 'setCapacityBytes',
         'observed_usage_bytes' => 'setObservedUsageBytes',
         'observed_at' => 'setObservedAt',
+        'in_flight_since' => 'setInFlightSince',
         'id' => 'setId',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
         'catalogue_entry' => 'setCatalogueEntry',
         'serving' => 'setServing',
+        'in_flight_stale' => 'setInFlightStale',
         'admin_credential' => 'setAdminCredential'
     ];
 
@@ -275,11 +285,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'capacity_bytes' => 'getCapacityBytes',
         'observed_usage_bytes' => 'getObservedUsageBytes',
         'observed_at' => 'getObservedAt',
+        'in_flight_since' => 'getInFlightSince',
         'id' => 'getId',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
         'catalogue_entry' => 'getCatalogueEntry',
         'serving' => 'getServing',
+        'in_flight_stale' => 'getInFlightStale',
         'admin_credential' => 'getAdminCredential'
     ];
 
@@ -395,11 +407,13 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('capacity_bytes', $data ?? [], null);
         $this->setIfExists('observed_usage_bytes', $data ?? [], null);
         $this->setIfExists('observed_at', $data ?? [], null);
+        $this->setIfExists('in_flight_since', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('catalogue_entry', $data ?? [], null);
         $this->setIfExists('serving', $data ?? [], null);
+        $this->setIfExists('in_flight_stale', $data ?? [], null);
         $this->setIfExists('admin_credential', $data ?? [], null);
     }
 
@@ -809,6 +823,40 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets in_flight_since
+     *
+     * @return \DateTime|null
+     */
+    public function getInFlightSince()
+    {
+        return $this->container['in_flight_since'];
+    }
+
+    /**
+     * Sets in_flight_since
+     *
+     * @param \DateTime|null $in_flight_since When the current attempt to reach `Serving` began — {@see claim()} sets it on a fresh row and {@see markInFlight()} again on an upgrade's re-entry into `Healthchecking`; null once the row is `Serving`, `Failed`, or anything else that means nothing is still trying.
+     *
+     * @return self
+     */
+    public function setInFlightSince($in_flight_since)
+    {
+        if (is_null($in_flight_since)) {
+            array_push($this->openAPINullablesSetToNull, 'in_flight_since');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('in_flight_since', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['in_flight_since'] = $in_flight_since;
+
+        return $this;
+    }
+
+    /**
      * Gets id
      *
      * @return string|null
@@ -946,6 +994,33 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable serving cannot be null');
         }
         $this->container['serving'] = $serving;
+
+        return $this;
+    }
+
+    /**
+     * Gets in_flight_stale
+     *
+     * @return bool|null
+     */
+    public function getInFlightStale()
+    {
+        return $this->container['in_flight_stale'];
+    }
+
+    /**
+     * Sets in_flight_stale
+     *
+     * @param bool|null $in_flight_stale Dispatched so long ago that whatever was carrying it is gone.
+     *
+     * @return self
+     */
+    public function setInFlightStale($in_flight_stale)
+    {
+        if (is_null($in_flight_stale)) {
+            throw new \InvalidArgumentException('non-nullable in_flight_stale cannot be null');
+        }
+        $this->container['in_flight_stale'] = $in_flight_stale;
 
         return $this;
     }

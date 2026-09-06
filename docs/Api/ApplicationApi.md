@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `apiApplicationsGetCollection()`
 
 ```php
-apiApplicationsGetCollection($page): \SomeonesComputer\Sdk\Model\Application[]
+apiApplicationsGetCollection($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2): \SomeonesComputer\Sdk\Model\Application[]
 ```
 
 Retrieves the collection of Application resources.
@@ -39,9 +39,15 @@ $apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
     $config
 );
 $page = 1; // int | The collection page number
+$slug = 'slug_example'; // string | 
+$slug2 = array('slug_example'); // string[] | 
+$organization = 'organization_example'; // string | 
+$organization2 = array('organization_example'); // string[] | 
+$organization_slug = 'organization_slug_example'; // string | 
+$organization_slug2 = array('organization_slug_example'); // string[] | 
 
 try {
-    $result = $apiInstance->apiApplicationsGetCollection($page);
+    $result = $apiInstance->apiApplicationsGetCollection($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ApplicationApi->apiApplicationsGetCollection: ', $e->getMessage(), PHP_EOL;
@@ -53,6 +59,12 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **page** | **int**| The collection page number | [optional] [default to 1] |
+| **slug** | **string**|  | [optional] |
+| **slug2** | [**string[]**](../Model/string.md)|  | [optional] |
+| **organization** | **string**|  | [optional] |
+| **organization2** | [**string[]**](../Model/string.md)|  | [optional] |
+| **organization_slug** | **string**|  | [optional] |
+| **organization_slug2** | [**string[]**](../Model/string.md)|  | [optional] |
 
 ### Return type
 

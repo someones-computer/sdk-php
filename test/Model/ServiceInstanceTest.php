@@ -179,6 +179,15 @@ class ServiceInstanceTest extends TestCase
     }
 
     /**
+     * Test attribute "in_flight_since"
+     */
+    public function testPropertyInFlightSince()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()
@@ -218,6 +227,15 @@ class ServiceInstanceTest extends TestCase
      * Test attribute "serving"
      */
     public function testPropertyServing()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "in_flight_stale"
+     */
+    public function testPropertyInFlightStale()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

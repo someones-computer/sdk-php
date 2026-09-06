@@ -14,7 +14,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `apiOrganizationsGetCollection()`
 
 ```php
-apiOrganizationsGetCollection($page): \SomeonesComputer\Sdk\Model\Organization[]
+apiOrganizationsGetCollection($page, $slug, $slug2): \SomeonesComputer\Sdk\Model\Organization[]
 ```
 
 Retrieves the collection of Organization resources.
@@ -39,9 +39,11 @@ $apiInstance = new SomeonesComputer\Sdk\Api\OrganizationApi(
     $config
 );
 $page = 1; // int | The collection page number
+$slug = 'slug_example'; // string | 
+$slug2 = array('slug_example'); // string[] | 
 
 try {
-    $result = $apiInstance->apiOrganizationsGetCollection($page);
+    $result = $apiInstance->apiOrganizationsGetCollection($page, $slug, $slug2);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->apiOrganizationsGetCollection: ', $e->getMessage(), PHP_EOL;
@@ -53,6 +55,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **page** | **int**| The collection page number | [optional] [default to 1] |
+| **slug** | **string**|  | [optional] |
+| **slug2** | [**string[]**](../Model/string.md)|  | [optional] |
 
 ### Return type
 

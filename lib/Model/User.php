@@ -77,7 +77,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_at' => '\DateTime',
         'tier_pinned_by' => '\SomeonesComputer\Sdk\Model\User',
         'tier_pin_reason' => 'string',
-        'memberships' => '\SomeonesComputer\Sdk\Model\Membership[]',
         'oauth_identities' => '\SomeonesComputer\Sdk\Model\OAuthIdentity[]',
         'totp_secret' => 'string',
         'totp_secret_key_id' => 'string',
@@ -131,7 +130,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_at' => 'date-time',
         'tier_pinned_by' => null,
         'tier_pin_reason' => null,
-        'memberships' => null,
         'oauth_identities' => null,
         'totp_secret' => null,
         'totp_secret_key_id' => null,
@@ -183,7 +181,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_at' => true,
         'tier_pinned_by' => true,
         'tier_pin_reason' => true,
-        'memberships' => false,
         'oauth_identities' => false,
         'totp_secret' => true,
         'totp_secret_key_id' => true,
@@ -315,7 +312,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_at' => 'tierPinnedAt',
         'tier_pinned_by' => 'tierPinnedBy',
         'tier_pin_reason' => 'tierPinReason',
-        'memberships' => 'memberships',
         'oauth_identities' => 'oauthIdentities',
         'totp_secret' => 'totpSecret',
         'totp_secret_key_id' => 'totpSecretKeyId',
@@ -367,7 +363,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_at' => 'setTierPinnedAt',
         'tier_pinned_by' => 'setTierPinnedBy',
         'tier_pin_reason' => 'setTierPinReason',
-        'memberships' => 'setMemberships',
         'oauth_identities' => 'setOauthIdentities',
         'totp_secret' => 'setTotpSecret',
         'totp_secret_key_id' => 'setTotpSecretKeyId',
@@ -419,7 +414,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_at' => 'getTierPinnedAt',
         'tier_pinned_by' => 'getTierPinnedBy',
         'tier_pin_reason' => 'getTierPinReason',
-        'memberships' => 'getMemberships',
         'oauth_identities' => 'getOauthIdentities',
         'totp_secret' => 'getTotpSecret',
         'totp_secret_key_id' => 'getTotpSecretKeyId',
@@ -575,7 +569,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('tier_pinned_at', $data ?? [], null);
         $this->setIfExists('tier_pinned_by', $data ?? [], null);
         $this->setIfExists('tier_pin_reason', $data ?? [], null);
-        $this->setIfExists('memberships', $data ?? [], null);
         $this->setIfExists('oauth_identities', $data ?? [], null);
         $this->setIfExists('totp_secret', $data ?? [], null);
         $this->setIfExists('totp_secret_key_id', $data ?? [], null);
@@ -1355,33 +1348,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['tier_pin_reason'] = $tier_pin_reason;
-
-        return $this;
-    }
-
-    /**
-     * Gets memberships
-     *
-     * @return \SomeonesComputer\Sdk\Model\Membership[]|null
-     */
-    public function getMemberships()
-    {
-        return $this->container['memberships'];
-    }
-
-    /**
-     * Sets memberships
-     *
-     * @param \SomeonesComputer\Sdk\Model\Membership[]|null $memberships memberships
-     *
-     * @return self
-     */
-    public function setMemberships($memberships)
-    {
-        if (is_null($memberships)) {
-            throw new \InvalidArgumentException('non-nullable memberships cannot be null');
-        }
-        $this->container['memberships'] = $memberships;
 
         return $this;
     }

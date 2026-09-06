@@ -15,11 +15,13 @@ Name | Type | Description | Notes
 **capacity_bytes** | [**\SomeonesComputer\Sdk\Model\ServiceInstanceCapacityBytes**](ServiceInstanceCapacityBytes.md) |  | [optional]
 **observed_usage_bytes** | [**\SomeonesComputer\Sdk\Model\ServiceInstanceObservedUsageBytes**](ServiceInstanceObservedUsageBytes.md) |  | [optional]
 **observed_at** | **\DateTime** |  | [optional] [readonly]
+**in_flight_since** | **\DateTime** | When the current attempt to reach &#x60;Serving&#x60; began — {@see claim()} sets it on a fresh row and {@see markInFlight()} again on an upgrade&#39;s re-entry into &#x60;Healthchecking&#x60;; null once the row is &#x60;Serving&#x60;, &#x60;Failed&#x60;, or anything else that means nothing is still trying. | [optional] [readonly]
 **id** | **string** |  | [optional] [readonly]
 **created_at** | **\DateTime** |  | [optional] [readonly]
 **updated_at** | **\DateTime** |  | [optional] [readonly]
 **catalogue_entry** | **string** | &#x60;postgres 17&#x60;, &#x60;mysql 8.0&#x60; — the catalogue entry this instance serves. | [optional] [readonly]
 **serving** | **bool** |  | [optional] [readonly]
+**in_flight_stale** | **bool** | Dispatched so long ago that whatever was carrying it is gone. | [optional] [readonly]
 **admin_credential** | [**\SomeonesComputer\Sdk\Model\SealedSecret**](SealedSecret.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
