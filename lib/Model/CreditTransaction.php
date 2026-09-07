@@ -328,6 +328,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const TYPE_TOP_UP = 'top_up';
     public const TYPE_GRANT = 'grant';
     public const TYPE_DEBIT = 'debit';
+    public const TYPE_GIFT_CARD = 'gift_card';
     public const STATUS_PENDING = 'pending';
     public const STATUS_SUCCEEDED = 'succeeded';
     public const STATUS_FAILED = 'failed';
@@ -347,6 +348,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::TYPE_TOP_UP,
             self::TYPE_GRANT,
             self::TYPE_DEBIT,
+            self::TYPE_GIFT_CARD,
         ];
     }
 
