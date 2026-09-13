@@ -71,10 +71,10 @@ class CreditTransactionApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiCreditTransactionsGetCollection' => [
+        'creditTransactionsGet' => [
             'application/json',
         ],
-        'apiCreditTransactionsIdGet' => [
+        'creditTransactionsList' => [
             'application/json',
         ],
     ];
@@ -126,345 +126,38 @@ class CreditTransactionApi
     }
 
     /**
-     * Operation apiCreditTransactionsGetCollection
-     *
-     * Retrieves the collection of CreditTransaction resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\CreditTransaction[]
-     */
-    public function apiCreditTransactionsGetCollection($page = 1, string $contentType = self::contentTypes['apiCreditTransactionsGetCollection'][0])
-    {
-        list($response) = $this->apiCreditTransactionsGetCollectionWithHttpInfo($page, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiCreditTransactionsGetCollectionWithHttpInfo
-     *
-     * Retrieves the collection of CreditTransaction resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\CreditTransaction[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiCreditTransactionsGetCollectionWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiCreditTransactionsGetCollection'][0])
-    {
-        $request = $this->apiCreditTransactionsGetCollectionRequest($page, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SomeonesComputer\Sdk\Model\CreditTransaction[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\CreditTransaction[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\CreditTransaction[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\CreditTransaction[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\CreditTransaction[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiCreditTransactionsGetCollectionAsync
-     *
-     * Retrieves the collection of CreditTransaction resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiCreditTransactionsGetCollectionAsync($page = 1, string $contentType = self::contentTypes['apiCreditTransactionsGetCollection'][0])
-    {
-        return $this->apiCreditTransactionsGetCollectionAsyncWithHttpInfo($page, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiCreditTransactionsGetCollectionAsyncWithHttpInfo
-     *
-     * Retrieves the collection of CreditTransaction resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiCreditTransactionsGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiCreditTransactionsGetCollection'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\CreditTransaction[]';
-        $request = $this->apiCreditTransactionsGetCollectionRequest($page, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiCreditTransactionsGetCollection'
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiCreditTransactionsGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiCreditTransactionsGetCollection'][0])
-    {
-
-
-
-        $resourcePath = '/api/credit_transactions';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $page,
-            'page', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiCreditTransactionsIdGet
+     * Operation creditTransactionsGet
      *
      * Retrieves a CreditTransaction resource.
      *
      * @param  string $id CreditTransaction identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsGet'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\CreditTransaction|\SomeonesComputer\Sdk\Model\Error
      */
-    public function apiCreditTransactionsIdGet($id, string $contentType = self::contentTypes['apiCreditTransactionsIdGet'][0])
+    public function creditTransactionsGet($id, string $contentType = self::contentTypes['creditTransactionsGet'][0])
     {
-        list($response) = $this->apiCreditTransactionsIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->creditTransactionsGetWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiCreditTransactionsIdGetWithHttpInfo
+     * Operation creditTransactionsGetWithHttpInfo
      *
      * Retrieves a CreditTransaction resource.
      *
      * @param  string $id CreditTransaction identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsGet'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\CreditTransaction|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiCreditTransactionsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiCreditTransactionsIdGet'][0])
+    public function creditTransactionsGetWithHttpInfo($id, string $contentType = self::contentTypes['creditTransactionsGet'][0])
     {
-        $request = $this->apiCreditTransactionsIdGetRequest($id, $contentType);
+        $request = $this->creditTransactionsGetRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -611,19 +304,19 @@ class CreditTransactionApi
     }
 
     /**
-     * Operation apiCreditTransactionsIdGetAsync
+     * Operation creditTransactionsGetAsync
      *
      * Retrieves a CreditTransaction resource.
      *
      * @param  string $id CreditTransaction identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiCreditTransactionsIdGetAsync($id, string $contentType = self::contentTypes['apiCreditTransactionsIdGet'][0])
+    public function creditTransactionsGetAsync($id, string $contentType = self::contentTypes['creditTransactionsGet'][0])
     {
-        return $this->apiCreditTransactionsIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->creditTransactionsGetAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -632,20 +325,20 @@ class CreditTransactionApi
     }
 
     /**
-     * Operation apiCreditTransactionsIdGetAsyncWithHttpInfo
+     * Operation creditTransactionsGetAsyncWithHttpInfo
      *
      * Retrieves a CreditTransaction resource.
      *
      * @param  string $id CreditTransaction identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiCreditTransactionsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiCreditTransactionsIdGet'][0])
+    public function creditTransactionsGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['creditTransactionsGet'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\CreditTransaction';
-        $request = $this->apiCreditTransactionsIdGetRequest($id, $contentType);
+        $request = $this->creditTransactionsGetRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -684,21 +377,21 @@ class CreditTransactionApi
     }
 
     /**
-     * Create request for operation 'apiCreditTransactionsIdGet'
+     * Create request for operation 'creditTransactionsGet'
      *
      * @param  string $id CreditTransaction identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiCreditTransactionsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiCreditTransactionsIdGetRequest($id, string $contentType = self::contentTypes['apiCreditTransactionsIdGet'][0])
+    public function creditTransactionsGetRequest($id, string $contentType = self::contentTypes['creditTransactionsGet'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiCreditTransactionsIdGet'
+                'Missing the required parameter $id when calling creditTransactionsGet'
             );
         }
 
@@ -724,6 +417,313 @@ class CreditTransactionApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation creditTransactionsList
+     *
+     * Retrieves the collection of CreditTransaction resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsList'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\CreditTransaction[]
+     */
+    public function creditTransactionsList($page = 1, string $contentType = self::contentTypes['creditTransactionsList'][0])
+    {
+        list($response) = $this->creditTransactionsListWithHttpInfo($page, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation creditTransactionsListWithHttpInfo
+     *
+     * Retrieves the collection of CreditTransaction resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsList'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\CreditTransaction[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function creditTransactionsListWithHttpInfo($page = 1, string $contentType = self::contentTypes['creditTransactionsList'][0])
+    {
+        $request = $this->creditTransactionsListRequest($page, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SomeonesComputer\Sdk\Model\CreditTransaction[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\CreditTransaction[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\CreditTransaction[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\CreditTransaction[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\CreditTransaction[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation creditTransactionsListAsync
+     *
+     * Retrieves the collection of CreditTransaction resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsList'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function creditTransactionsListAsync($page = 1, string $contentType = self::contentTypes['creditTransactionsList'][0])
+    {
+        return $this->creditTransactionsListAsyncWithHttpInfo($page, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation creditTransactionsListAsyncWithHttpInfo
+     *
+     * Retrieves the collection of CreditTransaction resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsList'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function creditTransactionsListAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['creditTransactionsList'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\CreditTransaction[]';
+        $request = $this->creditTransactionsListRequest($page, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'creditTransactionsList'
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['creditTransactionsList'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function creditTransactionsListRequest($page = 1, string $contentType = self::contentTypes['creditTransactionsList'][0])
+    {
+
+
+
+        $resourcePath = '/api/credit_transactions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
             $contentType,
             $multipart
         );

@@ -71,22 +71,22 @@ class ManagedServiceApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiManagedServicesGetCollection' => [
+        'managedServicesCreate' => [
             'application/json',
         ],
-        'apiManagedServicesIdDelete' => [
+        'managedServicesDelete' => [
             'application/json',
         ],
-        'apiManagedServicesIdGet' => [
+        'managedServicesGet' => [
             'application/json',
         ],
-        'apiManagedServicesPost' => [
+        'managedServicesList' => [
             'application/json',
         ],
-        'resume' => [
+        'managedServicesResume' => [
             'application/json',
         ],
-        'suspend' => [
+        'managedServicesSuspend' => [
             'application/json',
         ],
     ];
@@ -138,38 +138,995 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation apiManagedServicesGetCollection
+     * Operation managedServicesCreate
+     *
+     * Creates a ManagedService resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesCreate'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
+     */
+    public function managedServicesCreate($managed_service_managed_service_input, string $contentType = self::contentTypes['managedServicesCreate'][0])
+    {
+        list($response) = $this->managedServicesCreateWithHttpInfo($managed_service_managed_service_input, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation managedServicesCreateWithHttpInfo
+     *
+     * Creates a ManagedService resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesCreate'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function managedServicesCreateWithHttpInfo($managed_service_managed_service_input, string $contentType = self::contentTypes['managedServicesCreate'][0])
+    {
+        $request = $this->managedServicesCreateRequest($managed_service_managed_service_input, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 201:
+                    if ('\SomeonesComputer\Sdk\Model\ManagedService' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\ManagedService' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ManagedService', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ConstraintViolation', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\ManagedService',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\ConstraintViolation',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation managedServicesCreateAsync
+     *
+     * Creates a ManagedService resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function managedServicesCreateAsync($managed_service_managed_service_input, string $contentType = self::contentTypes['managedServicesCreate'][0])
+    {
+        return $this->managedServicesCreateAsyncWithHttpInfo($managed_service_managed_service_input, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation managedServicesCreateAsyncWithHttpInfo
+     *
+     * Creates a ManagedService resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function managedServicesCreateAsyncWithHttpInfo($managed_service_managed_service_input, string $contentType = self::contentTypes['managedServicesCreate'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
+        $request = $this->managedServicesCreateRequest($managed_service_managed_service_input, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'managedServicesCreate'
+     *
+     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function managedServicesCreateRequest($managed_service_managed_service_input, string $contentType = self::contentTypes['managedServicesCreate'][0])
+    {
+
+        // verify the required parameter 'managed_service_managed_service_input' is set
+        if ($managed_service_managed_service_input === null || (is_array($managed_service_managed_service_input) && count($managed_service_managed_service_input) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $managed_service_managed_service_input when calling managedServicesCreate'
+            );
+        }
+
+
+        $resourcePath = '/api/managed_services';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($managed_service_managed_service_input)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($managed_service_managed_service_input));
+            } else {
+                $httpBody = $managed_service_managed_service_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation managedServicesDelete
+     *
+     * Removes the ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesDelete'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function managedServicesDelete($id, string $contentType = self::contentTypes['managedServicesDelete'][0])
+    {
+        $this->managedServicesDeleteWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation managedServicesDeleteWithHttpInfo
+     *
+     * Removes the ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesDelete'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function managedServicesDeleteWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesDelete'][0])
+    {
+        $request = $this->managedServicesDeleteRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation managedServicesDeleteAsync
+     *
+     * Removes the ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function managedServicesDeleteAsync($id, string $contentType = self::contentTypes['managedServicesDelete'][0])
+    {
+        return $this->managedServicesDeleteAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation managedServicesDeleteAsyncWithHttpInfo
+     *
+     * Removes the ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function managedServicesDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesDelete'][0])
+    {
+        $returnType = '';
+        $request = $this->managedServicesDeleteRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'managedServicesDelete'
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function managedServicesDeleteRequest($id, string $contentType = self::contentTypes['managedServicesDelete'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling managedServicesDelete'
+            );
+        }
+
+
+        $resourcePath = '/api/managed_services/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/problem+json', 'application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation managedServicesGet
+     *
+     * Retrieves a ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error
+     */
+    public function managedServicesGet($id, string $contentType = self::contentTypes['managedServicesGet'][0])
+    {
+        list($response) = $this->managedServicesGetWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation managedServicesGetWithHttpInfo
+     *
+     * Retrieves a ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function managedServicesGetWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesGet'][0])
+    {
+        $request = $this->managedServicesGetRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SomeonesComputer\Sdk\Model\ManagedService' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\ManagedService' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ManagedService', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\ManagedService',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation managedServicesGetAsync
+     *
+     * Retrieves a ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function managedServicesGetAsync($id, string $contentType = self::contentTypes['managedServicesGet'][0])
+    {
+        return $this->managedServicesGetAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation managedServicesGetAsyncWithHttpInfo
+     *
+     * Retrieves a ManagedService resource.
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function managedServicesGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesGet'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
+        $request = $this->managedServicesGetRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'managedServicesGet'
+     *
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function managedServicesGetRequest($id, string $contentType = self::contentTypes['managedServicesGet'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling managedServicesGet'
+            );
+        }
+
+
+        $resourcePath = '/api/managed_services/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation managedServicesList
      *
      * Retrieves the collection of ManagedService resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\ManagedService[]
      */
-    public function apiManagedServicesGetCollection($page = 1, string $contentType = self::contentTypes['apiManagedServicesGetCollection'][0])
+    public function managedServicesList($page = 1, string $contentType = self::contentTypes['managedServicesList'][0])
     {
-        list($response) = $this->apiManagedServicesGetCollectionWithHttpInfo($page, $contentType);
+        list($response) = $this->managedServicesListWithHttpInfo($page, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiManagedServicesGetCollectionWithHttpInfo
+     * Operation managedServicesListWithHttpInfo
      *
      * Retrieves the collection of ManagedService resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\ManagedService[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiManagedServicesGetCollectionWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiManagedServicesGetCollection'][0])
+    public function managedServicesListWithHttpInfo($page = 1, string $contentType = self::contentTypes['managedServicesList'][0])
     {
-        $request = $this->apiManagedServicesGetCollectionRequest($page, $contentType);
+        $request = $this->managedServicesListRequest($page, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -281,19 +1238,19 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation apiManagedServicesGetCollectionAsync
+     * Operation managedServicesListAsync
      *
      * Retrieves the collection of ManagedService resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiManagedServicesGetCollectionAsync($page = 1, string $contentType = self::contentTypes['apiManagedServicesGetCollection'][0])
+    public function managedServicesListAsync($page = 1, string $contentType = self::contentTypes['managedServicesList'][0])
     {
-        return $this->apiManagedServicesGetCollectionAsyncWithHttpInfo($page, $contentType)
+        return $this->managedServicesListAsyncWithHttpInfo($page, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -302,20 +1259,20 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation apiManagedServicesGetCollectionAsyncWithHttpInfo
+     * Operation managedServicesListAsyncWithHttpInfo
      *
      * Retrieves the collection of ManagedService resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiManagedServicesGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiManagedServicesGetCollection'][0])
+    public function managedServicesListAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['managedServicesList'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\ManagedService[]';
-        $request = $this->apiManagedServicesGetCollectionRequest($page, $contentType);
+        $request = $this->managedServicesListRequest($page, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -354,15 +1311,15 @@ class ManagedServiceApi
     }
 
     /**
-     * Create request for operation 'apiManagedServicesGetCollection'
+     * Create request for operation 'managedServicesList'
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiManagedServicesGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiManagedServicesGetCollection'][0])
+    public function managedServicesListRequest($page = 1, string $contentType = self::contentTypes['managedServicesList'][0])
     {
 
 
@@ -445,995 +1402,38 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation apiManagedServicesIdDelete
-     *
-     * Removes the ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiManagedServicesIdDelete($id, string $contentType = self::contentTypes['apiManagedServicesIdDelete'][0])
-    {
-        $this->apiManagedServicesIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiManagedServicesIdDeleteWithHttpInfo
-     *
-     * Removes the ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiManagedServicesIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiManagedServicesIdDelete'][0])
-    {
-        $request = $this->apiManagedServicesIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiManagedServicesIdDeleteAsync
-     *
-     * Removes the ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiManagedServicesIdDeleteAsync($id, string $contentType = self::contentTypes['apiManagedServicesIdDelete'][0])
-    {
-        return $this->apiManagedServicesIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiManagedServicesIdDeleteAsyncWithHttpInfo
-     *
-     * Removes the ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiManagedServicesIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiManagedServicesIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiManagedServicesIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiManagedServicesIdDelete'
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiManagedServicesIdDeleteRequest($id, string $contentType = self::contentTypes['apiManagedServicesIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiManagedServicesIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/managed_services/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', 'application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiManagedServicesIdGet
-     *
-     * Retrieves a ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error
-     */
-    public function apiManagedServicesIdGet($id, string $contentType = self::contentTypes['apiManagedServicesIdGet'][0])
-    {
-        list($response) = $this->apiManagedServicesIdGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiManagedServicesIdGetWithHttpInfo
-     *
-     * Retrieves a ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiManagedServicesIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiManagedServicesIdGet'][0])
-    {
-        $request = $this->apiManagedServicesIdGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SomeonesComputer\Sdk\Model\ManagedService' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\ManagedService' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ManagedService', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\ManagedService',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiManagedServicesIdGetAsync
-     *
-     * Retrieves a ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiManagedServicesIdGetAsync($id, string $contentType = self::contentTypes['apiManagedServicesIdGet'][0])
-    {
-        return $this->apiManagedServicesIdGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiManagedServicesIdGetAsyncWithHttpInfo
-     *
-     * Retrieves a ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiManagedServicesIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiManagedServicesIdGet'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
-        $request = $this->apiManagedServicesIdGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiManagedServicesIdGet'
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiManagedServicesIdGetRequest($id, string $contentType = self::contentTypes['apiManagedServicesIdGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiManagedServicesIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/managed_services/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiManagedServicesPost
+     * Operation managedServicesResume
      *
      * Creates a ManagedService resource.
      *
-     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesPost'] to see the possible values for this operation
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesResume'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
      */
-    public function apiManagedServicesPost($managed_service_managed_service_input, string $contentType = self::contentTypes['apiManagedServicesPost'][0])
+    public function managedServicesResume($id, string $contentType = self::contentTypes['managedServicesResume'][0])
     {
-        list($response) = $this->apiManagedServicesPostWithHttpInfo($managed_service_managed_service_input, $contentType);
+        list($response) = $this->managedServicesResumeWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiManagedServicesPostWithHttpInfo
+     * Operation managedServicesResumeWithHttpInfo
      *
      * Creates a ManagedService resource.
      *
-     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesPost'] to see the possible values for this operation
+     * @param  string $id ManagedService identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesResume'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiManagedServicesPostWithHttpInfo($managed_service_managed_service_input, string $contentType = self::contentTypes['apiManagedServicesPost'][0])
+    public function managedServicesResumeWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesResume'][0])
     {
-        $request = $this->apiManagedServicesPostRequest($managed_service_managed_service_input, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 201:
-                    if ('\SomeonesComputer\Sdk\Model\ManagedService' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\ManagedService' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ManagedService', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ConstraintViolation', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\ManagedService',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\ConstraintViolation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiManagedServicesPostAsync
-     *
-     * Creates a ManagedService resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiManagedServicesPostAsync($managed_service_managed_service_input, string $contentType = self::contentTypes['apiManagedServicesPost'][0])
-    {
-        return $this->apiManagedServicesPostAsyncWithHttpInfo($managed_service_managed_service_input, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiManagedServicesPostAsyncWithHttpInfo
-     *
-     * Creates a ManagedService resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiManagedServicesPostAsyncWithHttpInfo($managed_service_managed_service_input, string $contentType = self::contentTypes['apiManagedServicesPost'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
-        $request = $this->apiManagedServicesPostRequest($managed_service_managed_service_input, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiManagedServicesPost'
-     *
-     * @param  \SomeonesComputer\Sdk\Model\ManagedServiceManagedServiceInput $managed_service_managed_service_input The new ManagedService resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiManagedServicesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiManagedServicesPostRequest($managed_service_managed_service_input, string $contentType = self::contentTypes['apiManagedServicesPost'][0])
-    {
-
-        // verify the required parameter 'managed_service_managed_service_input' is set
-        if ($managed_service_managed_service_input === null || (is_array($managed_service_managed_service_input) && count($managed_service_managed_service_input) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $managed_service_managed_service_input when calling apiManagedServicesPost'
-            );
-        }
-
-
-        $resourcePath = '/api/managed_services';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($managed_service_managed_service_input)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($managed_service_managed_service_input));
-            } else {
-                $httpBody = $managed_service_managed_service_input;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation resume
-     *
-     * Creates a ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resume'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
-     */
-    public function resume($id, string $contentType = self::contentTypes['resume'][0])
-    {
-        list($response) = $this->resumeWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation resumeWithHttpInfo
-     *
-     * Creates a ManagedService resource.
-     *
-     * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resume'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function resumeWithHttpInfo($id, string $contentType = self::contentTypes['resume'][0])
-    {
-        $request = $this->resumeRequest($id, $contentType);
+        $request = $this->managedServicesResumeRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1615,19 +1615,19 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation resumeAsync
+     * Operation managedServicesResumeAsync
      *
      * Creates a ManagedService resource.
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resume'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesResume'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resumeAsync($id, string $contentType = self::contentTypes['resume'][0])
+    public function managedServicesResumeAsync($id, string $contentType = self::contentTypes['managedServicesResume'][0])
     {
-        return $this->resumeAsyncWithHttpInfo($id, $contentType)
+        return $this->managedServicesResumeAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1636,20 +1636,20 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation resumeAsyncWithHttpInfo
+     * Operation managedServicesResumeAsyncWithHttpInfo
      *
      * Creates a ManagedService resource.
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resume'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesResume'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function resumeAsyncWithHttpInfo($id, string $contentType = self::contentTypes['resume'][0])
+    public function managedServicesResumeAsyncWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesResume'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
-        $request = $this->resumeRequest($id, $contentType);
+        $request = $this->managedServicesResumeRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1688,21 +1688,21 @@ class ManagedServiceApi
     }
 
     /**
-     * Create request for operation 'resume'
+     * Create request for operation 'managedServicesResume'
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['resume'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesResume'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function resumeRequest($id, string $contentType = self::contentTypes['resume'][0])
+    public function managedServicesResumeRequest($id, string $contentType = self::contentTypes['managedServicesResume'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling resume'
+                'Missing the required parameter $id when calling managedServicesResume'
             );
         }
 
@@ -1784,38 +1784,38 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation suspend
+     * Operation managedServicesSuspend
      *
      * Creates a ManagedService resource.
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['suspend'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesSuspend'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
      */
-    public function suspend($id, string $contentType = self::contentTypes['suspend'][0])
+    public function managedServicesSuspend($id, string $contentType = self::contentTypes['managedServicesSuspend'][0])
     {
-        list($response) = $this->suspendWithHttpInfo($id, $contentType);
+        list($response) = $this->managedServicesSuspendWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation suspendWithHttpInfo
+     * Operation managedServicesSuspendWithHttpInfo
      *
      * Creates a ManagedService resource.
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['suspend'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesSuspend'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\ManagedService|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function suspendWithHttpInfo($id, string $contentType = self::contentTypes['suspend'][0])
+    public function managedServicesSuspendWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesSuspend'][0])
     {
-        $request = $this->suspendRequest($id, $contentType);
+        $request = $this->managedServicesSuspendRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1997,19 +1997,19 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation suspendAsync
+     * Operation managedServicesSuspendAsync
      *
      * Creates a ManagedService resource.
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['suspend'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesSuspend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function suspendAsync($id, string $contentType = self::contentTypes['suspend'][0])
+    public function managedServicesSuspendAsync($id, string $contentType = self::contentTypes['managedServicesSuspend'][0])
     {
-        return $this->suspendAsyncWithHttpInfo($id, $contentType)
+        return $this->managedServicesSuspendAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2018,20 +2018,20 @@ class ManagedServiceApi
     }
 
     /**
-     * Operation suspendAsyncWithHttpInfo
+     * Operation managedServicesSuspendAsyncWithHttpInfo
      *
      * Creates a ManagedService resource.
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['suspend'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesSuspend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function suspendAsyncWithHttpInfo($id, string $contentType = self::contentTypes['suspend'][0])
+    public function managedServicesSuspendAsyncWithHttpInfo($id, string $contentType = self::contentTypes['managedServicesSuspend'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\ManagedService';
-        $request = $this->suspendRequest($id, $contentType);
+        $request = $this->managedServicesSuspendRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2070,21 +2070,21 @@ class ManagedServiceApi
     }
 
     /**
-     * Create request for operation 'suspend'
+     * Create request for operation 'managedServicesSuspend'
      *
      * @param  string $id ManagedService identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['suspend'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['managedServicesSuspend'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function suspendRequest($id, string $contentType = self::contentTypes['suspend'][0])
+    public function managedServicesSuspendRequest($id, string $contentType = self::contentTypes['managedServicesSuspend'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling suspend'
+                'Missing the required parameter $id when calling managedServicesSuspend'
             );
         }
 

@@ -71,20 +71,20 @@ class SwarmApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiSwarmsGetCollection' => [
+        'swarmsCreate' => [
             'application/json',
         ],
-        'apiSwarmsIdDelete' => [
+        'swarmsDelete' => [
             'application/json',
         ],
-        'apiSwarmsIdGet' => [
+        'swarmsGet' => [
             'application/json',
         ],
-        'apiSwarmsIdPatch' => [
+        'swarmsList' => [
+            'application/json',
+        ],
+        'swarmsUpdate' => [
             'application/merge-patch+json',
-        ],
-        'apiSwarmsPost' => [
-            'application/json',
         ],
     ];
 
@@ -135,38 +135,1038 @@ class SwarmApi
     }
 
     /**
-     * Operation apiSwarmsGetCollection
+     * Operation swarmsCreate
+     *
+     * Creates a Swarm resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsCreate'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error
+     */
+    public function swarmsCreate($swarm, string $contentType = self::contentTypes['swarmsCreate'][0])
+    {
+        list($response) = $this->swarmsCreateWithHttpInfo($swarm, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation swarmsCreateWithHttpInfo
+     *
+     * Creates a Swarm resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsCreate'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function swarmsCreateWithHttpInfo($swarm, string $contentType = self::contentTypes['swarmsCreate'][0])
+    {
+        $request = $this->swarmsCreateRequest($swarm, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 201:
+                    if ('\SomeonesComputer\Sdk\Model\Swarm' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Swarm' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Swarm', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ConstraintViolation', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 403:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Swarm',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\ConstraintViolation',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation swarmsCreateAsync
+     *
+     * Creates a Swarm resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function swarmsCreateAsync($swarm, string $contentType = self::contentTypes['swarmsCreate'][0])
+    {
+        return $this->swarmsCreateAsyncWithHttpInfo($swarm, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation swarmsCreateAsyncWithHttpInfo
+     *
+     * Creates a Swarm resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function swarmsCreateAsyncWithHttpInfo($swarm, string $contentType = self::contentTypes['swarmsCreate'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
+        $request = $this->swarmsCreateRequest($swarm, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'swarmsCreate'
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function swarmsCreateRequest($swarm, string $contentType = self::contentTypes['swarmsCreate'][0])
+    {
+
+        // verify the required parameter 'swarm' is set
+        if ($swarm === null || (is_array($swarm) && count($swarm) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $swarm when calling swarmsCreate'
+            );
+        }
+
+
+        $resourcePath = '/api/swarms';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($swarm)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($swarm));
+            } else {
+                $httpBody = $swarm;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation swarmsDelete
+     *
+     * Removes the Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsDelete'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function swarmsDelete($id, string $contentType = self::contentTypes['swarmsDelete'][0])
+    {
+        $this->swarmsDeleteWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation swarmsDeleteWithHttpInfo
+     *
+     * Removes the Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsDelete'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function swarmsDeleteWithHttpInfo($id, string $contentType = self::contentTypes['swarmsDelete'][0])
+    {
+        $request = $this->swarmsDeleteRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation swarmsDeleteAsync
+     *
+     * Removes the Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function swarmsDeleteAsync($id, string $contentType = self::contentTypes['swarmsDelete'][0])
+    {
+        return $this->swarmsDeleteAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation swarmsDeleteAsyncWithHttpInfo
+     *
+     * Removes the Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function swarmsDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['swarmsDelete'][0])
+    {
+        $returnType = '';
+        $request = $this->swarmsDeleteRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'swarmsDelete'
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function swarmsDeleteRequest($id, string $contentType = self::contentTypes['swarmsDelete'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling swarmsDelete'
+            );
+        }
+
+
+        $resourcePath = '/api/swarms/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/problem+json', 'application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation swarmsGet
+     *
+     * Retrieves a Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error
+     */
+    public function swarmsGet($id, string $contentType = self::contentTypes['swarmsGet'][0])
+    {
+        list($response) = $this->swarmsGetWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation swarmsGetWithHttpInfo
+     *
+     * Retrieves a Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function swarmsGetWithHttpInfo($id, string $contentType = self::contentTypes['swarmsGet'][0])
+    {
+        $request = $this->swarmsGetRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SomeonesComputer\Sdk\Model\Swarm' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Swarm' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Swarm', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Swarm',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation swarmsGetAsync
+     *
+     * Retrieves a Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function swarmsGetAsync($id, string $contentType = self::contentTypes['swarmsGet'][0])
+    {
+        return $this->swarmsGetAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation swarmsGetAsyncWithHttpInfo
+     *
+     * Retrieves a Swarm resource.
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function swarmsGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['swarmsGet'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
+        $request = $this->swarmsGetRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'swarmsGet'
+     *
+     * @param  string $id Swarm identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function swarmsGetRequest($id, string $contentType = self::contentTypes['swarmsGet'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling swarmsGet'
+            );
+        }
+
+
+        $resourcePath = '/api/swarms/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation swarmsList
      *
      * Retrieves the collection of Swarm resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\Swarm[]
      */
-    public function apiSwarmsGetCollection($page = 1, string $contentType = self::contentTypes['apiSwarmsGetCollection'][0])
+    public function swarmsList($page = 1, string $contentType = self::contentTypes['swarmsList'][0])
     {
-        list($response) = $this->apiSwarmsGetCollectionWithHttpInfo($page, $contentType);
+        list($response) = $this->swarmsListWithHttpInfo($page, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiSwarmsGetCollectionWithHttpInfo
+     * Operation swarmsListWithHttpInfo
      *
      * Retrieves the collection of Swarm resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\Swarm[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiSwarmsGetCollectionWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiSwarmsGetCollection'][0])
+    public function swarmsListWithHttpInfo($page = 1, string $contentType = self::contentTypes['swarmsList'][0])
     {
-        $request = $this->apiSwarmsGetCollectionRequest($page, $contentType);
+        $request = $this->swarmsListRequest($page, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,19 +1278,19 @@ class SwarmApi
     }
 
     /**
-     * Operation apiSwarmsGetCollectionAsync
+     * Operation swarmsListAsync
      *
      * Retrieves the collection of Swarm resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiSwarmsGetCollectionAsync($page = 1, string $contentType = self::contentTypes['apiSwarmsGetCollection'][0])
+    public function swarmsListAsync($page = 1, string $contentType = self::contentTypes['swarmsList'][0])
     {
-        return $this->apiSwarmsGetCollectionAsyncWithHttpInfo($page, $contentType)
+        return $this->swarmsListAsyncWithHttpInfo($page, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -299,20 +1299,20 @@ class SwarmApi
     }
 
     /**
-     * Operation apiSwarmsGetCollectionAsyncWithHttpInfo
+     * Operation swarmsListAsyncWithHttpInfo
      *
      * Retrieves the collection of Swarm resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiSwarmsGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiSwarmsGetCollection'][0])
+    public function swarmsListAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['swarmsList'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\Swarm[]';
-        $request = $this->apiSwarmsGetCollectionRequest($page, $contentType);
+        $request = $this->swarmsListRequest($page, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -351,15 +1351,15 @@ class SwarmApi
     }
 
     /**
-     * Create request for operation 'apiSwarmsGetCollection'
+     * Create request for operation 'swarmsList'
      *
      * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiSwarmsGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiSwarmsGetCollection'][0])
+    public function swarmsListRequest($page = 1, string $contentType = self::contentTypes['swarmsList'][0])
     {
 
 
@@ -442,624 +1442,40 @@ class SwarmApi
     }
 
     /**
-     * Operation apiSwarmsIdDelete
-     *
-     * Removes the Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiSwarmsIdDelete($id, string $contentType = self::contentTypes['apiSwarmsIdDelete'][0])
-    {
-        $this->apiSwarmsIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiSwarmsIdDeleteWithHttpInfo
-     *
-     * Removes the Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiSwarmsIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiSwarmsIdDelete'][0])
-    {
-        $request = $this->apiSwarmsIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiSwarmsIdDeleteAsync
-     *
-     * Removes the Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiSwarmsIdDeleteAsync($id, string $contentType = self::contentTypes['apiSwarmsIdDelete'][0])
-    {
-        return $this->apiSwarmsIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiSwarmsIdDeleteAsyncWithHttpInfo
-     *
-     * Removes the Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiSwarmsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiSwarmsIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiSwarmsIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiSwarmsIdDelete'
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiSwarmsIdDeleteRequest($id, string $contentType = self::contentTypes['apiSwarmsIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiSwarmsIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/swarms/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', 'application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiSwarmsIdGet
-     *
-     * Retrieves a Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error
-     */
-    public function apiSwarmsIdGet($id, string $contentType = self::contentTypes['apiSwarmsIdGet'][0])
-    {
-        list($response) = $this->apiSwarmsIdGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiSwarmsIdGetWithHttpInfo
-     *
-     * Retrieves a Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiSwarmsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiSwarmsIdGet'][0])
-    {
-        $request = $this->apiSwarmsIdGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SomeonesComputer\Sdk\Model\Swarm' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Swarm' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Swarm', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Swarm',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiSwarmsIdGetAsync
-     *
-     * Retrieves a Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiSwarmsIdGetAsync($id, string $contentType = self::contentTypes['apiSwarmsIdGet'][0])
-    {
-        return $this->apiSwarmsIdGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiSwarmsIdGetAsyncWithHttpInfo
-     *
-     * Retrieves a Swarm resource.
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiSwarmsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiSwarmsIdGet'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
-        $request = $this->apiSwarmsIdGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiSwarmsIdGet'
-     *
-     * @param  string $id Swarm identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiSwarmsIdGetRequest($id, string $contentType = self::contentTypes['apiSwarmsIdGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiSwarmsIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/swarms/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiSwarmsIdPatch
+     * Operation swarmsUpdate
      *
      * Updates the Swarm resource.
      *
      * @param  string $id Swarm identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\SwarmJsonMergePatch $swarm_json_merge_patch The updated Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsUpdate'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\Error
      */
-    public function apiSwarmsIdPatch($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['apiSwarmsIdPatch'][0])
+    public function swarmsUpdate($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['swarmsUpdate'][0])
     {
-        list($response) = $this->apiSwarmsIdPatchWithHttpInfo($id, $swarm_json_merge_patch, $contentType);
+        list($response) = $this->swarmsUpdateWithHttpInfo($id, $swarm_json_merge_patch, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiSwarmsIdPatchWithHttpInfo
+     * Operation swarmsUpdateWithHttpInfo
      *
      * Updates the Swarm resource.
      *
      * @param  string $id Swarm identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\SwarmJsonMergePatch $swarm_json_merge_patch The updated Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsUpdate'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiSwarmsIdPatchWithHttpInfo($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['apiSwarmsIdPatch'][0])
+    public function swarmsUpdateWithHttpInfo($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['swarmsUpdate'][0])
     {
-        $request = $this->apiSwarmsIdPatchRequest($id, $swarm_json_merge_patch, $contentType);
+        $request = $this->swarmsUpdateRequest($id, $swarm_json_merge_patch, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1311,20 +1727,20 @@ class SwarmApi
     }
 
     /**
-     * Operation apiSwarmsIdPatchAsync
+     * Operation swarmsUpdateAsync
      *
      * Updates the Swarm resource.
      *
      * @param  string $id Swarm identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\SwarmJsonMergePatch $swarm_json_merge_patch The updated Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiSwarmsIdPatchAsync($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['apiSwarmsIdPatch'][0])
+    public function swarmsUpdateAsync($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['swarmsUpdate'][0])
     {
-        return $this->apiSwarmsIdPatchAsyncWithHttpInfo($id, $swarm_json_merge_patch, $contentType)
+        return $this->swarmsUpdateAsyncWithHttpInfo($id, $swarm_json_merge_patch, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1333,21 +1749,21 @@ class SwarmApi
     }
 
     /**
-     * Operation apiSwarmsIdPatchAsyncWithHttpInfo
+     * Operation swarmsUpdateAsyncWithHttpInfo
      *
      * Updates the Swarm resource.
      *
      * @param  string $id Swarm identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\SwarmJsonMergePatch $swarm_json_merge_patch The updated Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiSwarmsIdPatchAsyncWithHttpInfo($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['apiSwarmsIdPatch'][0])
+    public function swarmsUpdateAsyncWithHttpInfo($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['swarmsUpdate'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
-        $request = $this->apiSwarmsIdPatchRequest($id, $swarm_json_merge_patch, $contentType);
+        $request = $this->swarmsUpdateRequest($id, $swarm_json_merge_patch, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1386,29 +1802,29 @@ class SwarmApi
     }
 
     /**
-     * Create request for operation 'apiSwarmsIdPatch'
+     * Create request for operation 'swarmsUpdate'
      *
      * @param  string $id Swarm identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\SwarmJsonMergePatch $swarm_json_merge_patch The updated Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['swarmsUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiSwarmsIdPatchRequest($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['apiSwarmsIdPatch'][0])
+    public function swarmsUpdateRequest($id, $swarm_json_merge_patch, string $contentType = self::contentTypes['swarmsUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiSwarmsIdPatch'
+                'Missing the required parameter $id when calling swarmsUpdate'
             );
         }
 
         // verify the required parameter 'swarm_json_merge_patch' is set
         if ($swarm_json_merge_patch === null || (is_array($swarm_json_merge_patch) && count($swarm_json_merge_patch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $swarm_json_merge_patch when calling apiSwarmsIdPatch'
+                'Missing the required parameter $swarm_json_merge_patch when calling swarmsUpdate'
             );
         }
 
@@ -1490,422 +1906,6 @@ class SwarmApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PATCH',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiSwarmsPost
-     *
-     * Creates a Swarm resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsPost'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error
-     */
-    public function apiSwarmsPost($swarm, string $contentType = self::contentTypes['apiSwarmsPost'][0])
-    {
-        list($response) = $this->apiSwarmsPostWithHttpInfo($swarm, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiSwarmsPostWithHttpInfo
-     *
-     * Creates a Swarm resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsPost'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\Swarm|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiSwarmsPostWithHttpInfo($swarm, string $contentType = self::contentTypes['apiSwarmsPost'][0])
-    {
-        $request = $this->apiSwarmsPostRequest($swarm, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 201:
-                    if ('\SomeonesComputer\Sdk\Model\Swarm' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Swarm' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Swarm', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ConstraintViolation', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 403:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Swarm',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\ConstraintViolation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiSwarmsPostAsync
-     *
-     * Creates a Swarm resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiSwarmsPostAsync($swarm, string $contentType = self::contentTypes['apiSwarmsPost'][0])
-    {
-        return $this->apiSwarmsPostAsyncWithHttpInfo($swarm, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiSwarmsPostAsyncWithHttpInfo
-     *
-     * Creates a Swarm resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiSwarmsPostAsyncWithHttpInfo($swarm, string $contentType = self::contentTypes['apiSwarmsPost'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\Swarm';
-        $request = $this->apiSwarmsPostRequest($swarm, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiSwarmsPost'
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Swarm $swarm The new Swarm resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiSwarmsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiSwarmsPostRequest($swarm, string $contentType = self::contentTypes['apiSwarmsPost'][0])
-    {
-
-        // verify the required parameter 'swarm' is set
-        if ($swarm === null || (is_array($swarm) && count($swarm) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $swarm when calling apiSwarmsPost'
-            );
-        }
-
-
-        $resourcePath = '/api/swarms';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($swarm)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($swarm));
-            } else {
-                $httpBody = $swarm;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

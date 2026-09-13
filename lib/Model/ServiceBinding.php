@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * ServiceBinding Class Doc Comment
  *
  * @category Class
- * @description That an application may use a managed service — the join the per-application toggle could not express.  Many-to-many by construction: one database can back a web app and its worker, and one application can hold several bindings. Unbinding leaves the data alone; only destroying the {@see ManagedService} touches it.  A binding is also where the *deployment* seam lives. It records which variable names it injects, so the UI can say what an application will receive before it receives it, and so the resolver can show an operator-set variable shadowing a binding rather than silently losing to it.  **Creating one is a permission, not a provisioning step** — nothing at the engine moves. Deleting one withdraws that permission and touches no data, which is why &#x60;DELETE&#x60; here is a hard delete and &#x60;DELETE&#x60; on a {@see ManagedService} is not the same kind of verb at all.
+ * @description List service bindings (application-to-managed-service links) the caller can see.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

@@ -59,13 +59,13 @@ $apiInstance = new SomeonesComputer\Sdk\Api\AdoptionApprovalApi(
     new GuzzleHttp\Client(),
     $config
 );
-$page = 1; // int | The collection page number
+$adoption_approval_adoption_approval_input = new \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput(); // \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput | The new AdoptionApproval resource
 
 try {
-    $result = $apiInstance->apiAdoptionApprovalsGetCollection($page);
+    $result = $apiInstance->adoptionApprovalsDecide($adoption_approval_adoption_approval_input);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AdoptionApprovalApi->apiAdoptionApprovalsGetCollection: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AdoptionApprovalApi->adoptionApprovalsDecide: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -76,45 +76,45 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AdoptionApprovalApi* | [**apiAdoptionApprovalsGetCollection**](docs/Api/AdoptionApprovalApi.md#apiadoptionapprovalsgetcollection) | **GET** /api/adoption_approvals | Retrieves the collection of AdoptionApproval resources.
-*AdoptionApprovalApi* | [**apiAdoptionApprovalsIdDelete**](docs/Api/AdoptionApprovalApi.md#apiadoptionapprovalsiddelete) | **DELETE** /api/adoption_approvals/{id} | Removes the AdoptionApproval resource.
-*AdoptionApprovalApi* | [**apiAdoptionApprovalsIdGet**](docs/Api/AdoptionApprovalApi.md#apiadoptionapprovalsidget) | **GET** /api/adoption_approvals/{id} | Retrieves a AdoptionApproval resource.
-*AdoptionApprovalApi* | [**apiAdoptionApprovalsPost**](docs/Api/AdoptionApprovalApi.md#apiadoptionapprovalspost) | **POST** /api/adoption_approvals | Creates a AdoptionApproval resource.
-*ApplicationApi* | [**apiApplicationsGetCollection**](docs/Api/ApplicationApi.md#apiapplicationsgetcollection) | **GET** /api/applications | Retrieves the collection of Application resources.
-*ApplicationApi* | [**apiApplicationsIdDelete**](docs/Api/ApplicationApi.md#apiapplicationsiddelete) | **DELETE** /api/applications/{id} | Removes the Application resource.
-*ApplicationApi* | [**apiApplicationsIdGet**](docs/Api/ApplicationApi.md#apiapplicationsidget) | **GET** /api/applications/{id} | Retrieves a Application resource.
-*ApplicationApi* | [**apiApplicationsIdPatch**](docs/Api/ApplicationApi.md#apiapplicationsidpatch) | **PATCH** /api/applications/{id} | Updates the Application resource.
-*ApplicationApi* | [**apiApplicationsPost**](docs/Api/ApplicationApi.md#apiapplicationspost) | **POST** /api/applications | Creates a Application resource.
-*CreditTransactionApi* | [**apiCreditTransactionsGetCollection**](docs/Api/CreditTransactionApi.md#apicredittransactionsgetcollection) | **GET** /api/credit_transactions | Retrieves the collection of CreditTransaction resources.
-*CreditTransactionApi* | [**apiCreditTransactionsIdGet**](docs/Api/CreditTransactionApi.md#apicredittransactionsidget) | **GET** /api/credit_transactions/{id} | Retrieves a CreditTransaction resource.
-*DeploymentApi* | [**apiDeploymentsGetCollection**](docs/Api/DeploymentApi.md#apideploymentsgetcollection) | **GET** /api/deployments | Retrieves the collection of Deployment resources.
-*DeploymentApi* | [**apiDeploymentsIdDelete**](docs/Api/DeploymentApi.md#apideploymentsiddelete) | **DELETE** /api/deployments/{id} | Removes the Deployment resource.
-*DeploymentApi* | [**apiDeploymentsIdGet**](docs/Api/DeploymentApi.md#apideploymentsidget) | **GET** /api/deployments/{id} | Retrieves a Deployment resource.
-*DeploymentApi* | [**apiDeploymentsIdPatch**](docs/Api/DeploymentApi.md#apideploymentsidpatch) | **PATCH** /api/deployments/{id} | Updates the Deployment resource.
-*DeploymentApi* | [**apiDeploymentsIdendpointsGetCollection**](docs/Api/DeploymentApi.md#apideploymentsidendpointsgetcollection) | **GET** /api/deployments/{id}/endpoints | Retrieves the collection of Deployment resources.
-*DeploymentApi* | [**apiDeploymentsPost**](docs/Api/DeploymentApi.md#apideploymentspost) | **POST** /api/deployments | Creates a Deployment resource.
-*DeploymentApi* | [**bundleUploadConfirm**](docs/Api/DeploymentApi.md#bundleuploadconfirm) | **POST** /api/deployments/bundle_uploads/confirm | Creates a Deployment resource.
-*DeploymentApi* | [**bundleUploadDeclare**](docs/Api/DeploymentApi.md#bundleuploaddeclare) | **POST** /api/deployments/bundle_uploads | Creates a Deployment resource.
-*ManagedServiceApi* | [**apiManagedServicesGetCollection**](docs/Api/ManagedServiceApi.md#apimanagedservicesgetcollection) | **GET** /api/managed_services | Retrieves the collection of ManagedService resources.
-*ManagedServiceApi* | [**apiManagedServicesIdDelete**](docs/Api/ManagedServiceApi.md#apimanagedservicesiddelete) | **DELETE** /api/managed_services/{id} | Removes the ManagedService resource.
-*ManagedServiceApi* | [**apiManagedServicesIdGet**](docs/Api/ManagedServiceApi.md#apimanagedservicesidget) | **GET** /api/managed_services/{id} | Retrieves a ManagedService resource.
-*ManagedServiceApi* | [**apiManagedServicesPost**](docs/Api/ManagedServiceApi.md#apimanagedservicespost) | **POST** /api/managed_services | Creates a ManagedService resource.
-*ManagedServiceApi* | [**resume**](docs/Api/ManagedServiceApi.md#resume) | **POST** /api/managed_services/{id}/resume | Creates a ManagedService resource.
-*ManagedServiceApi* | [**suspend**](docs/Api/ManagedServiceApi.md#suspend) | **POST** /api/managed_services/{id}/suspend | Creates a ManagedService resource.
-*OrganizationApi* | [**apiOrganizationsGetCollection**](docs/Api/OrganizationApi.md#apiorganizationsgetcollection) | **GET** /api/organizations | Retrieves the collection of Organization resources.
-*OrganizationApi* | [**apiOrganizationsIdDelete**](docs/Api/OrganizationApi.md#apiorganizationsiddelete) | **DELETE** /api/organizations/{id} | Removes the Organization resource.
-*OrganizationApi* | [**apiOrganizationsIdGet**](docs/Api/OrganizationApi.md#apiorganizationsidget) | **GET** /api/organizations/{id} | Retrieves a Organization resource.
-*OrganizationApi* | [**apiOrganizationsIdPatch**](docs/Api/OrganizationApi.md#apiorganizationsidpatch) | **PATCH** /api/organizations/{id} | Updates the Organization resource.
-*OrganizationApi* | [**apiOrganizationsPost**](docs/Api/OrganizationApi.md#apiorganizationspost) | **POST** /api/organizations | Creates a Organization resource.
-*ServiceBindingApi* | [**apiServiceBindingsGetCollection**](docs/Api/ServiceBindingApi.md#apiservicebindingsgetcollection) | **GET** /api/service_bindings | Retrieves the collection of ServiceBinding resources.
-*ServiceBindingApi* | [**apiServiceBindingsIdDelete**](docs/Api/ServiceBindingApi.md#apiservicebindingsiddelete) | **DELETE** /api/service_bindings/{id} | Removes the ServiceBinding resource.
-*ServiceBindingApi* | [**apiServiceBindingsIdGet**](docs/Api/ServiceBindingApi.md#apiservicebindingsidget) | **GET** /api/service_bindings/{id} | Retrieves a ServiceBinding resource.
-*ServiceBindingApi* | [**apiServiceBindingsPost**](docs/Api/ServiceBindingApi.md#apiservicebindingspost) | **POST** /api/service_bindings | Creates a ServiceBinding resource.
-*SwarmApi* | [**apiSwarmsGetCollection**](docs/Api/SwarmApi.md#apiswarmsgetcollection) | **GET** /api/swarms | Retrieves the collection of Swarm resources.
-*SwarmApi* | [**apiSwarmsIdDelete**](docs/Api/SwarmApi.md#apiswarmsiddelete) | **DELETE** /api/swarms/{id} | Removes the Swarm resource.
-*SwarmApi* | [**apiSwarmsIdGet**](docs/Api/SwarmApi.md#apiswarmsidget) | **GET** /api/swarms/{id} | Retrieves a Swarm resource.
-*SwarmApi* | [**apiSwarmsIdPatch**](docs/Api/SwarmApi.md#apiswarmsidpatch) | **PATCH** /api/swarms/{id} | Updates the Swarm resource.
-*SwarmApi* | [**apiSwarmsPost**](docs/Api/SwarmApi.md#apiswarmspost) | **POST** /api/swarms | Creates a Swarm resource.
+*AdoptionApprovalApi* | [**adoptionApprovalsDecide**](docs/Api/AdoptionApprovalApi.md#adoptionapprovalsdecide) | **POST** /api/adoption_approvals | Creates a AdoptionApproval resource.
+*AdoptionApprovalApi* | [**adoptionApprovalsGet**](docs/Api/AdoptionApprovalApi.md#adoptionapprovalsget) | **GET** /api/adoption_approvals/{id} | Retrieves a AdoptionApproval resource.
+*AdoptionApprovalApi* | [**adoptionApprovalsList**](docs/Api/AdoptionApprovalApi.md#adoptionapprovalslist) | **GET** /api/adoption_approvals | Retrieves the collection of AdoptionApproval resources.
+*AdoptionApprovalApi* | [**adoptionApprovalsWithdraw**](docs/Api/AdoptionApprovalApi.md#adoptionapprovalswithdraw) | **DELETE** /api/adoption_approvals/{id} | Removes the AdoptionApproval resource.
+*ApplicationApi* | [**applicationsCreate**](docs/Api/ApplicationApi.md#applicationscreate) | **POST** /api/applications | Creates a Application resource.
+*ApplicationApi* | [**applicationsDelete**](docs/Api/ApplicationApi.md#applicationsdelete) | **DELETE** /api/applications/{id} | Removes the Application resource.
+*ApplicationApi* | [**applicationsGet**](docs/Api/ApplicationApi.md#applicationsget) | **GET** /api/applications/{id} | Retrieves a Application resource.
+*ApplicationApi* | [**applicationsList**](docs/Api/ApplicationApi.md#applicationslist) | **GET** /api/applications | Retrieves the collection of Application resources.
+*ApplicationApi* | [**applicationsUpdate**](docs/Api/ApplicationApi.md#applicationsupdate) | **PATCH** /api/applications/{id} | Updates the Application resource.
+*CreditTransactionApi* | [**creditTransactionsGet**](docs/Api/CreditTransactionApi.md#credittransactionsget) | **GET** /api/credit_transactions/{id} | Retrieves a CreditTransaction resource.
+*CreditTransactionApi* | [**creditTransactionsList**](docs/Api/CreditTransactionApi.md#credittransactionslist) | **GET** /api/credit_transactions | Retrieves the collection of CreditTransaction resources.
+*DeploymentApi* | [**deploymentsBundleUploadConfirm**](docs/Api/DeploymentApi.md#deploymentsbundleuploadconfirm) | **POST** /api/deployments/bundle_uploads/confirm | Creates a Deployment resource.
+*DeploymentApi* | [**deploymentsBundleUploadDeclare**](docs/Api/DeploymentApi.md#deploymentsbundleuploaddeclare) | **POST** /api/deployments/bundle_uploads | Creates a Deployment resource.
+*DeploymentApi* | [**deploymentsCreate**](docs/Api/DeploymentApi.md#deploymentscreate) | **POST** /api/deployments | Creates a Deployment resource.
+*DeploymentApi* | [**deploymentsDelete**](docs/Api/DeploymentApi.md#deploymentsdelete) | **DELETE** /api/deployments/{id} | Removes the Deployment resource.
+*DeploymentApi* | [**deploymentsEndpoints**](docs/Api/DeploymentApi.md#deploymentsendpoints) | **GET** /api/deployments/{id}/endpoints | Retrieves the collection of Deployment resources.
+*DeploymentApi* | [**deploymentsGet**](docs/Api/DeploymentApi.md#deploymentsget) | **GET** /api/deployments/{id} | Retrieves a Deployment resource.
+*DeploymentApi* | [**deploymentsList**](docs/Api/DeploymentApi.md#deploymentslist) | **GET** /api/deployments | Retrieves the collection of Deployment resources.
+*DeploymentApi* | [**deploymentsUpdate**](docs/Api/DeploymentApi.md#deploymentsupdate) | **PATCH** /api/deployments/{id} | Updates the Deployment resource.
+*ManagedServiceApi* | [**managedServicesCreate**](docs/Api/ManagedServiceApi.md#managedservicescreate) | **POST** /api/managed_services | Creates a ManagedService resource.
+*ManagedServiceApi* | [**managedServicesDelete**](docs/Api/ManagedServiceApi.md#managedservicesdelete) | **DELETE** /api/managed_services/{id} | Removes the ManagedService resource.
+*ManagedServiceApi* | [**managedServicesGet**](docs/Api/ManagedServiceApi.md#managedservicesget) | **GET** /api/managed_services/{id} | Retrieves a ManagedService resource.
+*ManagedServiceApi* | [**managedServicesList**](docs/Api/ManagedServiceApi.md#managedserviceslist) | **GET** /api/managed_services | Retrieves the collection of ManagedService resources.
+*ManagedServiceApi* | [**managedServicesResume**](docs/Api/ManagedServiceApi.md#managedservicesresume) | **POST** /api/managed_services/{id}/resume | Creates a ManagedService resource.
+*ManagedServiceApi* | [**managedServicesSuspend**](docs/Api/ManagedServiceApi.md#managedservicessuspend) | **POST** /api/managed_services/{id}/suspend | Creates a ManagedService resource.
+*OrganizationApi* | [**organizationsCreate**](docs/Api/OrganizationApi.md#organizationscreate) | **POST** /api/organizations | Creates a Organization resource.
+*OrganizationApi* | [**organizationsDelete**](docs/Api/OrganizationApi.md#organizationsdelete) | **DELETE** /api/organizations/{id} | Removes the Organization resource.
+*OrganizationApi* | [**organizationsGet**](docs/Api/OrganizationApi.md#organizationsget) | **GET** /api/organizations/{id} | Retrieves a Organization resource.
+*OrganizationApi* | [**organizationsList**](docs/Api/OrganizationApi.md#organizationslist) | **GET** /api/organizations | Retrieves the collection of Organization resources.
+*OrganizationApi* | [**organizationsUpdate**](docs/Api/OrganizationApi.md#organizationsupdate) | **PATCH** /api/organizations/{id} | Updates the Organization resource.
+*ServiceBindingApi* | [**serviceBindingsCreate**](docs/Api/ServiceBindingApi.md#servicebindingscreate) | **POST** /api/service_bindings | Creates a ServiceBinding resource.
+*ServiceBindingApi* | [**serviceBindingsDelete**](docs/Api/ServiceBindingApi.md#servicebindingsdelete) | **DELETE** /api/service_bindings/{id} | Removes the ServiceBinding resource.
+*ServiceBindingApi* | [**serviceBindingsGet**](docs/Api/ServiceBindingApi.md#servicebindingsget) | **GET** /api/service_bindings/{id} | Retrieves a ServiceBinding resource.
+*ServiceBindingApi* | [**serviceBindingsList**](docs/Api/ServiceBindingApi.md#servicebindingslist) | **GET** /api/service_bindings | Retrieves the collection of ServiceBinding resources.
+*SwarmApi* | [**swarmsCreate**](docs/Api/SwarmApi.md#swarmscreate) | **POST** /api/swarms | Creates a Swarm resource.
+*SwarmApi* | [**swarmsDelete**](docs/Api/SwarmApi.md#swarmsdelete) | **DELETE** /api/swarms/{id} | Removes the Swarm resource.
+*SwarmApi* | [**swarmsGet**](docs/Api/SwarmApi.md#swarmsget) | **GET** /api/swarms/{id} | Retrieves a Swarm resource.
+*SwarmApi* | [**swarmsList**](docs/Api/SwarmApi.md#swarmslist) | **GET** /api/swarms | Retrieves the collection of Swarm resources.
+*SwarmApi* | [**swarmsUpdate**](docs/Api/SwarmApi.md#swarmsupdate) | **PATCH** /api/swarms/{id} | Updates the Swarm resource.
 
 ## Models
 

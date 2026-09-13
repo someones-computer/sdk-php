@@ -72,60 +72,60 @@ class OrganizationApiTest extends TestCase
     }
 
     /**
-     * Test case for apiOrganizationsGetCollection
-     *
-     * Retrieves the collection of Organization resources..
-     *
-     */
-    public function testApiOrganizationsGetCollection()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiOrganizationsIdDelete
-     *
-     * Removes the Organization resource..
-     *
-     */
-    public function testApiOrganizationsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiOrganizationsIdGet
-     *
-     * Retrieves a Organization resource..
-     *
-     */
-    public function testApiOrganizationsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiOrganizationsIdPatch
-     *
-     * Updates the Organization resource..
-     *
-     */
-    public function testApiOrganizationsIdPatch()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiOrganizationsPost
+     * Test case for organizationsCreate
      *
      * Creates a Organization resource..
      *
      */
-    public function testApiOrganizationsPost()
+    public function testOrganizationsCreate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for organizationsDelete
+     *
+     * Removes the Organization resource..
+     *
+     */
+    public function testOrganizationsDelete()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for organizationsGet
+     *
+     * Retrieves a Organization resource..
+     *
+     */
+    public function testOrganizationsGet()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for organizationsList
+     *
+     * Retrieves the collection of Organization resources..
+     *
+     */
+    public function testOrganizationsList()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for organizationsUpdate
+     *
+     * Updates the Organization resource..
+     *
+     */
+    public function testOrganizationsUpdate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

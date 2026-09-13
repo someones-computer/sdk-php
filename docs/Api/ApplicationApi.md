@@ -4,17 +4,196 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**apiApplicationsGetCollection()**](ApplicationApi.md#apiApplicationsGetCollection) | **GET** /api/applications | Retrieves the collection of Application resources. |
-| [**apiApplicationsIdDelete()**](ApplicationApi.md#apiApplicationsIdDelete) | **DELETE** /api/applications/{id} | Removes the Application resource. |
-| [**apiApplicationsIdGet()**](ApplicationApi.md#apiApplicationsIdGet) | **GET** /api/applications/{id} | Retrieves a Application resource. |
-| [**apiApplicationsIdPatch()**](ApplicationApi.md#apiApplicationsIdPatch) | **PATCH** /api/applications/{id} | Updates the Application resource. |
-| [**apiApplicationsPost()**](ApplicationApi.md#apiApplicationsPost) | **POST** /api/applications | Creates a Application resource. |
+| [**applicationsCreate()**](ApplicationApi.md#applicationsCreate) | **POST** /api/applications | Creates a Application resource. |
+| [**applicationsDelete()**](ApplicationApi.md#applicationsDelete) | **DELETE** /api/applications/{id} | Removes the Application resource. |
+| [**applicationsGet()**](ApplicationApi.md#applicationsGet) | **GET** /api/applications/{id} | Retrieves a Application resource. |
+| [**applicationsList()**](ApplicationApi.md#applicationsList) | **GET** /api/applications | Retrieves the collection of Application resources. |
+| [**applicationsUpdate()**](ApplicationApi.md#applicationsUpdate) | **PATCH** /api/applications/{id} | Updates the Application resource. |
 
 
-## `apiApplicationsGetCollection()`
+## `applicationsCreate()`
 
 ```php
-apiApplicationsGetCollection($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2): \SomeonesComputer\Sdk\Model\Application[]
+applicationsCreate($application): \SomeonesComputer\Sdk\Model\Application
+```
+
+Creates a Application resource.
+
+Creates a Application resource.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearerAuth
+$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$application = new \SomeonesComputer\Sdk\Model\Application(); // \SomeonesComputer\Sdk\Model\Application | The new Application resource
+
+try {
+    $result = $apiInstance->applicationsCreate($application);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ApplicationApi->applicationsCreate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **application** | [**\SomeonesComputer\Sdk\Model\Application**](../Model/Application.md)| The new Application resource | |
+
+### Return type
+
+[**\SomeonesComputer\Sdk\Model\Application**](../Model/Application.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`, `application/problem+json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `applicationsDelete()`
+
+```php
+applicationsDelete($id)
+```
+
+Removes the Application resource.
+
+Removes the Application resource.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearerAuth
+$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Application identifier
+
+try {
+    $apiInstance->applicationsDelete($id);
+} catch (Exception $e) {
+    echo 'Exception when calling ApplicationApi->applicationsDelete: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Application identifier | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/problem+json`, `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `applicationsGet()`
+
+```php
+applicationsGet($id): \SomeonesComputer\Sdk\Model\Application
+```
+
+Retrieves a Application resource.
+
+Retrieves a Application resource.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearerAuth
+$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Application identifier
+
+try {
+    $result = $apiInstance->applicationsGet($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ApplicationApi->applicationsGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Application identifier | |
+
+### Return type
+
+[**\SomeonesComputer\Sdk\Model\Application**](../Model/Application.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `application/problem+json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `applicationsList()`
+
+```php
+applicationsList($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2): \SomeonesComputer\Sdk\Model\Application[]
 ```
 
 Retrieves the collection of Application resources.
@@ -47,10 +226,10 @@ $organization_slug = 'organization_slug_example'; // string |
 $organization_slug2 = array('organization_slug_example'); // string[] | 
 
 try {
-    $result = $apiInstance->apiApplicationsGetCollection($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2);
+    $result = $apiInstance->applicationsList($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApplicationApi->apiApplicationsGetCollection: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ApplicationApi->applicationsList: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -83,129 +262,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiApplicationsIdDelete()`
+## `applicationsUpdate()`
 
 ```php
-apiApplicationsIdDelete($id)
-```
-
-Removes the Application resource.
-
-Removes the Application resource.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure Bearer authorization: bearerAuth
-$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | Application identifier
-
-try {
-    $apiInstance->apiApplicationsIdDelete($id);
-} catch (Exception $e) {
-    echo 'Exception when calling ApplicationApi->apiApplicationsIdDelete: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Application identifier | |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[bearerAuth](../../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/problem+json`, `application/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiApplicationsIdGet()`
-
-```php
-apiApplicationsIdGet($id): \SomeonesComputer\Sdk\Model\Application
-```
-
-Retrieves a Application resource.
-
-Retrieves a Application resource.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure Bearer authorization: bearerAuth
-$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | Application identifier
-
-try {
-    $result = $apiInstance->apiApplicationsIdGet($id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ApplicationApi->apiApplicationsIdGet: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| Application identifier | |
-
-### Return type
-
-[**\SomeonesComputer\Sdk\Model\Application**](../Model/Application.md)
-
-### Authorization
-
-[bearerAuth](../../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`, `application/problem+json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiApplicationsIdPatch()`
-
-```php
-apiApplicationsIdPatch($id, $application_json_merge_patch): \SomeonesComputer\Sdk\Model\Application
+applicationsUpdate($id, $application_json_merge_patch): \SomeonesComputer\Sdk\Model\Application
 ```
 
 Updates the Application resource.
@@ -233,10 +293,10 @@ $id = 'id_example'; // string | Application identifier
 $application_json_merge_patch = new \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch(); // \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch | The updated Application resource
 
 try {
-    $result = $apiInstance->apiApplicationsIdPatch($id, $application_json_merge_patch);
+    $result = $apiInstance->applicationsUpdate($id, $application_json_merge_patch);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ApplicationApi->apiApplicationsIdPatch: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ApplicationApi->applicationsUpdate: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -258,66 +318,6 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: `application/merge-patch+json`
-- **Accept**: `application/json`, `application/problem+json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiApplicationsPost()`
-
-```php
-apiApplicationsPost($application): \SomeonesComputer\Sdk\Model\Application
-```
-
-Creates a Application resource.
-
-Creates a Application resource.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure Bearer authorization: bearerAuth
-$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new SomeonesComputer\Sdk\Api\ApplicationApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$application = new \SomeonesComputer\Sdk\Model\Application(); // \SomeonesComputer\Sdk\Model\Application | The new Application resource
-
-try {
-    $result = $apiInstance->apiApplicationsPost($application);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling ApplicationApi->apiApplicationsPost: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **application** | [**\SomeonesComputer\Sdk\Model\Application**](../Model/Application.md)| The new Application resource | |
-
-### Return type
-
-[**\SomeonesComputer\Sdk\Model\Application**](../Model/Application.md)
-
-### Authorization
-
-[bearerAuth](../../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
 - **Accept**: `application/json`, `application/problem+json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

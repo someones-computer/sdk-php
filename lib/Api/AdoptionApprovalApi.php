@@ -71,16 +71,16 @@ class AdoptionApprovalApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiAdoptionApprovalsGetCollection' => [
+        'adoptionApprovalsDecide' => [
             'application/json',
         ],
-        'apiAdoptionApprovalsIdDelete' => [
+        'adoptionApprovalsGet' => [
             'application/json',
         ],
-        'apiAdoptionApprovalsIdGet' => [
+        'adoptionApprovalsList' => [
             'application/json',
         ],
-        'apiAdoptionApprovalsPost' => [
+        'adoptionApprovalsWithdraw' => [
             'application/json',
         ],
     ];
@@ -132,921 +132,38 @@ class AdoptionApprovalApi
     }
 
     /**
-     * Operation apiAdoptionApprovalsGetCollection
-     *
-     * Retrieves the collection of AdoptionApproval resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\AdoptionApproval[]
-     */
-    public function apiAdoptionApprovalsGetCollection($page = 1, string $contentType = self::contentTypes['apiAdoptionApprovalsGetCollection'][0])
-    {
-        list($response) = $this->apiAdoptionApprovalsGetCollectionWithHttpInfo($page, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsGetCollectionWithHttpInfo
-     *
-     * Retrieves the collection of AdoptionApproval resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\AdoptionApproval[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiAdoptionApprovalsGetCollectionWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiAdoptionApprovalsGetCollection'][0])
-    {
-        $request = $this->apiAdoptionApprovalsGetCollectionRequest($page, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SomeonesComputer\Sdk\Model\AdoptionApproval[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\AdoptionApproval[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\AdoptionApproval[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\AdoptionApproval[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsGetCollectionAsync
-     *
-     * Retrieves the collection of AdoptionApproval resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiAdoptionApprovalsGetCollectionAsync($page = 1, string $contentType = self::contentTypes['apiAdoptionApprovalsGetCollection'][0])
-    {
-        return $this->apiAdoptionApprovalsGetCollectionAsyncWithHttpInfo($page, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsGetCollectionAsyncWithHttpInfo
-     *
-     * Retrieves the collection of AdoptionApproval resources.
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiAdoptionApprovalsGetCollectionAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['apiAdoptionApprovalsGetCollection'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval[]';
-        $request = $this->apiAdoptionApprovalsGetCollectionRequest($page, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiAdoptionApprovalsGetCollection'
-     *
-     * @param  int|null $page The collection page number (optional, default to 1)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsGetCollection'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiAdoptionApprovalsGetCollectionRequest($page = 1, string $contentType = self::contentTypes['apiAdoptionApprovalsGetCollection'][0])
-    {
-
-
-
-        $resourcePath = '/api/adoption_approvals';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $page,
-            'page', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdDelete
-     *
-     * Removes the AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiAdoptionApprovalsIdDelete($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdDelete'][0])
-    {
-        $this->apiAdoptionApprovalsIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdDeleteWithHttpInfo
-     *
-     * Removes the AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiAdoptionApprovalsIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdDelete'][0])
-    {
-        $request = $this->apiAdoptionApprovalsIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdDeleteAsync
-     *
-     * Removes the AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiAdoptionApprovalsIdDeleteAsync($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdDelete'][0])
-    {
-        return $this->apiAdoptionApprovalsIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdDeleteAsyncWithHttpInfo
-     *
-     * Removes the AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiAdoptionApprovalsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiAdoptionApprovalsIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiAdoptionApprovalsIdDelete'
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiAdoptionApprovalsIdDeleteRequest($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiAdoptionApprovalsIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/adoption_approvals/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', 'application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdGet
-     *
-     * Retrieves a AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\AdoptionApproval|\SomeonesComputer\Sdk\Model\Error
-     */
-    public function apiAdoptionApprovalsIdGet($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdGet'][0])
-    {
-        list($response) = $this->apiAdoptionApprovalsIdGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdGetWithHttpInfo
-     *
-     * Retrieves a AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\AdoptionApproval|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiAdoptionApprovalsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdGet'][0])
-    {
-        $request = $this->apiAdoptionApprovalsIdGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SomeonesComputer\Sdk\Model\AdoptionApproval' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\AdoptionApproval' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\AdoptionApproval', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\AdoptionApproval',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdGetAsync
-     *
-     * Retrieves a AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiAdoptionApprovalsIdGetAsync($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdGet'][0])
-    {
-        return $this->apiAdoptionApprovalsIdGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsIdGetAsyncWithHttpInfo
-     *
-     * Retrieves a AdoptionApproval resource.
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiAdoptionApprovalsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdGet'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval';
-        $request = $this->apiAdoptionApprovalsIdGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiAdoptionApprovalsIdGet'
-     *
-     * @param  string $id AdoptionApproval identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiAdoptionApprovalsIdGetRequest($id, string $contentType = self::contentTypes['apiAdoptionApprovalsIdGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiAdoptionApprovalsIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/adoption_approvals/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiAdoptionApprovalsPost
+     * Operation adoptionApprovalsDecide
      *
      * Creates a AdoptionApproval resource.
      *
      * @param  \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput $adoption_approval_adoption_approval_input The new AdoptionApproval resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsDecide'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\AdoptionApproval|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
      */
-    public function apiAdoptionApprovalsPost($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['apiAdoptionApprovalsPost'][0])
+    public function adoptionApprovalsDecide($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['adoptionApprovalsDecide'][0])
     {
-        list($response) = $this->apiAdoptionApprovalsPostWithHttpInfo($adoption_approval_adoption_approval_input, $contentType);
+        list($response) = $this->adoptionApprovalsDecideWithHttpInfo($adoption_approval_adoption_approval_input, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiAdoptionApprovalsPostWithHttpInfo
+     * Operation adoptionApprovalsDecideWithHttpInfo
      *
      * Creates a AdoptionApproval resource.
      *
      * @param  \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput $adoption_approval_adoption_approval_input The new AdoptionApproval resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsDecide'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\AdoptionApproval|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiAdoptionApprovalsPostWithHttpInfo($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['apiAdoptionApprovalsPost'][0])
+    public function adoptionApprovalsDecideWithHttpInfo($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['adoptionApprovalsDecide'][0])
     {
-        $request = $this->apiAdoptionApprovalsPostRequest($adoption_approval_adoption_approval_input, $contentType);
+        $request = $this->adoptionApprovalsDecideRequest($adoption_approval_adoption_approval_input, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1228,19 +345,19 @@ class AdoptionApprovalApi
     }
 
     /**
-     * Operation apiAdoptionApprovalsPostAsync
+     * Operation adoptionApprovalsDecideAsync
      *
      * Creates a AdoptionApproval resource.
      *
      * @param  \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput $adoption_approval_adoption_approval_input The new AdoptionApproval resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsDecide'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiAdoptionApprovalsPostAsync($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['apiAdoptionApprovalsPost'][0])
+    public function adoptionApprovalsDecideAsync($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['adoptionApprovalsDecide'][0])
     {
-        return $this->apiAdoptionApprovalsPostAsyncWithHttpInfo($adoption_approval_adoption_approval_input, $contentType)
+        return $this->adoptionApprovalsDecideAsyncWithHttpInfo($adoption_approval_adoption_approval_input, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1249,20 +366,20 @@ class AdoptionApprovalApi
     }
 
     /**
-     * Operation apiAdoptionApprovalsPostAsyncWithHttpInfo
+     * Operation adoptionApprovalsDecideAsyncWithHttpInfo
      *
      * Creates a AdoptionApproval resource.
      *
      * @param  \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput $adoption_approval_adoption_approval_input The new AdoptionApproval resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsDecide'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiAdoptionApprovalsPostAsyncWithHttpInfo($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['apiAdoptionApprovalsPost'][0])
+    public function adoptionApprovalsDecideAsyncWithHttpInfo($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['adoptionApprovalsDecide'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval';
-        $request = $this->apiAdoptionApprovalsPostRequest($adoption_approval_adoption_approval_input, $contentType);
+        $request = $this->adoptionApprovalsDecideRequest($adoption_approval_adoption_approval_input, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1301,21 +418,21 @@ class AdoptionApprovalApi
     }
 
     /**
-     * Create request for operation 'apiAdoptionApprovalsPost'
+     * Create request for operation 'adoptionApprovalsDecide'
      *
      * @param  \SomeonesComputer\Sdk\Model\AdoptionApprovalAdoptionApprovalInput $adoption_approval_adoption_approval_input The new AdoptionApproval resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiAdoptionApprovalsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsDecide'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiAdoptionApprovalsPostRequest($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['apiAdoptionApprovalsPost'][0])
+    public function adoptionApprovalsDecideRequest($adoption_approval_adoption_approval_input, string $contentType = self::contentTypes['adoptionApprovalsDecide'][0])
     {
 
         // verify the required parameter 'adoption_approval_adoption_approval_input' is set
         if ($adoption_approval_adoption_approval_input === null || (is_array($adoption_approval_adoption_approval_input) && count($adoption_approval_adoption_approval_input) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $adoption_approval_adoption_approval_input when calling apiAdoptionApprovalsPost'
+                'Missing the required parameter $adoption_approval_adoption_approval_input when calling adoptionApprovalsDecide'
             );
         }
 
@@ -1389,6 +506,889 @@ class AdoptionApprovalApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation adoptionApprovalsGet
+     *
+     * Retrieves a AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\AdoptionApproval|\SomeonesComputer\Sdk\Model\Error
+     */
+    public function adoptionApprovalsGet($id, string $contentType = self::contentTypes['adoptionApprovalsGet'][0])
+    {
+        list($response) = $this->adoptionApprovalsGetWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation adoptionApprovalsGetWithHttpInfo
+     *
+     * Retrieves a AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\AdoptionApproval|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function adoptionApprovalsGetWithHttpInfo($id, string $contentType = self::contentTypes['adoptionApprovalsGet'][0])
+    {
+        $request = $this->adoptionApprovalsGetRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SomeonesComputer\Sdk\Model\AdoptionApproval' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\AdoptionApproval' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\AdoptionApproval', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\AdoptionApproval',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation adoptionApprovalsGetAsync
+     *
+     * Retrieves a AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function adoptionApprovalsGetAsync($id, string $contentType = self::contentTypes['adoptionApprovalsGet'][0])
+    {
+        return $this->adoptionApprovalsGetAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation adoptionApprovalsGetAsyncWithHttpInfo
+     *
+     * Retrieves a AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function adoptionApprovalsGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['adoptionApprovalsGet'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval';
+        $request = $this->adoptionApprovalsGetRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'adoptionApprovalsGet'
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function adoptionApprovalsGetRequest($id, string $contentType = self::contentTypes['adoptionApprovalsGet'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling adoptionApprovalsGet'
+            );
+        }
+
+
+        $resourcePath = '/api/adoption_approvals/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation adoptionApprovalsList
+     *
+     * Retrieves the collection of AdoptionApproval resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsList'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\AdoptionApproval[]
+     */
+    public function adoptionApprovalsList($page = 1, string $contentType = self::contentTypes['adoptionApprovalsList'][0])
+    {
+        list($response) = $this->adoptionApprovalsListWithHttpInfo($page, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation adoptionApprovalsListWithHttpInfo
+     *
+     * Retrieves the collection of AdoptionApproval resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsList'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\AdoptionApproval[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function adoptionApprovalsListWithHttpInfo($page = 1, string $contentType = self::contentTypes['adoptionApprovalsList'][0])
+    {
+        $request = $this->adoptionApprovalsListRequest($page, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SomeonesComputer\Sdk\Model\AdoptionApproval[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\AdoptionApproval[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\AdoptionApproval[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\AdoptionApproval[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation adoptionApprovalsListAsync
+     *
+     * Retrieves the collection of AdoptionApproval resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsList'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function adoptionApprovalsListAsync($page = 1, string $contentType = self::contentTypes['adoptionApprovalsList'][0])
+    {
+        return $this->adoptionApprovalsListAsyncWithHttpInfo($page, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation adoptionApprovalsListAsyncWithHttpInfo
+     *
+     * Retrieves the collection of AdoptionApproval resources.
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsList'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function adoptionApprovalsListAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['adoptionApprovalsList'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\AdoptionApproval[]';
+        $request = $this->adoptionApprovalsListRequest($page, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'adoptionApprovalsList'
+     *
+     * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsList'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function adoptionApprovalsListRequest($page = 1, string $contentType = self::contentTypes['adoptionApprovalsList'][0])
+    {
+
+
+
+        $resourcePath = '/api/adoption_approvals';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation adoptionApprovalsWithdraw
+     *
+     * Removes the AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsWithdraw'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function adoptionApprovalsWithdraw($id, string $contentType = self::contentTypes['adoptionApprovalsWithdraw'][0])
+    {
+        $this->adoptionApprovalsWithdrawWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation adoptionApprovalsWithdrawWithHttpInfo
+     *
+     * Removes the AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsWithdraw'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function adoptionApprovalsWithdrawWithHttpInfo($id, string $contentType = self::contentTypes['adoptionApprovalsWithdraw'][0])
+    {
+        $request = $this->adoptionApprovalsWithdrawRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation adoptionApprovalsWithdrawAsync
+     *
+     * Removes the AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsWithdraw'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function adoptionApprovalsWithdrawAsync($id, string $contentType = self::contentTypes['adoptionApprovalsWithdraw'][0])
+    {
+        return $this->adoptionApprovalsWithdrawAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation adoptionApprovalsWithdrawAsyncWithHttpInfo
+     *
+     * Removes the AdoptionApproval resource.
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsWithdraw'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function adoptionApprovalsWithdrawAsyncWithHttpInfo($id, string $contentType = self::contentTypes['adoptionApprovalsWithdraw'][0])
+    {
+        $returnType = '';
+        $request = $this->adoptionApprovalsWithdrawRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'adoptionApprovalsWithdraw'
+     *
+     * @param  string $id AdoptionApproval identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['adoptionApprovalsWithdraw'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function adoptionApprovalsWithdrawRequest($id, string $contentType = self::contentTypes['adoptionApprovalsWithdraw'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling adoptionApprovalsWithdraw'
+            );
+        }
+
+
+        $resourcePath = '/api/adoption_approvals/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/problem+json', 'application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

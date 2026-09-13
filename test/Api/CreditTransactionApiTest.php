@@ -72,24 +72,24 @@ class CreditTransactionApiTest extends TestCase
     }
 
     /**
-     * Test case for apiCreditTransactionsGetCollection
+     * Test case for creditTransactionsGet
      *
-     * Retrieves the collection of CreditTransaction resources..
+     * Retrieves a CreditTransaction resource..
      *
      */
-    public function testApiCreditTransactionsGetCollection()
+    public function testCreditTransactionsGet()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiCreditTransactionsIdGet
+     * Test case for creditTransactionsList
      *
-     * Retrieves a CreditTransaction resource..
+     * Retrieves the collection of CreditTransaction resources..
      *
      */
-    public function testApiCreditTransactionsIdGet()
+    public function testCreditTransactionsList()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

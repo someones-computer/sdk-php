@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * Swarm Class Doc Comment
  *
  * @category Class
- * @description A Docker Swarm we can deploy onto. The trust boundary of the platform.  owner &#x3D;&#x3D;&#x3D; null  &#x3D;&gt; PLATFORM pool (shared infra we run). owner !&#x3D;&#x3D; null  &#x3D;&gt; CUSTOMER BYO cluster (untrusted, outbound-only).
+ * @description List swarms the caller can see.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

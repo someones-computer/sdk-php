@@ -72,96 +72,96 @@ class DeploymentApiTest extends TestCase
     }
 
     /**
-     * Test case for apiDeploymentsGetCollection
+     * Test case for deploymentsBundleUploadConfirm
      *
-     * Retrieves the collection of Deployment resources..
+     * Creates a Deployment resource..
      *
      */
-    public function testApiDeploymentsGetCollection()
+    public function testDeploymentsBundleUploadConfirm()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiDeploymentsIdDelete
+     * Test case for deploymentsBundleUploadDeclare
+     *
+     * Creates a Deployment resource..
+     *
+     */
+    public function testDeploymentsBundleUploadDeclare()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deploymentsCreate
+     *
+     * Creates a Deployment resource..
+     *
+     */
+    public function testDeploymentsCreate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deploymentsDelete
      *
      * Removes the Deployment resource..
      *
      */
-    public function testApiDeploymentsIdDelete()
+    public function testDeploymentsDelete()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiDeploymentsIdGet
-     *
-     * Retrieves a Deployment resource..
-     *
-     */
-    public function testApiDeploymentsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiDeploymentsIdPatch
-     *
-     * Updates the Deployment resource..
-     *
-     */
-    public function testApiDeploymentsIdPatch()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiDeploymentsIdendpointsGetCollection
+     * Test case for deploymentsEndpoints
      *
      * Retrieves the collection of Deployment resources..
      *
      */
-    public function testApiDeploymentsIdendpointsGetCollection()
+    public function testDeploymentsEndpoints()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiDeploymentsPost
+     * Test case for deploymentsGet
      *
-     * Creates a Deployment resource..
+     * Retrieves a Deployment resource..
      *
      */
-    public function testApiDeploymentsPost()
+    public function testDeploymentsGet()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for bundleUploadConfirm
+     * Test case for deploymentsList
      *
-     * Creates a Deployment resource..
+     * Retrieves the collection of Deployment resources..
      *
      */
-    public function testBundleUploadConfirm()
+    public function testDeploymentsList()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for bundleUploadDeclare
+     * Test case for deploymentsUpdate
      *
-     * Creates a Deployment resource..
+     * Updates the Deployment resource..
      *
      */
-    public function testBundleUploadDeclare()
+    public function testDeploymentsUpdate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
