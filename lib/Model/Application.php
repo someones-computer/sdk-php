@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * Application Class Doc Comment
  *
  * @category Class
- * @description A deployable \&quot;island\&quot;: one logical app, defined by a compose file, deployed as a swarm stack. Holds a pointer to the current (immutable) deployment; history lives in the deployment revisions.
+ * @description List applications the caller can see.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

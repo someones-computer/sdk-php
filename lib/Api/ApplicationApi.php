@@ -71,20 +71,20 @@ class ApplicationApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiApplicationsGetCollection' => [
+        'applicationsCreate' => [
             'application/json',
         ],
-        'apiApplicationsIdDelete' => [
+        'applicationsDelete' => [
             'application/json',
         ],
-        'apiApplicationsIdGet' => [
+        'applicationsGet' => [
             'application/json',
         ],
-        'apiApplicationsIdPatch' => [
+        'applicationsList' => [
+            'application/json',
+        ],
+        'applicationsUpdate' => [
             'application/merge-patch+json',
-        ],
-        'apiApplicationsPost' => [
-            'application/json',
         ],
     ];
 
@@ -135,7 +135,972 @@ class ApplicationApi
     }
 
     /**
-     * Operation apiApplicationsGetCollection
+     * Operation applicationsCreate
+     *
+     * Creates a Application resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsCreate'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
+     */
+    public function applicationsCreate($application, string $contentType = self::contentTypes['applicationsCreate'][0])
+    {
+        list($response) = $this->applicationsCreateWithHttpInfo($application, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation applicationsCreateWithHttpInfo
+     *
+     * Creates a Application resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsCreate'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function applicationsCreateWithHttpInfo($application, string $contentType = self::contentTypes['applicationsCreate'][0])
+    {
+        $request = $this->applicationsCreateRequest($application, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 201:
+                    if ('\SomeonesComputer\Sdk\Model\Application' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Application' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Application', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 422:
+                    if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ConstraintViolation', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\Application';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Application',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 422:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\ConstraintViolation',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation applicationsCreateAsync
+     *
+     * Creates a Application resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function applicationsCreateAsync($application, string $contentType = self::contentTypes['applicationsCreate'][0])
+    {
+        return $this->applicationsCreateAsyncWithHttpInfo($application, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation applicationsCreateAsyncWithHttpInfo
+     *
+     * Creates a Application resource.
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function applicationsCreateAsyncWithHttpInfo($application, string $contentType = self::contentTypes['applicationsCreate'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\Application';
+        $request = $this->applicationsCreateRequest($application, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'applicationsCreate'
+     *
+     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsCreate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function applicationsCreateRequest($application, string $contentType = self::contentTypes['applicationsCreate'][0])
+    {
+
+        // verify the required parameter 'application' is set
+        if ($application === null || (is_array($application) && count($application) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $application when calling applicationsCreate'
+            );
+        }
+
+
+        $resourcePath = '/api/applications';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($application)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($application));
+            } else {
+                $httpBody = $application;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation applicationsDelete
+     *
+     * Removes the Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsDelete'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function applicationsDelete($id, string $contentType = self::contentTypes['applicationsDelete'][0])
+    {
+        $this->applicationsDeleteWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation applicationsDeleteWithHttpInfo
+     *
+     * Removes the Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsDelete'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function applicationsDeleteWithHttpInfo($id, string $contentType = self::contentTypes['applicationsDelete'][0])
+    {
+        $request = $this->applicationsDeleteRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 403:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation applicationsDeleteAsync
+     *
+     * Removes the Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function applicationsDeleteAsync($id, string $contentType = self::contentTypes['applicationsDelete'][0])
+    {
+        return $this->applicationsDeleteAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation applicationsDeleteAsyncWithHttpInfo
+     *
+     * Removes the Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function applicationsDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['applicationsDelete'][0])
+    {
+        $returnType = '';
+        $request = $this->applicationsDeleteRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'applicationsDelete'
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsDelete'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function applicationsDeleteRequest($id, string $contentType = self::contentTypes['applicationsDelete'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling applicationsDelete'
+            );
+        }
+
+
+        $resourcePath = '/api/applications/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/problem+json', 'application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation applicationsGet
+     *
+     * Retrieves a Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error
+     */
+    public function applicationsGet($id, string $contentType = self::contentTypes['applicationsGet'][0])
+    {
+        list($response) = $this->applicationsGetWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation applicationsGetWithHttpInfo
+     *
+     * Retrieves a Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsGet'] to see the possible values for this operation
+     *
+     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function applicationsGetWithHttpInfo($id, string $contentType = self::contentTypes['applicationsGet'][0])
+    {
+        $request = $this->applicationsGetRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\SomeonesComputer\Sdk\Model\Application' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Application' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Application', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\SomeonesComputer\Sdk\Model\Application';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Application',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\SomeonesComputer\Sdk\Model\Error',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation applicationsGetAsync
+     *
+     * Retrieves a Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function applicationsGetAsync($id, string $contentType = self::contentTypes['applicationsGet'][0])
+    {
+        return $this->applicationsGetAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation applicationsGetAsyncWithHttpInfo
+     *
+     * Retrieves a Application resource.
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function applicationsGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['applicationsGet'][0])
+    {
+        $returnType = '\SomeonesComputer\Sdk\Model\Application';
+        $request = $this->applicationsGetRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'applicationsGet'
+     *
+     * @param  string $id Application identifier (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function applicationsGetRequest($id, string $contentType = self::contentTypes['applicationsGet'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling applicationsGet'
+            );
+        }
+
+
+        $resourcePath = '/api/applications/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires Bearer authentication (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation applicationsList
      *
      * Retrieves the collection of Application resources.
      *
@@ -146,20 +1111,20 @@ class ApplicationApi
      * @param  string[]|null $organization2  (optional)
      * @param  string|null $organization_slug  (optional)
      * @param  string[]|null $organization_slug2  (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\Application[]
      */
-    public function apiApplicationsGetCollection($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['apiApplicationsGetCollection'][0])
+    public function applicationsList($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['applicationsList'][0])
     {
-        list($response) = $this->apiApplicationsGetCollectionWithHttpInfo($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType);
+        list($response) = $this->applicationsListWithHttpInfo($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiApplicationsGetCollectionWithHttpInfo
+     * Operation applicationsListWithHttpInfo
      *
      * Retrieves the collection of Application resources.
      *
@@ -170,15 +1135,15 @@ class ApplicationApi
      * @param  string[]|null $organization2  (optional)
      * @param  string|null $organization_slug  (optional)
      * @param  string[]|null $organization_slug2  (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\Application[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiApplicationsGetCollectionWithHttpInfo($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['apiApplicationsGetCollection'][0])
+    public function applicationsListWithHttpInfo($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['applicationsList'][0])
     {
-        $request = $this->apiApplicationsGetCollectionRequest($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType);
+        $request = $this->applicationsListRequest($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -290,7 +1255,7 @@ class ApplicationApi
     }
 
     /**
-     * Operation apiApplicationsGetCollectionAsync
+     * Operation applicationsListAsync
      *
      * Retrieves the collection of Application resources.
      *
@@ -301,14 +1266,14 @@ class ApplicationApi
      * @param  string[]|null $organization2  (optional)
      * @param  string|null $organization_slug  (optional)
      * @param  string[]|null $organization_slug2  (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiApplicationsGetCollectionAsync($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['apiApplicationsGetCollection'][0])
+    public function applicationsListAsync($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['applicationsList'][0])
     {
-        return $this->apiApplicationsGetCollectionAsyncWithHttpInfo($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType)
+        return $this->applicationsListAsyncWithHttpInfo($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -317,7 +1282,7 @@ class ApplicationApi
     }
 
     /**
-     * Operation apiApplicationsGetCollectionAsyncWithHttpInfo
+     * Operation applicationsListAsyncWithHttpInfo
      *
      * Retrieves the collection of Application resources.
      *
@@ -328,15 +1293,15 @@ class ApplicationApi
      * @param  string[]|null $organization2  (optional)
      * @param  string|null $organization_slug  (optional)
      * @param  string[]|null $organization_slug2  (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiApplicationsGetCollectionAsyncWithHttpInfo($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['apiApplicationsGetCollection'][0])
+    public function applicationsListAsyncWithHttpInfo($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['applicationsList'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\Application[]';
-        $request = $this->apiApplicationsGetCollectionRequest($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType);
+        $request = $this->applicationsListRequest($page, $slug, $slug2, $organization, $organization2, $organization_slug, $organization_slug2, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -375,7 +1340,7 @@ class ApplicationApi
     }
 
     /**
-     * Create request for operation 'apiApplicationsGetCollection'
+     * Create request for operation 'applicationsList'
      *
      * @param  int|null $page The collection page number (optional, default to 1)
      * @param  string|null $slug  (optional)
@@ -384,12 +1349,12 @@ class ApplicationApi
      * @param  string[]|null $organization2  (optional)
      * @param  string|null $organization_slug  (optional)
      * @param  string[]|null $organization_slug2  (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsGetCollection'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiApplicationsGetCollectionRequest($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['apiApplicationsGetCollection'][0])
+    public function applicationsListRequest($page = 1, $slug = null, $slug2 = null, $organization = null, $organization2 = null, $organization_slug = null, $organization_slug2 = null, string $contentType = self::contentTypes['applicationsList'][0])
     {
 
 
@@ -532,624 +1497,40 @@ class ApplicationApi
     }
 
     /**
-     * Operation apiApplicationsIdDelete
-     *
-     * Removes the Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiApplicationsIdDelete($id, string $contentType = self::contentTypes['apiApplicationsIdDelete'][0])
-    {
-        $this->apiApplicationsIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiApplicationsIdDeleteWithHttpInfo
-     *
-     * Removes the Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiApplicationsIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiApplicationsIdDelete'][0])
-    {
-        $request = $this->apiApplicationsIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiApplicationsIdDeleteAsync
-     *
-     * Removes the Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiApplicationsIdDeleteAsync($id, string $contentType = self::contentTypes['apiApplicationsIdDelete'][0])
-    {
-        return $this->apiApplicationsIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiApplicationsIdDeleteAsyncWithHttpInfo
-     *
-     * Removes the Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiApplicationsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiApplicationsIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiApplicationsIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiApplicationsIdDelete'
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiApplicationsIdDeleteRequest($id, string $contentType = self::contentTypes['apiApplicationsIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiApplicationsIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/applications/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/problem+json', 'application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiApplicationsIdGet
-     *
-     * Retrieves a Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error
-     */
-    public function apiApplicationsIdGet($id, string $contentType = self::contentTypes['apiApplicationsIdGet'][0])
-    {
-        list($response) = $this->apiApplicationsIdGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiApplicationsIdGetWithHttpInfo
-     *
-     * Retrieves a Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdGet'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiApplicationsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiApplicationsIdGet'][0])
-    {
-        $request = $this->apiApplicationsIdGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 200:
-                    if ('\SomeonesComputer\Sdk\Model\Application' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Application' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Application', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 404:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\Application';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Application',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiApplicationsIdGetAsync
-     *
-     * Retrieves a Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiApplicationsIdGetAsync($id, string $contentType = self::contentTypes['apiApplicationsIdGet'][0])
-    {
-        return $this->apiApplicationsIdGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiApplicationsIdGetAsyncWithHttpInfo
-     *
-     * Retrieves a Application resource.
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiApplicationsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiApplicationsIdGet'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\Application';
-        $request = $this->apiApplicationsIdGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiApplicationsIdGet'
-     *
-     * @param  string $id Application identifier (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiApplicationsIdGetRequest($id, string $contentType = self::contentTypes['apiApplicationsIdGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiApplicationsIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/applications/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiApplicationsIdPatch
+     * Operation applicationsUpdate
      *
      * Updates the Application resource.
      *
      * @param  string $id Application identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch $application_json_merge_patch The updated Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsUpdate'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error
      */
-    public function apiApplicationsIdPatch($id, $application_json_merge_patch, string $contentType = self::contentTypes['apiApplicationsIdPatch'][0])
+    public function applicationsUpdate($id, $application_json_merge_patch, string $contentType = self::contentTypes['applicationsUpdate'][0])
     {
-        list($response) = $this->apiApplicationsIdPatchWithHttpInfo($id, $application_json_merge_patch, $contentType);
+        list($response) = $this->applicationsUpdateWithHttpInfo($id, $application_json_merge_patch, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiApplicationsIdPatchWithHttpInfo
+     * Operation applicationsUpdateWithHttpInfo
      *
      * Updates the Application resource.
      *
      * @param  string $id Application identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch $application_json_merge_patch The updated Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsUpdate'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation|\SomeonesComputer\Sdk\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiApplicationsIdPatchWithHttpInfo($id, $application_json_merge_patch, string $contentType = self::contentTypes['apiApplicationsIdPatch'][0])
+    public function applicationsUpdateWithHttpInfo($id, $application_json_merge_patch, string $contentType = self::contentTypes['applicationsUpdate'][0])
     {
-        $request = $this->apiApplicationsIdPatchRequest($id, $application_json_merge_patch, $contentType);
+        $request = $this->applicationsUpdateRequest($id, $application_json_merge_patch, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1366,20 +1747,20 @@ class ApplicationApi
     }
 
     /**
-     * Operation apiApplicationsIdPatchAsync
+     * Operation applicationsUpdateAsync
      *
      * Updates the Application resource.
      *
      * @param  string $id Application identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch $application_json_merge_patch The updated Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiApplicationsIdPatchAsync($id, $application_json_merge_patch, string $contentType = self::contentTypes['apiApplicationsIdPatch'][0])
+    public function applicationsUpdateAsync($id, $application_json_merge_patch, string $contentType = self::contentTypes['applicationsUpdate'][0])
     {
-        return $this->apiApplicationsIdPatchAsyncWithHttpInfo($id, $application_json_merge_patch, $contentType)
+        return $this->applicationsUpdateAsyncWithHttpInfo($id, $application_json_merge_patch, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1388,21 +1769,21 @@ class ApplicationApi
     }
 
     /**
-     * Operation apiApplicationsIdPatchAsyncWithHttpInfo
+     * Operation applicationsUpdateAsyncWithHttpInfo
      *
      * Updates the Application resource.
      *
      * @param  string $id Application identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch $application_json_merge_patch The updated Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiApplicationsIdPatchAsyncWithHttpInfo($id, $application_json_merge_patch, string $contentType = self::contentTypes['apiApplicationsIdPatch'][0])
+    public function applicationsUpdateAsyncWithHttpInfo($id, $application_json_merge_patch, string $contentType = self::contentTypes['applicationsUpdate'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\Application';
-        $request = $this->apiApplicationsIdPatchRequest($id, $application_json_merge_patch, $contentType);
+        $request = $this->applicationsUpdateRequest($id, $application_json_merge_patch, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1441,29 +1822,29 @@ class ApplicationApi
     }
 
     /**
-     * Create request for operation 'apiApplicationsIdPatch'
+     * Create request for operation 'applicationsUpdate'
      *
      * @param  string $id Application identifier (required)
      * @param  \SomeonesComputer\Sdk\Model\ApplicationJsonMergePatch $application_json_merge_patch The updated Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsIdPatch'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['applicationsUpdate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiApplicationsIdPatchRequest($id, $application_json_merge_patch, string $contentType = self::contentTypes['apiApplicationsIdPatch'][0])
+    public function applicationsUpdateRequest($id, $application_json_merge_patch, string $contentType = self::contentTypes['applicationsUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiApplicationsIdPatch'
+                'Missing the required parameter $id when calling applicationsUpdate'
             );
         }
 
         // verify the required parameter 'application_json_merge_patch' is set
         if ($application_json_merge_patch === null || (is_array($application_json_merge_patch) && count($application_json_merge_patch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $application_json_merge_patch when calling apiApplicationsIdPatch'
+                'Missing the required parameter $application_json_merge_patch when calling applicationsUpdate'
             );
         }
 
@@ -1545,387 +1926,6 @@ class ApplicationApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PATCH',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiApplicationsPost
-     *
-     * Creates a Application resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsPost'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation
-     */
-    public function apiApplicationsPost($application, string $contentType = self::contentTypes['apiApplicationsPost'][0])
-    {
-        list($response) = $this->apiApplicationsPostWithHttpInfo($application, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiApplicationsPostWithHttpInfo
-     *
-     * Creates a Application resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsPost'] to see the possible values for this operation
-     *
-     * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \SomeonesComputer\Sdk\Model\Application|\SomeonesComputer\Sdk\Model\Error|\SomeonesComputer\Sdk\Model\ConstraintViolation, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiApplicationsPostWithHttpInfo($application, string $contentType = self::contentTypes['apiApplicationsPost'][0])
-    {
-        $request = $this->apiApplicationsPostRequest($application, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-
-            switch($statusCode) {
-                case 201:
-                    if ('\SomeonesComputer\Sdk\Model\Application' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Application' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Application', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\SomeonesComputer\Sdk\Model\Error' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\Error' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\Error', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 422:
-                    if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\SomeonesComputer\Sdk\Model\ConstraintViolation' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\SomeonesComputer\Sdk\Model\ConstraintViolation', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            $returnType = '\SomeonesComputer\Sdk\Model\Application';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Application',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 422:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\SomeonesComputer\Sdk\Model\ConstraintViolation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiApplicationsPostAsync
-     *
-     * Creates a Application resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiApplicationsPostAsync($application, string $contentType = self::contentTypes['apiApplicationsPost'][0])
-    {
-        return $this->apiApplicationsPostAsyncWithHttpInfo($application, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiApplicationsPostAsyncWithHttpInfo
-     *
-     * Creates a Application resource.
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiApplicationsPostAsyncWithHttpInfo($application, string $contentType = self::contentTypes['apiApplicationsPost'][0])
-    {
-        $returnType = '\SomeonesComputer\Sdk\Model\Application';
-        $request = $this->apiApplicationsPostRequest($application, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiApplicationsPost'
-     *
-     * @param  \SomeonesComputer\Sdk\Model\Application $application The new Application resource (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiApplicationsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiApplicationsPostRequest($application, string $contentType = self::contentTypes['apiApplicationsPost'][0])
-    {
-
-        // verify the required parameter 'application' is set
-        if ($application === null || (is_array($application) && count($application) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $application when calling apiApplicationsPost'
-            );
-        }
-
-
-        $resourcePath = '/api/applications';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($application)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($application));
-            } else {
-                $httpBody = $application;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires Bearer authentication (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

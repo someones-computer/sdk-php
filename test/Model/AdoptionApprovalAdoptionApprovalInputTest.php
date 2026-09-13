@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * AdoptionApprovalAdoptionApprovalInputTest Class Doc Comment
  *
  * @category    Class
- * @description A human&#39;s decision on one compose service the adoption planner detected — approve it, or decline it (§15).  **The switch arms detection; this is what authorizes the act.** {@see \\App\\Service\\ManagedService\\Adoption\\AdoptionReconciler} only ever turns a candidate into a real {@see ManagedService}/{@see ServiceBinding} pair when a row here says &#x60;approved&#x60;, and only for the compose service name recorded — a rename is a different candidate with no decision of its own yet.  **There is no \&quot;pending\&quot; row.** A service the planner reports and nobody has decided on simply has none here; recording one for every candidate on every deploy would need cleaning up the moment a service is renamed away, for a state (\&quot;undecided\&quot;) a missing row already expresses for free.  One row per (application, compose service): deciding again — approving after a rejection, or the reverse — updates it rather than accumulating history, because only the current decision governs what the next deploy does.
+ * @description Approve or decline an adopted compose service candidate.
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

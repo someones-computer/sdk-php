@@ -72,60 +72,60 @@ class SwarmApiTest extends TestCase
     }
 
     /**
-     * Test case for apiSwarmsGetCollection
-     *
-     * Retrieves the collection of Swarm resources..
-     *
-     */
-    public function testApiSwarmsGetCollection()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiSwarmsIdDelete
-     *
-     * Removes the Swarm resource..
-     *
-     */
-    public function testApiSwarmsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiSwarmsIdGet
-     *
-     * Retrieves a Swarm resource..
-     *
-     */
-    public function testApiSwarmsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiSwarmsIdPatch
-     *
-     * Updates the Swarm resource..
-     *
-     */
-    public function testApiSwarmsIdPatch()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiSwarmsPost
+     * Test case for swarmsCreate
      *
      * Creates a Swarm resource..
      *
      */
-    public function testApiSwarmsPost()
+    public function testSwarmsCreate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for swarmsDelete
+     *
+     * Removes the Swarm resource..
+     *
+     */
+    public function testSwarmsDelete()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for swarmsGet
+     *
+     * Retrieves a Swarm resource..
+     *
+     */
+    public function testSwarmsGet()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for swarmsList
+     *
+     * Retrieves the collection of Swarm resources..
+     *
+     */
+    public function testSwarmsList()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for swarmsUpdate
+     *
+     * Updates the Swarm resource..
+     *
+     */
+    public function testSwarmsUpdate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -72,72 +72,72 @@ class ManagedServiceApiTest extends TestCase
     }
 
     /**
-     * Test case for apiManagedServicesGetCollection
+     * Test case for managedServicesCreate
      *
-     * Retrieves the collection of ManagedService resources..
+     * Creates a ManagedService resource..
      *
      */
-    public function testApiManagedServicesGetCollection()
+    public function testManagedServicesCreate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiManagedServicesIdDelete
+     * Test case for managedServicesDelete
      *
      * Removes the ManagedService resource..
      *
      */
-    public function testApiManagedServicesIdDelete()
+    public function testManagedServicesDelete()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiManagedServicesIdGet
+     * Test case for managedServicesGet
      *
      * Retrieves a ManagedService resource..
      *
      */
-    public function testApiManagedServicesIdGet()
+    public function testManagedServicesGet()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiManagedServicesPost
+     * Test case for managedServicesList
      *
-     * Creates a ManagedService resource..
+     * Retrieves the collection of ManagedService resources..
      *
      */
-    public function testApiManagedServicesPost()
+    public function testManagedServicesList()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for resume
+     * Test case for managedServicesResume
      *
      * Creates a ManagedService resource..
      *
      */
-    public function testResume()
+    public function testManagedServicesResume()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for suspend
+     * Test case for managedServicesSuspend
      *
      * Creates a ManagedService resource..
      *
      */
-    public function testSuspend()
+    public function testManagedServicesSuspend()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

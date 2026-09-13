@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * OrganizationJsonMergePatch Class Doc Comment
  *
  * @category Class
- * @description Ownership and (future) billing boundary. Owns applications, may own BYO swarms.
+ * @description Update an organization&#39;s mutable fields.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

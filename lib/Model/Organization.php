@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * Organization Class Doc Comment
  *
  * @category Class
- * @description Ownership and (future) billing boundary. Owns applications, may own BYO swarms.
+ * @description List organizations the caller is a member of.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

@@ -72,48 +72,48 @@ class AdoptionApprovalApiTest extends TestCase
     }
 
     /**
-     * Test case for apiAdoptionApprovalsGetCollection
-     *
-     * Retrieves the collection of AdoptionApproval resources..
-     *
-     */
-    public function testApiAdoptionApprovalsGetCollection()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiAdoptionApprovalsIdDelete
-     *
-     * Removes the AdoptionApproval resource..
-     *
-     */
-    public function testApiAdoptionApprovalsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiAdoptionApprovalsIdGet
-     *
-     * Retrieves a AdoptionApproval resource..
-     *
-     */
-    public function testApiAdoptionApprovalsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiAdoptionApprovalsPost
+     * Test case for adoptionApprovalsDecide
      *
      * Creates a AdoptionApproval resource..
      *
      */
-    public function testApiAdoptionApprovalsPost()
+    public function testAdoptionApprovalsDecide()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for adoptionApprovalsGet
+     *
+     * Retrieves a AdoptionApproval resource..
+     *
+     */
+    public function testAdoptionApprovalsGet()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for adoptionApprovalsList
+     *
+     * Retrieves the collection of AdoptionApproval resources..
+     *
+     */
+    public function testAdoptionApprovalsList()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for adoptionApprovalsWithdraw
+     *
+     * Removes the AdoptionApproval resource..
+     *
+     */
+    public function testAdoptionApprovalsWithdraw()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

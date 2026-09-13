@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * CreditTransaction Class Doc Comment
  *
  * @category Class
- * @description An IMMUTABLE, append-only ledger row for an Organization&#39;s shared credit balance. A balance is never mutated in place — it&#39;s always &#x60;SUM(amountCents)&#x60; over &#x60;Succeeded&#x60; rows (see {@see CreditTransactionRepository::balanceForOrganization()}). Read-only over the API: money movement stays server-driven.  Three kinds of row, one table ({@see CreditTransactionType}):    - a **top-up** is created &#x60;Pending&#x60; before redirecting to Stripe Checkout,     keyed on &#x60;stripeCheckoutSessionId&#x60;, then flipped to &#x60;Succeeded&#x60;/&#x60;Failed&#x60;     by {@see \\App\\Controller\\StripeWebhookController};   - a **grant** and a **debit** are terminal the moment they are written, so     both are written &#x60;Succeeded&#x60; — the &#x60;Pending&#x60; default is a Stripe-webhook     state and is wrong for them — and neither has a Stripe session, which is     why &#x60;stripeCheckoutSessionId&#x60; is nullable.  A debit additionally carries the hour it bills for and the meter reading it came from, so the ledger can be checked against the usage events rather than taken on trust. One table rather than two because the balance has to be the sum of money in and money out, and a second table would make every balance read a join.
+ * @description List an organization&#39;s credit ledger rows.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

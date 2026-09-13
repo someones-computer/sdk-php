@@ -72,48 +72,48 @@ class ServiceBindingApiTest extends TestCase
     }
 
     /**
-     * Test case for apiServiceBindingsGetCollection
-     *
-     * Retrieves the collection of ServiceBinding resources..
-     *
-     */
-    public function testApiServiceBindingsGetCollection()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiServiceBindingsIdDelete
-     *
-     * Removes the ServiceBinding resource..
-     *
-     */
-    public function testApiServiceBindingsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiServiceBindingsIdGet
-     *
-     * Retrieves a ServiceBinding resource..
-     *
-     */
-    public function testApiServiceBindingsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiServiceBindingsPost
+     * Test case for serviceBindingsCreate
      *
      * Creates a ServiceBinding resource..
      *
      */
-    public function testApiServiceBindingsPost()
+    public function testServiceBindingsCreate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serviceBindingsDelete
+     *
+     * Removes the ServiceBinding resource..
+     *
+     */
+    public function testServiceBindingsDelete()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serviceBindingsGet
+     *
+     * Retrieves a ServiceBinding resource..
+     *
+     */
+    public function testServiceBindingsGet()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for serviceBindingsList
+     *
+     * Retrieves the collection of ServiceBinding resources..
+     *
+     */
+    public function testServiceBindingsList()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

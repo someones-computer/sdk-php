@@ -72,60 +72,60 @@ class ApplicationApiTest extends TestCase
     }
 
     /**
-     * Test case for apiApplicationsGetCollection
-     *
-     * Retrieves the collection of Application resources..
-     *
-     */
-    public function testApiApplicationsGetCollection()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiApplicationsIdDelete
-     *
-     * Removes the Application resource..
-     *
-     */
-    public function testApiApplicationsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiApplicationsIdGet
-     *
-     * Retrieves a Application resource..
-     *
-     */
-    public function testApiApplicationsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiApplicationsIdPatch
-     *
-     * Updates the Application resource..
-     *
-     */
-    public function testApiApplicationsIdPatch()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiApplicationsPost
+     * Test case for applicationsCreate
      *
      * Creates a Application resource..
      *
      */
-    public function testApiApplicationsPost()
+    public function testApplicationsCreate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for applicationsDelete
+     *
+     * Removes the Application resource..
+     *
+     */
+    public function testApplicationsDelete()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for applicationsGet
+     *
+     * Retrieves a Application resource..
+     *
+     */
+    public function testApplicationsGet()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for applicationsList
+     *
+     * Retrieves the collection of Application resources..
+     *
+     */
+    public function testApplicationsList()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for applicationsUpdate
+     *
+     * Updates the Application resource..
+     *
+     */
+    public function testApplicationsUpdate()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
