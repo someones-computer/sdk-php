@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **application** | **string** |  | [optional]
 **name** | **string** |  | [optional]
-**access_gate** | **string** |  | [optional]
+**access_gate** | **string** |  | [optional] [default to 'none']
 **id** | **string** |  | [optional] [readonly]
 **created_at** | **\DateTime** |  | [optional] [readonly]
 **updated_at** | **\DateTime** |  | [optional] [readonly]

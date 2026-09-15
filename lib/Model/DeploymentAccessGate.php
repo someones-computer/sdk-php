@@ -302,7 +302,7 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $this->setIfExists('application', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('access_gate', $data ?? [], null);
+        $this->setIfExists('access_gate', $data ?? [], 'none');
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
