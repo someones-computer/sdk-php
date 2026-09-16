@@ -2,6 +2,10 @@
 
 JSON-LD resources backing the control panel. Bearer-token reachable since #1418 — see docs/sdk-generation.md.
 
+Bugs and feature requests for the someones.computer ecosystem are tracked
+centrally at
+[Grey.ooo/Someones.Computer](https://git.grey.ooo/Grey.ooo/Someones.Computer) —
+this repo's own issue tracker is disabled. Pull requests are still welcome here.
 
 ## Installation & Usage
 
