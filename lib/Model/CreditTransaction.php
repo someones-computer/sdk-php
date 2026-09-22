@@ -70,6 +70,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'unresolved_containers' => 'int',
         'usage_bytes' => '\SomeonesComputer\Sdk\Model\CreditTransactionUsageBytes',
         'engine_millis' => '\SomeonesComputer\Sdk\Model\CreditTransactionEngineMillis',
+        'usage_rows' => 'int',
         'stripe_event_id' => 'string',
         'created_by' => '\SomeonesComputer\Sdk\Model\User',
         'id' => 'string',
@@ -97,6 +98,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'unresolved_containers' => null,
         'usage_bytes' => null,
         'engine_millis' => null,
+        'usage_rows' => null,
         'stripe_event_id' => null,
         'created_by' => null,
         'id' => 'uuid',
@@ -122,6 +124,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'unresolved_containers' => true,
         'usage_bytes' => true,
         'engine_millis' => true,
+        'usage_rows' => true,
         'stripe_event_id' => true,
         'created_by' => true,
         'id' => false,
@@ -227,6 +230,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'unresolved_containers' => 'unresolvedContainers',
         'usage_bytes' => 'usageBytes',
         'engine_millis' => 'engineMillis',
+        'usage_rows' => 'usageRows',
         'stripe_event_id' => 'stripeEventId',
         'created_by' => 'createdBy',
         'id' => 'id',
@@ -252,6 +256,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'unresolved_containers' => 'setUnresolvedContainers',
         'usage_bytes' => 'setUsageBytes',
         'engine_millis' => 'setEngineMillis',
+        'usage_rows' => 'setUsageRows',
         'stripe_event_id' => 'setStripeEventId',
         'created_by' => 'setCreatedBy',
         'id' => 'setId',
@@ -277,6 +282,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'unresolved_containers' => 'getUnresolvedContainers',
         'usage_bytes' => 'getUsageBytes',
         'engine_millis' => 'getEngineMillis',
+        'usage_rows' => 'getUsageRows',
         'stripe_event_id' => 'getStripeEventId',
         'created_by' => 'getCreatedBy',
         'id' => 'getId',
@@ -337,6 +343,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const RESOURCE_KIND_ENGINE_LOAD = 'engine_load';
     public const RESOURCE_KIND_REGISTRY_STORAGE = 'registry_storage';
     public const RESOURCE_KIND_INGRESS_EGRESS = 'ingress_egress';
+    public const RESOURCE_KIND_API_ACCESS_LOG_VOLUME = 'api_access_log_volume';
 
     /**
      * Gets allowable values of the enum
@@ -380,6 +387,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::RESOURCE_KIND_ENGINE_LOAD,
             self::RESOURCE_KIND_REGISTRY_STORAGE,
             self::RESOURCE_KIND_INGRESS_EGRESS,
+            self::RESOURCE_KIND_API_ACCESS_LOG_VOLUME,
         ];
     }
 
@@ -410,6 +418,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('unresolved_containers', $data ?? [], null);
         $this->setIfExists('usage_bytes', $data ?? [], null);
         $this->setIfExists('engine_millis', $data ?? [], null);
+        $this->setIfExists('usage_rows', $data ?? [], null);
         $this->setIfExists('stripe_event_id', $data ?? [], null);
         $this->setIfExists('created_by', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -885,6 +894,40 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['engine_millis'] = $engine_millis;
+
+        return $this;
+    }
+
+    /**
+     * Gets usage_rows
+     *
+     * @return int|null
+     */
+    public function getUsageRows()
+    {
+        return $this->container['usage_rows'];
+    }
+
+    /**
+     * Sets usage_rows
+     *
+     * @param int|null $usage_rows The row count an API-access-log-volume debit was computed from — the evidence a per-row charge can be checked against, the same role {@see $usageBytes} plays for a storage debit. Null on anything but that kind of debit.
+     *
+     * @return self
+     */
+    public function setUsageRows($usage_rows)
+    {
+        if (is_null($usage_rows)) {
+            array_push($this->openAPINullablesSetToNull, 'usage_rows');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('usage_rows', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['usage_rows'] = $usage_rows;
 
         return $this;
     }
