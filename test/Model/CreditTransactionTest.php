@@ -188,6 +188,15 @@ class CreditTransactionTest extends TestCase
     }
 
     /**
+     * Test attribute "usage_rows"
+     */
+    public function testPropertyUsageRows()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "stripe_event_id"
      */
     public function testPropertyStripeEventId()

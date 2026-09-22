@@ -68,6 +68,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pin_reason' => 'string',
         'low_balance_warned_at' => '\DateTime',
         'two_factor_required_at' => '\DateTime',
+        'api_access_log_retention_days' => 'int',
         'memberships' => '\SomeonesComputer\Sdk\Model\Membership[]',
         'applications' => 'string[]',
         'swarms' => 'string[]',
@@ -101,6 +102,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pin_reason' => null,
         'low_balance_warned_at' => 'date-time',
         'two_factor_required_at' => 'date-time',
+        'api_access_log_retention_days' => null,
         'memberships' => null,
         'applications' => 'iri-reference',
         'swarms' => 'iri-reference',
@@ -132,6 +134,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pin_reason' => true,
         'low_balance_warned_at' => true,
         'two_factor_required_at' => true,
+        'api_access_log_retention_days' => true,
         'memberships' => false,
         'applications' => false,
         'swarms' => false,
@@ -243,6 +246,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pin_reason' => 'tierPinReason',
         'low_balance_warned_at' => 'lowBalanceWarnedAt',
         'two_factor_required_at' => 'twoFactorRequiredAt',
+        'api_access_log_retention_days' => 'apiAccessLogRetentionDays',
         'memberships' => 'memberships',
         'applications' => 'applications',
         'swarms' => 'swarms',
@@ -274,6 +278,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pin_reason' => 'setTierPinReason',
         'low_balance_warned_at' => 'setLowBalanceWarnedAt',
         'two_factor_required_at' => 'setTwoFactorRequiredAt',
+        'api_access_log_retention_days' => 'setApiAccessLogRetentionDays',
         'memberships' => 'setMemberships',
         'applications' => 'setApplications',
         'swarms' => 'setSwarms',
@@ -305,6 +310,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pin_reason' => 'getTierPinReason',
         'low_balance_warned_at' => 'getLowBalanceWarnedAt',
         'two_factor_required_at' => 'getTwoFactorRequiredAt',
+        'api_access_log_retention_days' => 'getApiAccessLogRetentionDays',
         'memberships' => 'getMemberships',
         'applications' => 'getApplications',
         'swarms' => 'getSwarms',
@@ -425,6 +431,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('tier_pin_reason', $data ?? [], null);
         $this->setIfExists('low_balance_warned_at', $data ?? [], null);
         $this->setIfExists('two_factor_required_at', $data ?? [], null);
+        $this->setIfExists('api_access_log_retention_days', $data ?? [], null);
         $this->setIfExists('memberships', $data ?? [], null);
         $this->setIfExists('applications', $data ?? [], null);
         $this->setIfExists('swarms', $data ?? [], null);
@@ -842,6 +849,40 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['two_factor_required_at'] = $two_factor_required_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets api_access_log_retention_days
+     *
+     * @return int|null
+     */
+    public function getApiAccessLogRetentionDays()
+    {
+        return $this->container['api_access_log_retention_days'];
+    }
+
+    /**
+     * Sets api_access_log_retention_days
+     *
+     * @param int|null $api_access_log_retention_days How long this organization's {@see \\App\\Entity\\ApiAccessLogEntry} rows are kept before {@see \\App\\MessageHandler\\PurgeApiAccessLogHandler} prunes them. Null means \"the platform default\" ({@see \\App\\Service\\ApiAccessLogRetention::DEFAULT_DAYS}) rather than a fixed number baked into every organization row the day this shipped.
+     *
+     * @return self
+     */
+    public function setApiAccessLogRetentionDays($api_access_log_retention_days)
+    {
+        if (is_null($api_access_log_retention_days)) {
+            array_push($this->openAPINullablesSetToNull, 'api_access_log_retention_days');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('api_access_log_retention_days', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['api_access_log_retention_days'] = $api_access_log_retention_days;
 
         return $this;
     }
