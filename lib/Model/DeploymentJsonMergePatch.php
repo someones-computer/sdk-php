@@ -65,6 +65,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'canonical_spec' => 'array<string,\SomeonesComputer\Sdk\Model\DeploymentJsonMergePatchCanonicalSpecValue>',
         'build_contexts' => 'array<string,array<string,\SomeonesComputer\Sdk\Model\DeploymentJsonMergePatchBuildContextsValueValue>>',
         'forwarded_images' => 'array<string,array<string,string>>',
+        'build_secrets' => 'array<string,array<string,array<string,string>>>',
         'target_swarm' => 'string',
         'status' => 'string',
         'status_reason' => 'string',
@@ -74,6 +75,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'digest' => 'string',
         'created_by' => '\SomeonesComputer\Sdk\Model\User',
         'services' => '\SomeonesComputer\Sdk\Model\Service[]',
+        'variables' => '\SomeonesComputer\Sdk\Model\DeploymentVariable[]',
         'failures' => '\SomeonesComputer\Sdk\Model\Failure[]',
         'id' => 'string',
         'deleted_at' => '\DateTime',
@@ -98,6 +100,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'canonical_spec' => null,
         'build_contexts' => null,
         'forwarded_images' => null,
+        'build_secrets' => null,
         'target_swarm' => 'iri-reference',
         'status' => null,
         'status_reason' => null,
@@ -107,6 +110,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'digest' => null,
         'created_by' => null,
         'services' => null,
+        'variables' => null,
         'failures' => null,
         'id' => 'uuid',
         'deleted_at' => 'date-time',
@@ -129,6 +133,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'canonical_spec' => false,
         'build_contexts' => false,
         'forwarded_images' => false,
+        'build_secrets' => false,
         'target_swarm' => true,
         'status' => false,
         'status_reason' => true,
@@ -138,6 +143,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'digest' => true,
         'created_by' => true,
         'services' => false,
+        'variables' => false,
         'failures' => false,
         'id' => false,
         'deleted_at' => true,
@@ -240,6 +246,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'canonical_spec' => 'canonicalSpec',
         'build_contexts' => 'buildContexts',
         'forwarded_images' => 'forwardedImages',
+        'build_secrets' => 'buildSecrets',
         'target_swarm' => 'targetSwarm',
         'status' => 'status',
         'status_reason' => 'statusReason',
@@ -249,6 +256,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'digest' => 'digest',
         'created_by' => 'createdBy',
         'services' => 'services',
+        'variables' => 'variables',
         'failures' => 'failures',
         'id' => 'id',
         'deleted_at' => 'deletedAt',
@@ -271,6 +279,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'canonical_spec' => 'setCanonicalSpec',
         'build_contexts' => 'setBuildContexts',
         'forwarded_images' => 'setForwardedImages',
+        'build_secrets' => 'setBuildSecrets',
         'target_swarm' => 'setTargetSwarm',
         'status' => 'setStatus',
         'status_reason' => 'setStatusReason',
@@ -280,6 +289,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'digest' => 'setDigest',
         'created_by' => 'setCreatedBy',
         'services' => 'setServices',
+        'variables' => 'setVariables',
         'failures' => 'setFailures',
         'id' => 'setId',
         'deleted_at' => 'setDeletedAt',
@@ -302,6 +312,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'canonical_spec' => 'getCanonicalSpec',
         'build_contexts' => 'getBuildContexts',
         'forwarded_images' => 'getForwardedImages',
+        'build_secrets' => 'getBuildSecrets',
         'target_swarm' => 'getTargetSwarm',
         'status' => 'getStatus',
         'status_reason' => 'getStatusReason',
@@ -311,6 +322,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         'digest' => 'getDigest',
         'created_by' => 'getCreatedBy',
         'services' => 'getServices',
+        'variables' => 'getVariables',
         'failures' => 'getFailures',
         'id' => 'getId',
         'deleted_at' => 'getDeletedAt',
@@ -413,6 +425,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('canonical_spec', $data ?? [], null);
         $this->setIfExists('build_contexts', $data ?? [], null);
         $this->setIfExists('forwarded_images', $data ?? [], null);
+        $this->setIfExists('build_secrets', $data ?? [], null);
         $this->setIfExists('target_swarm', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], 'pending');
         $this->setIfExists('status_reason', $data ?? [], null);
@@ -422,6 +435,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
         $this->setIfExists('digest', $data ?? [], null);
         $this->setIfExists('created_by', $data ?? [], null);
         $this->setIfExists('services', $data ?? [], null);
+        $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('failures', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('deleted_at', $data ?? [], null);
@@ -674,6 +688,33 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable forwarded_images cannot be null');
         }
         $this->container['forwarded_images'] = $forwarded_images;
+
+        return $this;
+    }
+
+    /**
+     * Gets build_secrets
+     *
+     * @return array<string,array<string,array<string,string>>>|null
+     */
+    public function getBuildSecrets()
+    {
+        return $this->container['build_secrets'];
+    }
+
+    /**
+     * Sets build_secrets
+     *
+     * @param array<string,array<string,array<string,string>>>|null $build_secrets `build.secrets` values declared for this revision's build services (Grey.ooo/someones.computer_agent#46), sealed the moment they arrive ({@see \\App\\Service\\Secret\\SecretBox}) and never written to the object store the way a build context is: unlike a context tarball, a build secret is live tenant credential material, not something worth caching by content — closer to how {@see \\App\\Service\\Registry\\RegistryTokenSigner} mints a push token than to how {@see \\App\\Entity\\Variable} keeps one.
+     *
+     * @return self
+     */
+    public function setBuildSecrets($build_secrets)
+    {
+        if (is_null($build_secrets)) {
+            throw new \InvalidArgumentException('non-nullable build_secrets cannot be null');
+        }
+        $this->container['build_secrets'] = $build_secrets;
 
         return $this;
     }
@@ -962,6 +1003,33 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable services cannot be null');
         }
         $this->container['services'] = $services;
+
+        return $this;
+    }
+
+    /**
+     * Gets variables
+     *
+     * @return \SomeonesComputer\Sdk\Model\DeploymentVariable[]|null
+     */
+    public function getVariables()
+    {
+        return $this->container['variables'];
+    }
+
+    /**
+     * Sets variables
+     *
+     * @param \SomeonesComputer\Sdk\Model\DeploymentVariable[]|null $variables variables
+     *
+     * @return self
+     */
+    public function setVariables($variables)
+    {
+        if (is_null($variables)) {
+            throw new \InvalidArgumentException('non-nullable variables cannot be null');
+        }
+        $this->container['variables'] = $variables;
 
         return $this;
     }

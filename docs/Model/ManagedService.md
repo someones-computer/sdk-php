@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  | [optional] [readonly]
 **updated_at** | **\DateTime** |  | [optional] [readonly]
 **catalogue_entry** | **string** | &#x60;postgres 17&#x60;, &#x60;mysql 8.0&#x60; — the catalogue entry, as one string. | [optional] [readonly]
+**credential** | [**\SomeonesComputer\Sdk\Model\SealedSecret**](SealedSecret.md) |  | [optional]
 **available** | **bool** |  | [optional] [readonly]
 **deleted** | **bool** |  | [optional] [readonly]
 

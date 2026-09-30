@@ -215,6 +215,15 @@ class ApplicationTest extends TestCase
     }
 
     /**
+     * Test attribute "variables"
+     */
+    public function testPropertyVariables()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "port_allocations"
      */
     public function testPropertyPortAllocations()
@@ -272,6 +281,24 @@ class ApplicationTest extends TestCase
      * Test attribute "updated_at"
      */
     public function testPropertyUpdatedAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "build_credential"
+     */
+    public function testPropertyBuildCredential()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "access_gate_credential"
+     */
+    public function testPropertyAccessGateCredential()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

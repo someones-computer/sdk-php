@@ -60,6 +60,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'endpoint' => 'string',
         'token_id' => 'string',
+        'token_secret' => 'string',
         'verify_tls' => 'bool',
         'public_key_pin' => 'string',
         'status' => 'string',
@@ -88,6 +89,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'endpoint' => null,
         'token_id' => null,
+        'token_secret' => null,
         'verify_tls' => null,
         'public_key_pin' => null,
         'status' => null,
@@ -114,6 +116,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => false,
         'endpoint' => false,
         'token_id' => false,
+        'token_secret' => false,
         'verify_tls' => false,
         'public_key_pin' => true,
         'status' => false,
@@ -220,6 +223,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'endpoint' => 'endpoint',
         'token_id' => 'tokenId',
+        'token_secret' => 'tokenSecret',
         'verify_tls' => 'verifyTls',
         'public_key_pin' => 'publicKeyPin',
         'status' => 'status',
@@ -246,6 +250,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'endpoint' => 'setEndpoint',
         'token_id' => 'setTokenId',
+        'token_secret' => 'setTokenSecret',
         'verify_tls' => 'setVerifyTls',
         'public_key_pin' => 'setPublicKeyPin',
         'status' => 'setStatus',
@@ -272,6 +277,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'endpoint' => 'getEndpoint',
         'token_id' => 'getTokenId',
+        'token_secret' => 'getTokenSecret',
         'verify_tls' => 'getVerifyTls',
         'public_key_pin' => 'getPublicKeyPin',
         'status' => 'getStatus',
@@ -366,6 +372,7 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('endpoint', $data ?? [], null);
         $this->setIfExists('token_id', $data ?? [], null);
+        $this->setIfExists('token_secret', $data ?? [], null);
         $this->setIfExists('verify_tls', $data ?? [], true);
         $this->setIfExists('public_key_pin', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], 'unreachable');
@@ -511,6 +518,33 @@ class ProxmoxInstance implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable token_id cannot be null');
         }
         $this->container['token_id'] = $token_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets token_secret
+     *
+     * @return string|null
+     */
+    public function getTokenSecret()
+    {
+        return $this->container['token_secret'];
+    }
+
+    /**
+     * Sets token_secret
+     *
+     * @param string|null $token_secret The token's secret (a UUID as Proxmox issues it), encrypted at rest and never serialized. Proxmox shows it exactly once, at creation.
+     *
+     * @return self
+     */
+    public function setTokenSecret($token_secret)
+    {
+        if (is_null($token_secret)) {
+            throw new \InvalidArgumentException('non-nullable token_secret cannot be null');
+        }
+        $this->container['token_secret'] = $token_secret;
 
         return $this;
     }

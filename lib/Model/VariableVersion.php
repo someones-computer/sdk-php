@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceBinding
+ * VariableVersion
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \SomeonesComputer\Sdk\ObjectSerializer;
 
 /**
- * ServiceBinding Class Doc Comment
+ * VariableVersion Class Doc Comment
  *
  * @category Class
- * @description List service bindings (application-to-managed-service links) the caller can see.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
+class VariableVersion implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ServiceBinding';
+    protected static $openAPIModelName = 'VariableVersion';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,16 +57,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'application' => 'string',
-        'service' => 'string',
-        'injected_keys' => 'string[]',
-        'sidecar_service_name' => 'string',
-        'adopted_compose_service' => 'string',
-        'id' => 'string',
+        'variable' => '\SomeonesComputer\Sdk\Model\Variable',
+        'version' => 'int',
+        'algo' => 'string',
+        'key_id' => 'string',
+        'nonce' => 'string',
+        'ciphertext' => 'string',
         'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'adopted' => 'bool',
-        'sidecar_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
+        'created_by' => '\SomeonesComputer\Sdk\Model\User',
+        'id' => 'string',
+        'encrypted' => 'string',
+        'plaintext' => 'string'
     ];
 
     /**
@@ -78,16 +78,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'application' => 'iri-reference',
-        'service' => 'iri-reference',
-        'injected_keys' => null,
-        'sidecar_service_name' => null,
-        'adopted_compose_service' => null,
-        'id' => 'uuid',
+        'variable' => null,
+        'version' => null,
+        'algo' => null,
+        'key_id' => null,
+        'nonce' => null,
+        'ciphertext' => null,
         'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'adopted' => null,
-        'sidecar_credential' => null
+        'created_by' => null,
+        'id' => 'uuid',
+        'encrypted' => null,
+        'plaintext' => null
     ];
 
     /**
@@ -96,16 +97,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'application' => false,
-        'service' => false,
-        'injected_keys' => false,
-        'sidecar_service_name' => false,
-        'adopted_compose_service' => true,
-        'id' => false,
+        'variable' => false,
+        'version' => false,
+        'algo' => true,
+        'key_id' => true,
+        'nonce' => true,
+        'ciphertext' => true,
         'created_at' => false,
-        'updated_at' => true,
-        'adopted' => false,
-        'sidecar_credential' => false
+        'created_by' => true,
+        'id' => false,
+        'encrypted' => false,
+        'plaintext' => false
     ];
 
     /**
@@ -194,16 +196,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'application' => 'application',
-        'service' => 'service',
-        'injected_keys' => 'injectedKeys',
-        'sidecar_service_name' => 'sidecarServiceName',
-        'adopted_compose_service' => 'adoptedComposeService',
-        'id' => 'id',
+        'variable' => 'variable',
+        'version' => 'version',
+        'algo' => 'algo',
+        'key_id' => 'keyId',
+        'nonce' => 'nonce',
+        'ciphertext' => 'ciphertext',
         'created_at' => 'createdAt',
-        'updated_at' => 'updatedAt',
-        'adopted' => 'adopted',
-        'sidecar_credential' => 'sidecarCredential'
+        'created_by' => 'createdBy',
+        'id' => 'id',
+        'encrypted' => 'encrypted',
+        'plaintext' => 'plaintext'
     ];
 
     /**
@@ -212,16 +215,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'application' => 'setApplication',
-        'service' => 'setService',
-        'injected_keys' => 'setInjectedKeys',
-        'sidecar_service_name' => 'setSidecarServiceName',
-        'adopted_compose_service' => 'setAdoptedComposeService',
-        'id' => 'setId',
+        'variable' => 'setVariable',
+        'version' => 'setVersion',
+        'algo' => 'setAlgo',
+        'key_id' => 'setKeyId',
+        'nonce' => 'setNonce',
+        'ciphertext' => 'setCiphertext',
         'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'adopted' => 'setAdopted',
-        'sidecar_credential' => 'setSidecarCredential'
+        'created_by' => 'setCreatedBy',
+        'id' => 'setId',
+        'encrypted' => 'setEncrypted',
+        'plaintext' => 'setPlaintext'
     ];
 
     /**
@@ -230,16 +234,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'application' => 'getApplication',
-        'service' => 'getService',
-        'injected_keys' => 'getInjectedKeys',
-        'sidecar_service_name' => 'getSidecarServiceName',
-        'adopted_compose_service' => 'getAdoptedComposeService',
-        'id' => 'getId',
+        'variable' => 'getVariable',
+        'version' => 'getVersion',
+        'algo' => 'getAlgo',
+        'key_id' => 'getKeyId',
+        'nonce' => 'getNonce',
+        'ciphertext' => 'getCiphertext',
         'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'adopted' => 'getAdopted',
-        'sidecar_credential' => 'getSidecarCredential'
+        'created_by' => 'getCreatedBy',
+        'id' => 'getId',
+        'encrypted' => 'getEncrypted',
+        'plaintext' => 'getPlaintext'
     ];
 
     /**
@@ -299,16 +304,17 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('application', $data ?? [], null);
-        $this->setIfExists('service', $data ?? [], null);
-        $this->setIfExists('injected_keys', $data ?? [], null);
-        $this->setIfExists('sidecar_service_name', $data ?? [], 'db');
-        $this->setIfExists('adopted_compose_service', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('variable', $data ?? [], null);
+        $this->setIfExists('version', $data ?? [], null);
+        $this->setIfExists('algo', $data ?? [], null);
+        $this->setIfExists('key_id', $data ?? [], null);
+        $this->setIfExists('nonce', $data ?? [], null);
+        $this->setIfExists('ciphertext', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('adopted', $data ?? [], null);
-        $this->setIfExists('sidecar_credential', $data ?? [], null);
+        $this->setIfExists('created_by', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('encrypted', $data ?? [], null);
+        $this->setIfExists('plaintext', $data ?? [], null);
     }
 
     /**
@@ -354,170 +360,191 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets application
+     * Gets variable
      *
-     * @return string|null
+     * @return \SomeonesComputer\Sdk\Model\Variable|null
      */
-    public function getApplication()
+    public function getVariable()
     {
-        return $this->container['application'];
+        return $this->container['variable'];
     }
 
     /**
-     * Sets application
+     * Sets variable
      *
-     * @param string|null $application application
+     * @param \SomeonesComputer\Sdk\Model\Variable|null $variable variable
      *
      * @return self
      */
-    public function setApplication($application)
+    public function setVariable($variable)
     {
-        if (is_null($application)) {
-            throw new \InvalidArgumentException('non-nullable application cannot be null');
+        if (is_null($variable)) {
+            throw new \InvalidArgumentException('non-nullable variable cannot be null');
         }
-        $this->container['application'] = $application;
+        $this->container['variable'] = $variable;
 
         return $this;
     }
 
     /**
-     * Gets service
+     * Gets version
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getService()
+    public function getVersion()
     {
-        return $this->container['service'];
+        return $this->container['version'];
     }
 
     /**
-     * Sets service
+     * Sets version
      *
-     * @param string|null $service service
+     * @param int|null $version version
      *
      * @return self
      */
-    public function setService($service)
+    public function setVersion($version)
     {
-        if (is_null($service)) {
-            throw new \InvalidArgumentException('non-nullable service cannot be null');
+        if (is_null($version)) {
+            throw new \InvalidArgumentException('non-nullable version cannot be null');
         }
-        $this->container['service'] = $service;
+        $this->container['version'] = $version;
 
         return $this;
     }
 
     /**
-     * Gets injected_keys
-     *
-     * @return string[]|null
-     */
-    public function getInjectedKeys()
-    {
-        return $this->container['injected_keys'];
-    }
-
-    /**
-     * Sets injected_keys
-     *
-     * @param string[]|null $injected_keys The environment variable names this binding contributes — one `DATABASE_URL` for a database, the four `S3_*` names for a bucket.
-     *
-     * @return self
-     */
-    public function setInjectedKeys($injected_keys)
-    {
-        if (is_null($injected_keys)) {
-            throw new \InvalidArgumentException('non-nullable injected_keys cannot be null');
-        }
-        $this->container['injected_keys'] = $injected_keys;
-
-        return $this;
-    }
-
-    /**
-     * Gets sidecar_service_name
+     * Gets algo
      *
      * @return string|null
      */
-    public function getSidecarServiceName()
+    public function getAlgo()
     {
-        return $this->container['sidecar_service_name'];
+        return $this->container['algo'];
     }
 
     /**
-     * Sets sidecar_service_name
+     * Sets algo
      *
-     * @param string|null $sidecar_service_name What the sidecar is called inside the tenant's stack — `db` unless something else claimed the name first.
+     * @param string|null $algo Encryption algorithm identifier, e.g. \"xsalsa20poly1305\". Sensitive only.
      *
      * @return self
      */
-    public function setSidecarServiceName($sidecar_service_name)
+    public function setAlgo($algo)
     {
-        if (is_null($sidecar_service_name)) {
-            throw new \InvalidArgumentException('non-nullable sidecar_service_name cannot be null');
-        }
-        $this->container['sidecar_service_name'] = $sidecar_service_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets adopted_compose_service
-     *
-     * @return string|null
-     */
-    public function getAdoptedComposeService()
-    {
-        return $this->container['adopted_compose_service'];
-    }
-
-    /**
-     * Sets adopted_compose_service
-     *
-     * @param string|null $adopted_compose_service The compose service this binding replaced, or null for a binding somebody asked for directly.
-     *
-     * @return self
-     */
-    public function setAdoptedComposeService($adopted_compose_service)
-    {
-        if (is_null($adopted_compose_service)) {
-            array_push($this->openAPINullablesSetToNull, 'adopted_compose_service');
+        if (is_null($algo)) {
+            array_push($this->openAPINullablesSetToNull, 'algo');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('adopted_compose_service', $nullablesSetToNull);
+            $index = array_search('algo', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['adopted_compose_service'] = $adopted_compose_service;
+        $this->container['algo'] = $algo;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets key_id
      *
      * @return string|null
      */
-    public function getId()
+    public function getKeyId()
     {
-        return $this->container['id'];
+        return $this->container['key_id'];
     }
 
     /**
-     * Sets id
+     * Sets key_id
      *
-     * @param string|null $id id
+     * @param string|null $key_id Identifier of the key-encryption-key that wrapped this value. Sensitive only.
      *
      * @return self
      */
-    public function setId($id)
+    public function setKeyId($key_id)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($key_id)) {
+            array_push($this->openAPINullablesSetToNull, 'key_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('key_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['id'] = $id;
+        $this->container['key_id'] = $key_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets nonce
+     *
+     * @return string|null
+     */
+    public function getNonce()
+    {
+        return $this->container['nonce'];
+    }
+
+    /**
+     * Sets nonce
+     *
+     * @param string|null $nonce nonce
+     *
+     * @return self
+     */
+    public function setNonce($nonce)
+    {
+        if (is_null($nonce)) {
+            array_push($this->openAPINullablesSetToNull, 'nonce');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('nonce', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['nonce'] = $nonce;
+
+        return $this;
+    }
+
+    /**
+     * Gets ciphertext
+     *
+     * @return string|null
+     */
+    public function getCiphertext()
+    {
+        return $this->container['ciphertext'];
+    }
+
+    /**
+     * Sets ciphertext
+     *
+     * @param string|null $ciphertext ciphertext
+     *
+     * @return self
+     */
+    public function setCiphertext($ciphertext)
+    {
+        if (is_null($ciphertext)) {
+            array_push($this->openAPINullablesSetToNull, 'ciphertext');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('ciphertext', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['ciphertext'] = $ciphertext;
 
         return $this;
     }
@@ -550,89 +577,116 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets updated_at
+     * Gets created_by
      *
-     * @return \DateTime|null
+     * @return \SomeonesComputer\Sdk\Model\User|null
      */
-    public function getUpdatedAt()
+    public function getCreatedBy()
     {
-        return $this->container['updated_at'];
+        return $this->container['created_by'];
     }
 
     /**
-     * Sets updated_at
+     * Sets created_by
      *
-     * @param \DateTime|null $updated_at updated_at
+     * @param \SomeonesComputer\Sdk\Model\User|null $created_by created_by
      *
      * @return self
      */
-    public function setUpdatedAt($updated_at)
+    public function setCreatedBy($created_by)
     {
-        if (is_null($updated_at)) {
-            array_push($this->openAPINullablesSetToNull, 'updated_at');
+        if (is_null($created_by)) {
+            array_push($this->openAPINullablesSetToNull, 'created_by');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('updated_at', $nullablesSetToNull);
+            $index = array_search('created_by', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['updated_at'] = $updated_at;
+        $this->container['created_by'] = $created_by;
 
         return $this;
     }
 
     /**
-     * Gets adopted
+     * Gets id
      *
-     * @return bool|null
+     * @return string|null
      */
-    public function getAdopted()
+    public function getId()
     {
-        return $this->container['adopted'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets adopted
+     * Sets id
      *
-     * @param bool|null $adopted adopted
+     * @param string|null $id id
      *
      * @return self
      */
-    public function setAdopted($adopted)
+    public function setId($id)
     {
-        if (is_null($adopted)) {
-            throw new \InvalidArgumentException('non-nullable adopted cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['adopted'] = $adopted;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets sidecar_credential
+     * Gets encrypted
      *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
+     * @return string|null
      */
-    public function getSidecarCredential()
+    public function getEncrypted()
     {
-        return $this->container['sidecar_credential'];
+        return $this->container['encrypted'];
     }
 
     /**
-     * Sets sidecar_credential
+     * Sets encrypted
      *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $sidecar_credential sidecar_credential
+     * @param string|null $encrypted Populate an encrypted (sensitive) value.
      *
      * @return self
      */
-    public function setSidecarCredential($sidecar_credential)
+    public function setEncrypted($encrypted)
     {
-        if (is_null($sidecar_credential)) {
-            throw new \InvalidArgumentException('non-nullable sidecar_credential cannot be null');
+        if (is_null($encrypted)) {
+            throw new \InvalidArgumentException('non-nullable encrypted cannot be null');
         }
-        $this->container['sidecar_credential'] = $sidecar_credential;
+        $this->container['encrypted'] = $encrypted;
+
+        return $this;
+    }
+
+    /**
+     * Gets plaintext
+     *
+     * @return string|null
+     */
+    public function getPlaintext()
+    {
+        return $this->container['plaintext'];
+    }
+
+    /**
+     * Sets plaintext
+     *
+     * @param string|null $plaintext Populate a plaintext (non-sensitive) value.
+     *
+     * @return self
+     */
+    public function setPlaintext($plaintext)
+    {
+        if (is_null($plaintext)) {
+            throw new \InvalidArgumentException('non-nullable plaintext cannot be null');
+        }
+        $this->container['plaintext'] = $plaintext;
 
         return $this;
     }

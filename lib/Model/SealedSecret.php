@@ -1,6 +1,6 @@
 <?php
 /**
- * DeploymentAccessGateJsonMergePatch
+ * SealedSecret
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \SomeonesComputer\Sdk\ObjectSerializer;
 
 /**
- * DeploymentAccessGateJsonMergePatch Class Doc Comment
+ * SealedSecret Class Doc Comment
  *
  * @category Class
- * @description Update a per-deployment access-gate override&#39;s mode.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSerializable
+class SealedSecret implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeploymentAccessGate.jsonMergePatch';
+    protected static $openAPIModelName = 'SealedSecret';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,13 +57,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
       * @var string[]
       */
     protected static $openAPITypes = [
-        'application' => 'string',
-        'name' => 'string',
-        'access_gate' => 'string',
-        'id' => 'string',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'access_gate_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
+        'algo' => 'string',
+        'key_id' => 'string',
+        'nonce' => 'string',
+        'ciphertext' => 'string'
     ];
 
     /**
@@ -75,13 +71,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'application' => 'iri-reference',
-        'name' => null,
-        'access_gate' => null,
-        'id' => 'uuid',
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'access_gate_credential' => null
+        'algo' => null,
+        'key_id' => null,
+        'nonce' => null,
+        'ciphertext' => null
     ];
 
     /**
@@ -90,13 +83,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'application' => false,
-        'name' => false,
-        'access_gate' => false,
-        'id' => false,
-        'created_at' => false,
-        'updated_at' => true,
-        'access_gate_credential' => true
+        'algo' => false,
+        'key_id' => false,
+        'nonce' => false,
+        'ciphertext' => false
     ];
 
     /**
@@ -185,13 +175,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $attributeMap = [
-        'application' => 'application',
-        'name' => 'name',
-        'access_gate' => 'accessGate',
-        'id' => 'id',
-        'created_at' => 'createdAt',
-        'updated_at' => 'updatedAt',
-        'access_gate_credential' => 'accessGateCredential'
+        'algo' => 'algo',
+        'key_id' => 'keyId',
+        'nonce' => 'nonce',
+        'ciphertext' => 'ciphertext'
     ];
 
     /**
@@ -200,13 +187,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $setters = [
-        'application' => 'setApplication',
-        'name' => 'setName',
-        'access_gate' => 'setAccessGate',
-        'id' => 'setId',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'access_gate_credential' => 'setAccessGateCredential'
+        'algo' => 'setAlgo',
+        'key_id' => 'setKeyId',
+        'nonce' => 'setNonce',
+        'ciphertext' => 'setCiphertext'
     ];
 
     /**
@@ -215,13 +199,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
      * @var string[]
      */
     protected static $getters = [
-        'application' => 'getApplication',
-        'name' => 'getName',
-        'access_gate' => 'getAccessGate',
-        'id' => 'getId',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'access_gate_credential' => 'getAccessGateCredential'
+        'algo' => 'getAlgo',
+        'key_id' => 'getKeyId',
+        'nonce' => 'getNonce',
+        'ciphertext' => 'getCiphertext'
     ];
 
     /**
@@ -265,25 +246,6 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
         return self::$openAPIModelName;
     }
 
-    public const ACCESS_GATE_NONE = 'none';
-    public const ACCESS_GATE_BASIC_AUTH = 'basic_auth';
-    public const ACCESS_GATE_TOKEN = 'token';
-    public const ACCESS_GATE_SOMEONES_AUTH = 'someones_auth';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAccessGateAllowableValues()
-    {
-        return [
-            self::ACCESS_GATE_NONE,
-            self::ACCESS_GATE_BASIC_AUTH,
-            self::ACCESS_GATE_TOKEN,
-            self::ACCESS_GATE_SOMEONES_AUTH,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -300,13 +262,10 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('application', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('access_gate', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('access_gate_credential', $data ?? [], null);
+        $this->setIfExists('algo', $data ?? [], null);
+        $this->setIfExists('key_id', $data ?? [], null);
+        $this->setIfExists('nonce', $data ?? [], null);
+        $this->setIfExists('ciphertext', $data ?? [], null);
     }
 
     /**
@@ -336,15 +295,6 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getAccessGateAllowableValues();
-        if (!is_null($this->container['access_gate']) && !in_array($this->container['access_gate'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'access_gate', must be one of '%s'",
-                $this->container['access_gate'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -361,214 +311,109 @@ class DeploymentAccessGateJsonMergePatch implements ModelInterface, ArrayAccess,
 
 
     /**
-     * Gets application
+     * Gets algo
      *
      * @return string|null
      */
-    public function getApplication()
+    public function getAlgo()
     {
-        return $this->container['application'];
+        return $this->container['algo'];
     }
 
     /**
-     * Sets application
+     * Sets algo
      *
-     * @param string|null $application application
+     * @param string|null $algo algo
      *
      * @return self
      */
-    public function setApplication($application)
+    public function setAlgo($algo)
     {
-        if (is_null($application)) {
-            throw new \InvalidArgumentException('non-nullable application cannot be null');
+        if (is_null($algo)) {
+            throw new \InvalidArgumentException('non-nullable algo cannot be null');
         }
-        $this->container['application'] = $application;
+        $this->container['algo'] = $algo;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets key_id
      *
      * @return string|null
      */
-    public function getName()
+    public function getKeyId()
     {
-        return $this->container['name'];
+        return $this->container['key_id'];
     }
 
     /**
-     * Sets name
+     * Sets key_id
      *
-     * @param string|null $name name
+     * @param string|null $key_id key_id
      *
      * @return self
      */
-    public function setName($name)
+    public function setKeyId($key_id)
     {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        if (is_null($key_id)) {
+            throw new \InvalidArgumentException('non-nullable key_id cannot be null');
         }
-        $this->container['name'] = $name;
+        $this->container['key_id'] = $key_id;
 
         return $this;
     }
 
     /**
-     * Gets access_gate
+     * Gets nonce
      *
      * @return string|null
      */
-    public function getAccessGate()
+    public function getNonce()
     {
-        return $this->container['access_gate'];
+        return $this->container['nonce'];
     }
 
     /**
-     * Sets access_gate
+     * Sets nonce
      *
-     * @param string|null $access_gate access_gate
+     * @param string|null $nonce nonce
      *
      * @return self
      */
-    public function setAccessGate($access_gate)
+    public function setNonce($nonce)
     {
-        if (is_null($access_gate)) {
-            throw new \InvalidArgumentException('non-nullable access_gate cannot be null');
+        if (is_null($nonce)) {
+            throw new \InvalidArgumentException('non-nullable nonce cannot be null');
         }
-        $allowedValues = $this->getAccessGateAllowableValues();
-        if (!in_array($access_gate, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'access_gate', must be one of '%s'",
-                    $access_gate,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['access_gate'] = $access_gate;
+        $this->container['nonce'] = $nonce;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets ciphertext
      *
      * @return string|null
      */
-    public function getId()
+    public function getCiphertext()
     {
-        return $this->container['id'];
+        return $this->container['ciphertext'];
     }
 
     /**
-     * Sets id
+     * Sets ciphertext
      *
-     * @param string|null $id id
+     * @param string|null $ciphertext ciphertext
      *
      * @return self
      */
-    public function setId($id)
+    public function setCiphertext($ciphertext)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($ciphertext)) {
+            throw new \InvalidArgumentException('non-nullable ciphertext cannot be null');
         }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at created_at
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at updated_at
-     *
-     * @return self
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            array_push($this->openAPINullablesSetToNull, 'updated_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('updated_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets access_gate_credential
-     *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
-     */
-    public function getAccessGateCredential()
-    {
-        return $this->container['access_gate_credential'];
-    }
-
-    /**
-     * Sets access_gate_credential
-     *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $access_gate_credential access_gate_credential
-     *
-     * @return self
-     */
-    public function setAccessGateCredential($access_gate_credential)
-    {
-        if (is_null($access_gate_credential)) {
-            array_push($this->openAPINullablesSetToNull, 'access_gate_credential');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('access_gate_credential', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['access_gate_credential'] = $access_gate_credential;
+        $this->container['ciphertext'] = $ciphertext;
 
         return $this;
     }

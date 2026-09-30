@@ -152,6 +152,15 @@ class FailureTest extends TestCase
     }
 
     /**
+     * Test attribute "share_token"
+     */
+    public function testPropertyShareToken()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "shared_at"
      */
     public function testPropertySharedAt()

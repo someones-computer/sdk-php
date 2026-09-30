@@ -63,7 +63,8 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         'access_gate' => 'string',
         'id' => 'string',
         'created_at' => '\DateTime',
-        'updated_at' => '\DateTime'
+        'updated_at' => '\DateTime',
+        'access_gate_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
     ];
 
     /**
@@ -79,7 +80,8 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         'access_gate' => null,
         'id' => 'uuid',
         'created_at' => 'date-time',
-        'updated_at' => 'date-time'
+        'updated_at' => 'date-time',
+        'access_gate_credential' => null
     ];
 
     /**
@@ -93,7 +95,8 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         'access_gate' => false,
         'id' => false,
         'created_at' => false,
-        'updated_at' => true
+        'updated_at' => true,
+        'access_gate_credential' => true
     ];
 
     /**
@@ -187,7 +190,8 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         'access_gate' => 'accessGate',
         'id' => 'id',
         'created_at' => 'createdAt',
-        'updated_at' => 'updatedAt'
+        'updated_at' => 'updatedAt',
+        'access_gate_credential' => 'accessGateCredential'
     ];
 
     /**
@@ -201,7 +205,8 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         'access_gate' => 'setAccessGate',
         'id' => 'setId',
         'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'access_gate_credential' => 'setAccessGateCredential'
     ];
 
     /**
@@ -215,7 +220,8 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         'access_gate' => 'getAccessGate',
         'id' => 'getId',
         'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'access_gate_credential' => 'getAccessGateCredential'
     ];
 
     /**
@@ -300,6 +306,7 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('access_gate_credential', $data ?? [], null);
     }
 
     /**
@@ -528,6 +535,40 @@ class DeploymentAccessGate implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets access_gate_credential
+     *
+     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
+     */
+    public function getAccessGateCredential()
+    {
+        return $this->container['access_gate_credential'];
+    }
+
+    /**
+     * Sets access_gate_credential
+     *
+     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $access_gate_credential access_gate_credential
+     *
+     * @return self
+     */
+    public function setAccessGateCredential($access_gate_credential)
+    {
+        if (is_null($access_gate_credential)) {
+            array_push($this->openAPINullablesSetToNull, 'access_gate_credential');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('access_gate_credential', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['access_gate_credential'] = $access_gate_credential;
 
         return $this;
     }

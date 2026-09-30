@@ -240,4 +240,13 @@ class ServiceInstanceTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "admin_credential"
+     */
+    public function testPropertyAdminCredential()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

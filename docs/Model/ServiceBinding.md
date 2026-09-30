@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **created_at** | **\DateTime** |  | [optional] [readonly]
 **updated_at** | **\DateTime** |  | [optional] [readonly]
 **adopted** | **bool** |  | [optional] [readonly]
+**sidecar_credential** | [**\SomeonesComputer\Sdk\Model\SealedSecret**](SealedSecret.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

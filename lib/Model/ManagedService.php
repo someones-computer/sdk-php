@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * ManagedService Class Doc Comment
  *
  * @category Class
- * @description List retired managed services that a restore can still bring back. A service stays restorable for 7 days after deletedAt.
+ * @description List managed services (databases/buckets) the caller can see.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -82,6 +82,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'catalogue_entry' => 'string',
+        'credential' => '\SomeonesComputer\Sdk\Model\SealedSecret',
         'available' => 'bool',
         'deleted' => 'bool'
     ];
@@ -118,6 +119,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
         'catalogue_entry' => null,
+        'credential' => null,
         'available' => null,
         'deleted' => null
     ];
@@ -152,6 +154,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => false,
         'updated_at' => true,
         'catalogue_entry' => false,
+        'credential' => false,
         'available' => false,
         'deleted' => false
     ];
@@ -266,6 +269,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
         'catalogue_entry' => 'catalogueEntry',
+        'credential' => 'credential',
         'available' => 'available',
         'deleted' => 'deleted'
     ];
@@ -300,6 +304,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
         'catalogue_entry' => 'setCatalogueEntry',
+        'credential' => 'setCredential',
         'available' => 'setAvailable',
         'deleted' => 'setDeleted'
     ];
@@ -334,6 +339,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
         'catalogue_entry' => 'getCatalogueEntry',
+        'credential' => 'getCredential',
         'available' => 'getAvailable',
         'deleted' => 'getDeleted'
     ];
@@ -392,7 +398,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATE_FAILED = 'failed';
     public const SUSPENSION_REASON_CREDIT_EXHAUSTED = 'credit_exhausted';
     public const SUSPENSION_REASON_OVER_QUOTA = 'over_quota';
-    public const SUSPENSION_REASON_RETIRED = 'retired';
 
     /**
      * Gets allowable values of the enum
@@ -437,7 +442,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::SUSPENSION_REASON_CREDIT_EXHAUSTED,
             self::SUSPENSION_REASON_OVER_QUOTA,
-            self::SUSPENSION_REASON_RETIRED,
         ];
     }
 
@@ -480,6 +484,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('catalogue_entry', $data ?? [], null);
+        $this->setIfExists('credential', $data ?? [], null);
         $this->setIfExists('available', $data ?? [], null);
         $this->setIfExists('deleted', $data ?? [], null);
     }
@@ -1318,6 +1323,33 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable catalogue_entry cannot be null');
         }
         $this->container['catalogue_entry'] = $catalogue_entry;
+
+        return $this;
+    }
+
+    /**
+     * Gets credential
+     *
+     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
+     */
+    public function getCredential()
+    {
+        return $this->container['credential'];
+    }
+
+    /**
+     * Sets credential
+     *
+     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $credential credential
+     *
+     * @return self
+     */
+    public function setCredential($credential)
+    {
+        if (is_null($credential)) {
+            throw new \InvalidArgumentException('non-nullable credential cannot be null');
+        }
+        $this->container['credential'] = $credential;
 
         return $this;
     }
