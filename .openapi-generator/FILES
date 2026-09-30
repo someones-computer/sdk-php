@@ -37,7 +37,6 @@ docs/Model/DeploymentDeploymentEndpoint.md
 docs/Model/DeploymentJsonMergePatch.md
 docs/Model/DeploymentJsonMergePatchBuildContextsValueValue.md
 docs/Model/DeploymentJsonMergePatchCanonicalSpecValue.md
-docs/Model/DeploymentVariable.md
 docs/Model/Error.md
 docs/Model/Failure.md
 docs/Model/Machine.md
@@ -54,8 +53,6 @@ docs/Model/OrganizationJsonMergePatch.md
 docs/Model/OrganizationSignal.md
 docs/Model/PortAllocation.md
 docs/Model/ProxmoxInstance.md
-docs/Model/RecoveryCode.md
-docs/Model/SealedSecret.md
 docs/Model/Service.md
 docs/Model/ServiceBinding.md
 docs/Model/ServiceBindingServiceBindingInput.md
@@ -73,8 +70,6 @@ docs/Model/SwarmJsonMergePatch.md
 docs/Model/SwarmNode.md
 docs/Model/User.md
 docs/Model/UserAvatarPhoto.md
-docs/Model/Variable.md
-docs/Model/VariableVersion.md
 git_push.sh
 lib/Api/AdoptionApprovalApi.php
 lib/Api/ApplicationApi.php
@@ -112,7 +107,6 @@ lib/Model/DeploymentDeploymentEndpoint.php
 lib/Model/DeploymentJsonMergePatch.php
 lib/Model/DeploymentJsonMergePatchBuildContextsValueValue.php
 lib/Model/DeploymentJsonMergePatchCanonicalSpecValue.php
-lib/Model/DeploymentVariable.php
 lib/Model/Error.php
 lib/Model/Failure.php
 lib/Model/Machine.php
@@ -130,8 +124,6 @@ lib/Model/OrganizationJsonMergePatch.php
 lib/Model/OrganizationSignal.php
 lib/Model/PortAllocation.php
 lib/Model/ProxmoxInstance.php
-lib/Model/RecoveryCode.php
-lib/Model/SealedSecret.php
 lib/Model/Service.php
 lib/Model/ServiceBinding.php
 lib/Model/ServiceBindingServiceBindingInput.php
@@ -149,8 +141,6 @@ lib/Model/SwarmJsonMergePatch.php
 lib/Model/SwarmNode.php
 lib/Model/User.php
 lib/Model/UserAvatarPhoto.php
-lib/Model/Variable.php
-lib/Model/VariableVersion.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/AdoptionApprovalApiTest.php
@@ -186,7 +176,6 @@ test/Model/DeploymentJsonMergePatchBuildContextsValueValueTest.php
 test/Model/DeploymentJsonMergePatchCanonicalSpecValueTest.php
 test/Model/DeploymentJsonMergePatchTest.php
 test/Model/DeploymentTest.php
-test/Model/DeploymentVariableTest.php
 test/Model/ErrorTest.php
 test/Model/FailureTest.php
 test/Model/MachineTest.php
@@ -203,8 +192,6 @@ test/Model/OrganizationSignalTest.php
 test/Model/OrganizationTest.php
 test/Model/PortAllocationTest.php
 test/Model/ProxmoxInstanceTest.php
-test/Model/RecoveryCodeTest.php
-test/Model/SealedSecretTest.php
 test/Model/ServiceBindingServiceBindingInputTest.php
 test/Model/ServiceBindingTest.php
 test/Model/ServiceCpuLimitTest.php
@@ -222,5 +209,3 @@ test/Model/SwarmNodeTest.php
 test/Model/SwarmTest.php
 test/Model/UserAvatarPhotoTest.php
 test/Model/UserTest.php
-test/Model/VariableTest.php
-test/Model/VariableVersionTest.php

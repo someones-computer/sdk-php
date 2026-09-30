@@ -22,6 +22,5 @@ Name | Type | Description | Notes
 **catalogue_entry** | **string** | &#x60;postgres 17&#x60;, &#x60;mysql 8.0&#x60; — the catalogue entry this instance serves. | [optional] [readonly]
 **serving** | **bool** |  | [optional] [readonly]
 **in_flight_stale** | **bool** | Dispatched so long ago that whatever was carrying it is gone. | [optional] [readonly]
-**admin_credential** | [**\SomeonesComputer\Sdk\Model\SealedSecret**](SealedSecret.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

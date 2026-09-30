@@ -134,15 +134,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test attribute "password"
-     */
-    public function testPropertyPassword()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "ldap_dn"
      */
     public function testPropertyLdapDn()
@@ -269,36 +260,9 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test attribute "totp_secret"
-     */
-    public function testPropertyTotpSecret()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "totp_secret_key_id"
-     */
-    public function testPropertyTotpSecretKeyId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "totp_confirmed_at"
      */
     public function testPropertyTotpConfirmedAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "recovery_codes"
-     */
-    public function testPropertyRecoveryCodes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

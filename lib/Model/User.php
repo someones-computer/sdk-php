@@ -63,7 +63,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'theme' => 'string',
         'locale' => 'string',
         'timezone' => 'string',
-        'password' => 'string',
         'ldap_dn' => 'string',
         'avatar_photo' => '\SomeonesComputer\Sdk\Model\UserAvatarPhoto',
         'roles' => 'string[]',
@@ -78,10 +77,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_by' => '\SomeonesComputer\Sdk\Model\User',
         'tier_pin_reason' => 'string',
         'oauth_identities' => '\SomeonesComputer\Sdk\Model\OAuthIdentity[]',
-        'totp_secret' => 'string',
-        'totp_secret_key_id' => 'string',
         'totp_confirmed_at' => '\DateTime',
-        'recovery_codes' => '\SomeonesComputer\Sdk\Model\RecoveryCode[]',
         'machine_for' => 'string',
         'id' => 'string',
         'deleted_at' => '\DateTime',
@@ -116,7 +112,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'theme' => null,
         'locale' => null,
         'timezone' => null,
-        'password' => null,
         'ldap_dn' => null,
         'avatar_photo' => null,
         'roles' => null,
@@ -131,10 +126,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_by' => null,
         'tier_pin_reason' => null,
         'oauth_identities' => null,
-        'totp_secret' => null,
-        'totp_secret_key_id' => null,
         'totp_confirmed_at' => 'date-time',
-        'recovery_codes' => null,
         'machine_for' => 'iri-reference',
         'id' => 'uuid',
         'deleted_at' => 'date-time',
@@ -167,7 +159,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'theme' => true,
         'locale' => true,
         'timezone' => true,
-        'password' => true,
         'ldap_dn' => true,
         'avatar_photo' => true,
         'roles' => false,
@@ -182,10 +173,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_by' => true,
         'tier_pin_reason' => true,
         'oauth_identities' => false,
-        'totp_secret' => true,
-        'totp_secret_key_id' => true,
         'totp_confirmed_at' => true,
-        'recovery_codes' => false,
         'machine_for' => true,
         'id' => false,
         'deleted_at' => true,
@@ -298,7 +286,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'theme' => 'theme',
         'locale' => 'locale',
         'timezone' => 'timezone',
-        'password' => 'password',
         'ldap_dn' => 'ldapDn',
         'avatar_photo' => 'avatarPhoto',
         'roles' => 'roles',
@@ -313,10 +300,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_by' => 'tierPinnedBy',
         'tier_pin_reason' => 'tierPinReason',
         'oauth_identities' => 'oauthIdentities',
-        'totp_secret' => 'totpSecret',
-        'totp_secret_key_id' => 'totpSecretKeyId',
         'totp_confirmed_at' => 'totpConfirmedAt',
-        'recovery_codes' => 'recoveryCodes',
         'machine_for' => 'machineFor',
         'id' => 'id',
         'deleted_at' => 'deletedAt',
@@ -349,7 +333,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'theme' => 'setTheme',
         'locale' => 'setLocale',
         'timezone' => 'setTimezone',
-        'password' => 'setPassword',
         'ldap_dn' => 'setLdapDn',
         'avatar_photo' => 'setAvatarPhoto',
         'roles' => 'setRoles',
@@ -364,10 +347,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_by' => 'setTierPinnedBy',
         'tier_pin_reason' => 'setTierPinReason',
         'oauth_identities' => 'setOauthIdentities',
-        'totp_secret' => 'setTotpSecret',
-        'totp_secret_key_id' => 'setTotpSecretKeyId',
         'totp_confirmed_at' => 'setTotpConfirmedAt',
-        'recovery_codes' => 'setRecoveryCodes',
         'machine_for' => 'setMachineFor',
         'id' => 'setId',
         'deleted_at' => 'setDeletedAt',
@@ -400,7 +380,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'theme' => 'getTheme',
         'locale' => 'getLocale',
         'timezone' => 'getTimezone',
-        'password' => 'getPassword',
         'ldap_dn' => 'getLdapDn',
         'avatar_photo' => 'getAvatarPhoto',
         'roles' => 'getRoles',
@@ -415,10 +394,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'tier_pinned_by' => 'getTierPinnedBy',
         'tier_pin_reason' => 'getTierPinReason',
         'oauth_identities' => 'getOauthIdentities',
-        'totp_secret' => 'getTotpSecret',
-        'totp_secret_key_id' => 'getTotpSecretKeyId',
         'totp_confirmed_at' => 'getTotpConfirmedAt',
-        'recovery_codes' => 'getRecoveryCodes',
         'machine_for' => 'getMachineFor',
         'id' => 'getId',
         'deleted_at' => 'getDeletedAt',
@@ -555,7 +531,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('theme', $data ?? [], null);
         $this->setIfExists('locale', $data ?? [], null);
         $this->setIfExists('timezone', $data ?? [], null);
-        $this->setIfExists('password', $data ?? [], null);
         $this->setIfExists('ldap_dn', $data ?? [], null);
         $this->setIfExists('avatar_photo', $data ?? [], null);
         $this->setIfExists('roles', $data ?? [], null);
@@ -570,10 +545,7 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('tier_pinned_by', $data ?? [], null);
         $this->setIfExists('tier_pin_reason', $data ?? [], null);
         $this->setIfExists('oauth_identities', $data ?? [], null);
-        $this->setIfExists('totp_secret', $data ?? [], null);
-        $this->setIfExists('totp_secret_key_id', $data ?? [], null);
         $this->setIfExists('totp_confirmed_at', $data ?? [], null);
-        $this->setIfExists('recovery_codes', $data ?? [], null);
         $this->setIfExists('machine_for', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('deleted_at', $data ?? [], null);
@@ -869,40 +841,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['timezone'] = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Gets password
-     *
-     * @return string|null
-     */
-    public function getPassword()
-    {
-        return $this->container['password'];
-    }
-
-    /**
-     * Sets password
-     *
-     * @param string|null $password Hashed password; null for accounts that authenticate only via OAuth or LDAP.
-     *
-     * @return self
-     */
-    public function setPassword($password)
-    {
-        if (is_null($password)) {
-            array_push($this->openAPINullablesSetToNull, 'password');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('password', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['password'] = $password;
 
         return $this;
     }
@@ -1380,74 +1318,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets totp_secret
-     *
-     * @return string|null
-     */
-    public function getTotpSecret()
-    {
-        return $this->container['totp_secret'];
-    }
-
-    /**
-     * Sets totp_secret
-     *
-     * @param string|null $totp_secret The TOTP shared secret, **encrypted at rest** ({@see \\App\\Service\\TwoFactor\\TotpSecretCipher}), or null for an account that has not enabled a second factor.
-     *
-     * @return self
-     */
-    public function setTotpSecret($totp_secret)
-    {
-        if (is_null($totp_secret)) {
-            array_push($this->openAPINullablesSetToNull, 'totp_secret');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('totp_secret', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['totp_secret'] = $totp_secret;
-
-        return $this;
-    }
-
-    /**
-     * Gets totp_secret_key_id
-     *
-     * @return string|null
-     */
-    public function getTotpSecretKeyId()
-    {
-        return $this->container['totp_secret_key_id'];
-    }
-
-    /**
-     * Sets totp_secret_key_id
-     *
-     * @param string|null $totp_secret_key_id Which key wrapped {@see self::$totpSecret}, so a key rotation can re-wrap it without users re-enrolling ({@see \\App\\Service\\TwoFactor\\TotpSecretCipher}).
-     *
-     * @return self
-     */
-    public function setTotpSecretKeyId($totp_secret_key_id)
-    {
-        if (is_null($totp_secret_key_id)) {
-            array_push($this->openAPINullablesSetToNull, 'totp_secret_key_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('totp_secret_key_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['totp_secret_key_id'] = $totp_secret_key_id;
-
-        return $this;
-    }
-
-    /**
      * Gets totp_confirmed_at
      *
      * @return \DateTime|null
@@ -1477,33 +1347,6 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['totp_confirmed_at'] = $totp_confirmed_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets recovery_codes
-     *
-     * @return \SomeonesComputer\Sdk\Model\RecoveryCode[]|null
-     */
-    public function getRecoveryCodes()
-    {
-        return $this->container['recovery_codes'];
-    }
-
-    /**
-     * Sets recovery_codes
-     *
-     * @param \SomeonesComputer\Sdk\Model\RecoveryCode[]|null $recovery_codes recovery_codes
-     *
-     * @return self
-     */
-    public function setRecoveryCodes($recovery_codes)
-    {
-        if (is_null($recovery_codes)) {
-            throw new \InvalidArgumentException('non-nullable recovery_codes cannot be null');
-        }
-        $this->container['recovery_codes'] = $recovery_codes;
 
         return $this;
     }
