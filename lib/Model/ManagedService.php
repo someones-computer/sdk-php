@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * ManagedService Class Doc Comment
  *
  * @category Class
- * @description List managed services (databases/buckets) the caller can see.
+ * @description List retired managed services that a restore can still bring back. A service stays restorable for 7 days after deletedAt.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -398,6 +398,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATE_FAILED = 'failed';
     public const SUSPENSION_REASON_CREDIT_EXHAUSTED = 'credit_exhausted';
     public const SUSPENSION_REASON_OVER_QUOTA = 'over_quota';
+    public const SUSPENSION_REASON_RETIRED = 'retired';
 
     /**
      * Gets allowable values of the enum
@@ -442,6 +443,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::SUSPENSION_REASON_CREDIT_EXHAUSTED,
             self::SUSPENSION_REASON_OVER_QUOTA,
+            self::SUSPENSION_REASON_RETIRED,
         ];
     }
 
