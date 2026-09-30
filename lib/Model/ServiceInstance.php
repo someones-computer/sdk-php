@@ -74,8 +74,7 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => '\DateTime',
         'catalogue_entry' => 'string',
         'serving' => 'bool',
-        'in_flight_stale' => 'bool',
-        'admin_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
+        'in_flight_stale' => 'bool'
     ];
 
     /**
@@ -103,8 +102,7 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'date-time',
         'catalogue_entry' => null,
         'serving' => null,
-        'in_flight_stale' => null,
-        'admin_credential' => null
+        'in_flight_stale' => null
     ];
 
     /**
@@ -130,8 +128,7 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => true,
         'catalogue_entry' => false,
         'serving' => false,
-        'in_flight_stale' => false,
-        'admin_credential' => false
+        'in_flight_stale' => false
     ];
 
     /**
@@ -237,8 +234,7 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'updatedAt',
         'catalogue_entry' => 'catalogueEntry',
         'serving' => 'serving',
-        'in_flight_stale' => 'inFlightStale',
-        'admin_credential' => 'adminCredential'
+        'in_flight_stale' => 'inFlightStale'
     ];
 
     /**
@@ -264,8 +260,7 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'setUpdatedAt',
         'catalogue_entry' => 'setCatalogueEntry',
         'serving' => 'setServing',
-        'in_flight_stale' => 'setInFlightStale',
-        'admin_credential' => 'setAdminCredential'
+        'in_flight_stale' => 'setInFlightStale'
     ];
 
     /**
@@ -291,8 +286,7 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'getUpdatedAt',
         'catalogue_entry' => 'getCatalogueEntry',
         'serving' => 'getServing',
-        'in_flight_stale' => 'getInFlightStale',
-        'admin_credential' => 'getAdminCredential'
+        'in_flight_stale' => 'getInFlightStale'
     ];
 
     /**
@@ -414,7 +408,6 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('catalogue_entry', $data ?? [], null);
         $this->setIfExists('serving', $data ?? [], null);
         $this->setIfExists('in_flight_stale', $data ?? [], null);
-        $this->setIfExists('admin_credential', $data ?? [], null);
     }
 
     /**
@@ -1021,33 +1014,6 @@ class ServiceInstance implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable in_flight_stale cannot be null');
         }
         $this->container['in_flight_stale'] = $in_flight_stale;
-
-        return $this;
-    }
-
-    /**
-     * Gets admin_credential
-     *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
-     */
-    public function getAdminCredential()
-    {
-        return $this->container['admin_credential'];
-    }
-
-    /**
-     * Sets admin_credential
-     *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $admin_credential admin_credential
-     *
-     * @return self
-     */
-    public function setAdminCredential($admin_credential)
-    {
-        if (is_null($admin_credential)) {
-            throw new \InvalidArgumentException('non-nullable admin_credential cannot be null');
-        }
-        $this->container['admin_credential'] = $admin_credential;
 
         return $this;
     }

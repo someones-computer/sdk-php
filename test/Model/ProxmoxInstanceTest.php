@@ -107,15 +107,6 @@ class ProxmoxInstanceTest extends TestCase
     }
 
     /**
-     * Test attribute "token_secret"
-     */
-    public function testPropertyTokenSecret()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "verify_tls"
      */
     public function testPropertyVerifyTls()

@@ -151,7 +151,6 @@ Class | Method | HTTP request | Description
 - [DeploymentJsonMergePatch](docs/Model/DeploymentJsonMergePatch.md)
 - [DeploymentJsonMergePatchBuildContextsValueValue](docs/Model/DeploymentJsonMergePatchBuildContextsValueValue.md)
 - [DeploymentJsonMergePatchCanonicalSpecValue](docs/Model/DeploymentJsonMergePatchCanonicalSpecValue.md)
-- [DeploymentVariable](docs/Model/DeploymentVariable.md)
 - [Error](docs/Model/Error.md)
 - [Failure](docs/Model/Failure.md)
 - [Machine](docs/Model/Machine.md)
@@ -168,8 +167,6 @@ Class | Method | HTTP request | Description
 - [OrganizationSignal](docs/Model/OrganizationSignal.md)
 - [PortAllocation](docs/Model/PortAllocation.md)
 - [ProxmoxInstance](docs/Model/ProxmoxInstance.md)
-- [RecoveryCode](docs/Model/RecoveryCode.md)
-- [SealedSecret](docs/Model/SealedSecret.md)
 - [Service](docs/Model/Service.md)
 - [ServiceBinding](docs/Model/ServiceBinding.md)
 - [ServiceBindingServiceBindingInput](docs/Model/ServiceBindingServiceBindingInput.md)
@@ -187,8 +184,6 @@ Class | Method | HTTP request | Description
 - [SwarmNode](docs/Model/SwarmNode.md)
 - [User](docs/Model/User.md)
 - [UserAvatarPhoto](docs/Model/UserAvatarPhoto.md)
-- [Variable](docs/Model/Variable.md)
-- [VariableVersion](docs/Model/VariableVersion.md)
 
 ## Authorization
 
