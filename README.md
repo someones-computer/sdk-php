@@ -163,7 +163,6 @@ Class | Method | HTTP request | Description
 - [ManagedServiceQuotaBytes](docs/Model/ManagedServiceQuotaBytes.md)
 - [ManagedServiceUsageBytes](docs/Model/ManagedServiceUsageBytes.md)
 - [Membership](docs/Model/Membership.md)
-- [OAuthIdentity](docs/Model/OAuthIdentity.md)
 - [Organization](docs/Model/Organization.md)
 - [OrganizationJsonMergePatch](docs/Model/OrganizationJsonMergePatch.md)
 - [OrganizationSignal](docs/Model/OrganizationSignal.md)
@@ -185,7 +184,6 @@ Class | Method | HTTP request | Description
 - [SwarmJsonMergePatch](docs/Model/SwarmJsonMergePatch.md)
 - [SwarmNode](docs/Model/SwarmNode.md)
 - [User](docs/Model/User.md)
-- [UserAvatarPhoto](docs/Model/UserAvatarPhoto.md)
 
 ## Authorization
 
