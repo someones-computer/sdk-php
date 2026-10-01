@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ManagedServiceTest Class Doc Comment
  *
  * @category    Class
- * @description List retired managed services that a restore can still bring back. A service stays restorable for 7 days after deletedAt.
+ * @description List managed services (databases/buckets) the caller can see.
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
