@@ -120,30 +120,6 @@ class ManagedServiceApiTest extends TestCase
     }
 
     /**
-     * Test case for managedServicesListRetired
-     *
-     * Retrieves the collection of ManagedService resources..
-     *
-     */
-    public function testManagedServicesListRetired()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for managedServicesRestore
-     *
-     * Creates a ManagedService resource..
-     *
-     */
-    public function testManagedServicesRestore()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for managedServicesResume
      *
      * Creates a ManagedService resource..
