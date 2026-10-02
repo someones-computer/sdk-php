@@ -1,6 +1,6 @@
 <?php
 /**
- * DeploymentAccessGateJsonMergePatchTest
+ * VariableTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace SomeonesComputer\Sdk\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DeploymentAccessGateJsonMergePatchTest Class Doc Comment
+ * VariableTest Class Doc Comment
  *
  * @category    Class
- * @description Update a per-deployment access-gate override&#39;s mode.
+ * @description Variable
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DeploymentAccessGateJsonMergePatchTest extends TestCase
+class VariableTest extends TestCase
 {
 
     /**
@@ -71,9 +71,18 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test "DeploymentAccessGateJsonMergePatch"
+     * Test "Variable"
      */
-    public function testDeploymentAccessGateJsonMergePatch()
+    public function testVariable()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "organization"
+     */
+    public function testPropertyOrganization()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -89,18 +98,36 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "key"
      */
-    public function testPropertyName()
+    public function testPropertyKey()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "access_gate"
+     * Test attribute "sensitive"
      */
-    public function testPropertyAccessGate()
+    public function testPropertySensitive()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "secret_file_delivery"
+     */
+    public function testPropertySecretFileDelivery()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "versions"
+     */
+    public function testPropertyVersions()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -110,6 +137,15 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
      * Test attribute "id"
      */
     public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "deleted_at"
+     */
+    public function testPropertyDeletedAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -134,9 +170,18 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test attribute "access_gate_credential"
+     * Test attribute "org_shared"
      */
-    public function testPropertyAccessGateCredential()
+    public function testPropertyOrgShared()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "deleted"
+     */
+    public function testPropertyDeleted()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

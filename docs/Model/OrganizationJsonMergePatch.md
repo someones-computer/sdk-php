@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **swarms** | **string[]** | BYO swarms owned by this organization. | [optional]
 **machines** | [**\SomeonesComputer\Sdk\Model\Machine[]**](Machine.md) |  | [optional]
 **credit_transactions** | **string[]** | The append-only credit ledger. | [optional]
+**variables** | [**\SomeonesComputer\Sdk\Model\Variable[]**](Variable.md) |  | [optional]
 **signals** | [**\SomeonesComputer\Sdk\Model\OrganizationSignal[]**](OrganizationSignal.md) |  | [optional]
 **id** | **string** |  | [optional] [readonly]
 **deleted_at** | **\DateTime** |  | [optional] [readonly]

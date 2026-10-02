@@ -1,6 +1,6 @@
 <?php
 /**
- * DeploymentAccessGateJsonMergePatchTest
+ * SealedSecretTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace SomeonesComputer\Sdk\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DeploymentAccessGateJsonMergePatchTest Class Doc Comment
+ * SealedSecretTest Class Doc Comment
  *
  * @category    Class
- * @description Update a per-deployment access-gate override&#39;s mode.
+ * @description SealedSecret
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DeploymentAccessGateJsonMergePatchTest extends TestCase
+class SealedSecretTest extends TestCase
 {
 
     /**
@@ -71,72 +71,45 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test "DeploymentAccessGateJsonMergePatch"
+     * Test "SealedSecret"
      */
-    public function testDeploymentAccessGateJsonMergePatch()
+    public function testSealedSecret()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "application"
+     * Test attribute "algo"
      */
-    public function testPropertyApplication()
+    public function testPropertyAlgo()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "key_id"
      */
-    public function testPropertyName()
+    public function testPropertyKeyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "access_gate"
+     * Test attribute "nonce"
      */
-    public function testPropertyAccessGate()
+    public function testPropertyNonce()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "ciphertext"
      */
-    public function testPropertyId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "created_at"
-     */
-    public function testPropertyCreatedAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updated_at"
-     */
-    public function testPropertyUpdatedAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "access_gate_credential"
-     */
-    public function testPropertyAccessGateCredential()
+    public function testPropertyCiphertext()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceBinding
+ * Variable
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \SomeonesComputer\Sdk\ObjectSerializer;
 
 /**
- * ServiceBinding Class Doc Comment
+ * Variable Class Doc Comment
  *
  * @category Class
- * @description List service bindings (application-to-managed-service links) the caller can see.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
+class Variable implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ServiceBinding';
+    protected static $openAPIModelName = 'Variable';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,16 +57,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'organization' => 'string',
         'application' => 'string',
-        'service' => 'string',
-        'injected_keys' => 'string[]',
-        'sidecar_service_name' => 'string',
-        'adopted_compose_service' => 'string',
+        'key' => 'string',
+        'sensitive' => 'bool',
+        'secret_file_delivery' => 'bool',
+        'versions' => '\SomeonesComputer\Sdk\Model\VariableVersion[]',
         'id' => 'string',
+        'deleted_at' => '\DateTime',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
-        'adopted' => 'bool',
-        'sidecar_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
+        'org_shared' => 'bool',
+        'deleted' => 'bool'
     ];
 
     /**
@@ -78,16 +79,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'organization' => 'iri-reference',
         'application' => 'iri-reference',
-        'service' => 'iri-reference',
-        'injected_keys' => null,
-        'sidecar_service_name' => null,
-        'adopted_compose_service' => null,
+        'key' => null,
+        'sensitive' => null,
+        'secret_file_delivery' => null,
+        'versions' => null,
         'id' => 'uuid',
+        'deleted_at' => 'date-time',
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
-        'adopted' => null,
-        'sidecar_credential' => null
+        'org_shared' => null,
+        'deleted' => null
     ];
 
     /**
@@ -96,16 +99,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'application' => false,
-        'service' => false,
-        'injected_keys' => false,
-        'sidecar_service_name' => false,
-        'adopted_compose_service' => true,
+        'organization' => false,
+        'application' => true,
+        'key' => false,
+        'sensitive' => false,
+        'secret_file_delivery' => false,
+        'versions' => false,
         'id' => false,
+        'deleted_at' => true,
         'created_at' => false,
         'updated_at' => true,
-        'adopted' => false,
-        'sidecar_credential' => false
+        'org_shared' => false,
+        'deleted' => false
     ];
 
     /**
@@ -194,16 +199,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'organization' => 'organization',
         'application' => 'application',
-        'service' => 'service',
-        'injected_keys' => 'injectedKeys',
-        'sidecar_service_name' => 'sidecarServiceName',
-        'adopted_compose_service' => 'adoptedComposeService',
+        'key' => 'key',
+        'sensitive' => 'sensitive',
+        'secret_file_delivery' => 'secretFileDelivery',
+        'versions' => 'versions',
         'id' => 'id',
+        'deleted_at' => 'deletedAt',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
-        'adopted' => 'adopted',
-        'sidecar_credential' => 'sidecarCredential'
+        'org_shared' => 'orgShared',
+        'deleted' => 'deleted'
     ];
 
     /**
@@ -212,16 +219,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'organization' => 'setOrganization',
         'application' => 'setApplication',
-        'service' => 'setService',
-        'injected_keys' => 'setInjectedKeys',
-        'sidecar_service_name' => 'setSidecarServiceName',
-        'adopted_compose_service' => 'setAdoptedComposeService',
+        'key' => 'setKey',
+        'sensitive' => 'setSensitive',
+        'secret_file_delivery' => 'setSecretFileDelivery',
+        'versions' => 'setVersions',
         'id' => 'setId',
+        'deleted_at' => 'setDeletedAt',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
-        'adopted' => 'setAdopted',
-        'sidecar_credential' => 'setSidecarCredential'
+        'org_shared' => 'setOrgShared',
+        'deleted' => 'setDeleted'
     ];
 
     /**
@@ -230,16 +239,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'organization' => 'getOrganization',
         'application' => 'getApplication',
-        'service' => 'getService',
-        'injected_keys' => 'getInjectedKeys',
-        'sidecar_service_name' => 'getSidecarServiceName',
-        'adopted_compose_service' => 'getAdoptedComposeService',
+        'key' => 'getKey',
+        'sensitive' => 'getSensitive',
+        'secret_file_delivery' => 'getSecretFileDelivery',
+        'versions' => 'getVersions',
         'id' => 'getId',
+        'deleted_at' => 'getDeletedAt',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
-        'adopted' => 'getAdopted',
-        'sidecar_credential' => 'getSidecarCredential'
+        'org_shared' => 'getOrgShared',
+        'deleted' => 'getDeleted'
     ];
 
     /**
@@ -299,16 +310,18 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('organization', $data ?? [], null);
         $this->setIfExists('application', $data ?? [], null);
-        $this->setIfExists('service', $data ?? [], null);
-        $this->setIfExists('injected_keys', $data ?? [], null);
-        $this->setIfExists('sidecar_service_name', $data ?? [], 'db');
-        $this->setIfExists('adopted_compose_service', $data ?? [], null);
+        $this->setIfExists('key', $data ?? [], null);
+        $this->setIfExists('sensitive', $data ?? [], false);
+        $this->setIfExists('secret_file_delivery', $data ?? [], false);
+        $this->setIfExists('versions', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('deleted_at', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('adopted', $data ?? [], null);
-        $this->setIfExists('sidecar_credential', $data ?? [], null);
+        $this->setIfExists('org_shared', $data ?? [], null);
+        $this->setIfExists('deleted', $data ?? [], null);
     }
 
     /**
@@ -354,6 +367,33 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets organization
+     *
+     * @return string|null
+     */
+    public function getOrganization()
+    {
+        return $this->container['organization'];
+    }
+
+    /**
+     * Sets organization
+     *
+     * @param string|null $organization Re-home this variable. Used only when an application-scoped row follows its {@see Application} across organizations — an org-shared row (`$application === null`) has no application to follow and is never moved this way.
+     *
+     * @return self
+     */
+    public function setOrganization($organization)
+    {
+        if (is_null($organization)) {
+            throw new \InvalidArgumentException('non-nullable organization cannot be null');
+        }
+        $this->container['organization'] = $organization;
+
+        return $this;
+    }
+
+    /**
      * Gets application
      *
      * @return string|null
@@ -366,14 +406,21 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets application
      *
-     * @param string|null $application application
+     * @param string|null $application Null => org-shared across all of the organization's applications.
      *
      * @return self
      */
     public function setApplication($application)
     {
         if (is_null($application)) {
-            throw new \InvalidArgumentException('non-nullable application cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'application');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('application', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['application'] = $application;
 
@@ -381,116 +428,109 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets service
+     * Gets key
      *
      * @return string|null
      */
-    public function getService()
+    public function getKey()
     {
-        return $this->container['service'];
+        return $this->container['key'];
     }
 
     /**
-     * Sets service
+     * Sets key
      *
-     * @param string|null $service service
+     * @param string|null $key The environment variable name. (\"key\" is reserved in some SQL dialects.)
      *
      * @return self
      */
-    public function setService($service)
+    public function setKey($key)
     {
-        if (is_null($service)) {
-            throw new \InvalidArgumentException('non-nullable service cannot be null');
+        if (is_null($key)) {
+            throw new \InvalidArgumentException('non-nullable key cannot be null');
         }
-        $this->container['service'] = $service;
+        $this->container['key'] = $key;
 
         return $this;
     }
 
     /**
-     * Gets injected_keys
+     * Gets sensitive
      *
-     * @return string[]|null
+     * @return bool|null
      */
-    public function getInjectedKeys()
+    public function getSensitive()
     {
-        return $this->container['injected_keys'];
+        return $this->container['sensitive'];
     }
 
     /**
-     * Sets injected_keys
+     * Sets sensitive
      *
-     * @param string[]|null $injected_keys The environment variable names this binding contributes — one `DATABASE_URL` for a database, the four `S3_*` names for a bucket.
+     * @param bool|null $sensitive sensitive
      *
      * @return self
      */
-    public function setInjectedKeys($injected_keys)
+    public function setSensitive($sensitive)
     {
-        if (is_null($injected_keys)) {
-            throw new \InvalidArgumentException('non-nullable injected_keys cannot be null');
+        if (is_null($sensitive)) {
+            throw new \InvalidArgumentException('non-nullable sensitive cannot be null');
         }
-        $this->container['injected_keys'] = $injected_keys;
+        $this->container['sensitive'] = $sensitive;
 
         return $this;
     }
 
     /**
-     * Gets sidecar_service_name
+     * Gets secret_file_delivery
      *
-     * @return string|null
+     * @return bool|null
      */
-    public function getSidecarServiceName()
+    public function getSecretFileDelivery()
     {
-        return $this->container['sidecar_service_name'];
+        return $this->container['secret_file_delivery'];
     }
 
     /**
-     * Sets sidecar_service_name
+     * Sets secret_file_delivery
      *
-     * @param string|null $sidecar_service_name What the sidecar is called inside the tenant's stack — `db` unless something else claimed the name first.
+     * @param bool|null $secret_file_delivery Opt-in only, and meaningless unless {@see $sensitive} is also true: whether this secret is delivered to its containers as a mounted Swarm secret file (plus a `<KEY>_FILE` env var naming its path) rather than as a plain `Env` entry — {@see \\App\\Service\\Deploy\\StackDeployer}.
      *
      * @return self
      */
-    public function setSidecarServiceName($sidecar_service_name)
+    public function setSecretFileDelivery($secret_file_delivery)
     {
-        if (is_null($sidecar_service_name)) {
-            throw new \InvalidArgumentException('non-nullable sidecar_service_name cannot be null');
+        if (is_null($secret_file_delivery)) {
+            throw new \InvalidArgumentException('non-nullable secret_file_delivery cannot be null');
         }
-        $this->container['sidecar_service_name'] = $sidecar_service_name;
+        $this->container['secret_file_delivery'] = $secret_file_delivery;
 
         return $this;
     }
 
     /**
-     * Gets adopted_compose_service
+     * Gets versions
      *
-     * @return string|null
+     * @return \SomeonesComputer\Sdk\Model\VariableVersion[]|null
      */
-    public function getAdoptedComposeService()
+    public function getVersions()
     {
-        return $this->container['adopted_compose_service'];
+        return $this->container['versions'];
     }
 
     /**
-     * Sets adopted_compose_service
+     * Sets versions
      *
-     * @param string|null $adopted_compose_service The compose service this binding replaced, or null for a binding somebody asked for directly.
+     * @param \SomeonesComputer\Sdk\Model\VariableVersion[]|null $versions versions
      *
      * @return self
      */
-    public function setAdoptedComposeService($adopted_compose_service)
+    public function setVersions($versions)
     {
-        if (is_null($adopted_compose_service)) {
-            array_push($this->openAPINullablesSetToNull, 'adopted_compose_service');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('adopted_compose_service', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($versions)) {
+            throw new \InvalidArgumentException('non-nullable versions cannot be null');
         }
-        $this->container['adopted_compose_service'] = $adopted_compose_service;
+        $this->container['versions'] = $versions;
 
         return $this;
     }
@@ -518,6 +558,40 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets deleted_at
+     *
+     * @return \DateTime|null
+     */
+    public function getDeletedAt()
+    {
+        return $this->container['deleted_at'];
+    }
+
+    /**
+     * Sets deleted_at
+     *
+     * @param \DateTime|null $deleted_at deleted_at
+     *
+     * @return self
+     */
+    public function setDeletedAt($deleted_at)
+    {
+        if (is_null($deleted_at)) {
+            array_push($this->openAPINullablesSetToNull, 'deleted_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('deleted_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['deleted_at'] = $deleted_at;
 
         return $this;
     }
@@ -584,55 +658,55 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets adopted
+     * Gets org_shared
      *
      * @return bool|null
      */
-    public function getAdopted()
+    public function getOrgShared()
     {
-        return $this->container['adopted'];
+        return $this->container['org_shared'];
     }
 
     /**
-     * Sets adopted
+     * Sets org_shared
      *
-     * @param bool|null $adopted adopted
+     * @param bool|null $org_shared org_shared
      *
      * @return self
      */
-    public function setAdopted($adopted)
+    public function setOrgShared($org_shared)
     {
-        if (is_null($adopted)) {
-            throw new \InvalidArgumentException('non-nullable adopted cannot be null');
+        if (is_null($org_shared)) {
+            throw new \InvalidArgumentException('non-nullable org_shared cannot be null');
         }
-        $this->container['adopted'] = $adopted;
+        $this->container['org_shared'] = $org_shared;
 
         return $this;
     }
 
     /**
-     * Gets sidecar_credential
+     * Gets deleted
      *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
+     * @return bool|null
      */
-    public function getSidecarCredential()
+    public function getDeleted()
     {
-        return $this->container['sidecar_credential'];
+        return $this->container['deleted'];
     }
 
     /**
-     * Sets sidecar_credential
+     * Sets deleted
      *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $sidecar_credential sidecar_credential
+     * @param bool|null $deleted deleted
      *
      * @return self
      */
-    public function setSidecarCredential($sidecar_credential)
+    public function setDeleted($deleted)
     {
-        if (is_null($sidecar_credential)) {
-            throw new \InvalidArgumentException('non-nullable sidecar_credential cannot be null');
+        if (is_null($deleted)) {
+            throw new \InvalidArgumentException('non-nullable deleted cannot be null');
         }
-        $this->container['sidecar_credential'] = $sidecar_credential;
+        $this->container['deleted'] = $deleted;
 
         return $this;
     }

@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ManagedServiceTest Class Doc Comment
  *
  * @category    Class
- * @description List managed services (databases/buckets) the caller can see.
+ * @description List retired managed services that a restore can still bring back. A service stays restorable for 7 days after deletedAt.
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -290,6 +290,15 @@ class ManagedServiceTest extends TestCase
      * Test attribute "catalogue_entry"
      */
     public function testPropertyCatalogueEntry()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "credential"
+     */
+    public function testPropertyCredential()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

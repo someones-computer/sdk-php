@@ -1,6 +1,6 @@
 <?php
 /**
- * DeploymentAccessGateJsonMergePatchTest
+ * DeploymentVariableTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace SomeonesComputer\Sdk\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DeploymentAccessGateJsonMergePatchTest Class Doc Comment
+ * DeploymentVariableTest Class Doc Comment
  *
  * @category    Class
- * @description Update a per-deployment access-gate override&#39;s mode.
+ * @description DeploymentVariable
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DeploymentAccessGateJsonMergePatchTest extends TestCase
+class DeploymentVariableTest extends TestCase
 {
 
     /**
@@ -71,36 +71,27 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test "DeploymentAccessGateJsonMergePatch"
+     * Test "DeploymentVariable"
      */
-    public function testDeploymentAccessGateJsonMergePatch()
+    public function testDeploymentVariable()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "application"
+     * Test attribute "deployment"
      */
-    public function testPropertyApplication()
+    public function testPropertyDeployment()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "variable_version"
      */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "access_gate"
-     */
-    public function testPropertyAccessGate()
+    public function testPropertyVariableVersion()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -116,27 +107,9 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test attribute "created_at"
+     * Test attribute "key"
      */
-    public function testPropertyCreatedAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "updated_at"
-     */
-    public function testPropertyUpdatedAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "access_gate_credential"
-     */
-    public function testPropertyAccessGateCredential()
+    public function testPropertyKey()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

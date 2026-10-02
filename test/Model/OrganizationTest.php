@@ -224,6 +224,15 @@ class OrganizationTest extends TestCase
     }
 
     /**
+     * Test attribute "variables"
+     */
+    public function testPropertyVariables()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "signals"
      */
     public function testPropertySignals()

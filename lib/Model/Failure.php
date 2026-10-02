@@ -65,6 +65,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         'service' => 'string',
         'build_log_key' => 'string',
         'image_digest' => 'string',
+        'share_token' => 'string',
         'shared_at' => '\DateTime',
         'share_expires_at' => '\DateTime',
         'shared_by' => '\SomeonesComputer\Sdk\Model\User',
@@ -91,6 +92,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         'service' => null,
         'build_log_key' => null,
         'image_digest' => null,
+        'share_token' => null,
         'shared_at' => 'date-time',
         'share_expires_at' => 'date-time',
         'shared_by' => null,
@@ -115,6 +117,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         'service' => true,
         'build_log_key' => true,
         'image_digest' => true,
+        'share_token' => true,
         'shared_at' => true,
         'share_expires_at' => true,
         'shared_by' => true,
@@ -219,6 +222,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         'service' => 'service',
         'build_log_key' => 'buildLogKey',
         'image_digest' => 'imageDigest',
+        'share_token' => 'shareToken',
         'shared_at' => 'sharedAt',
         'share_expires_at' => 'shareExpiresAt',
         'shared_by' => 'sharedBy',
@@ -243,6 +247,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         'service' => 'setService',
         'build_log_key' => 'setBuildLogKey',
         'image_digest' => 'setImageDigest',
+        'share_token' => 'setShareToken',
         'shared_at' => 'setSharedAt',
         'share_expires_at' => 'setShareExpiresAt',
         'shared_by' => 'setSharedBy',
@@ -267,6 +272,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         'service' => 'getService',
         'build_log_key' => 'getBuildLogKey',
         'image_digest' => 'getImageDigest',
+        'share_token' => 'getShareToken',
         'shared_at' => 'getSharedAt',
         'share_expires_at' => 'getShareExpiresAt',
         'shared_by' => 'getSharedBy',
@@ -369,6 +375,7 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('service', $data ?? [], null);
         $this->setIfExists('build_log_key', $data ?? [], null);
         $this->setIfExists('image_digest', $data ?? [], null);
+        $this->setIfExists('share_token', $data ?? [], null);
         $this->setIfExists('shared_at', $data ?? [], null);
         $this->setIfExists('share_expires_at', $data ?? [], null);
         $this->setIfExists('shared_by', $data ?? [], null);
@@ -687,6 +694,40 @@ class Failure implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['image_digest'] = $image_digest;
+
+        return $this;
+    }
+
+    /**
+     * Gets share_token
+     *
+     * @return string|null
+     */
+    public function getShareToken()
+    {
+        return $this->container['share_token'];
+    }
+
+    /**
+     * Sets share_token
+     *
+     * @param string|null $share_token The capability that makes {@see \\App\\Controller\\FailureController::shared()} serve this to someone with no session, or null while it is private.
+     *
+     * @return self
+     */
+    public function setShareToken($share_token)
+    {
+        if (is_null($share_token)) {
+            array_push($this->openAPINullablesSetToNull, 'share_token');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('share_token', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['share_token'] = $share_token;
 
         return $this;
     }

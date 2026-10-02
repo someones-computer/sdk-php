@@ -143,6 +143,15 @@ class DeploymentTest extends TestCase
     }
 
     /**
+     * Test attribute "build_secrets"
+     */
+    public function testPropertyBuildSecrets()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "target_swarm"
      */
     public function testPropertyTargetSwarm()
@@ -218,6 +227,15 @@ class DeploymentTest extends TestCase
      * Test attribute "services"
      */
     public function testPropertyServices()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "variables"
+     */
+    public function testPropertyVariables()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

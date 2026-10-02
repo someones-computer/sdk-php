@@ -132,4 +132,13 @@ class DeploymentAccessGateTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "access_gate_credential"
+     */
+    public function testPropertyAccessGateCredential()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

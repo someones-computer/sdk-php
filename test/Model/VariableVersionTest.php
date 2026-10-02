@@ -1,6 +1,6 @@
 <?php
 /**
- * DeploymentAccessGateJsonMergePatchTest
+ * VariableVersionTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace SomeonesComputer\Sdk\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DeploymentAccessGateJsonMergePatchTest Class Doc Comment
+ * VariableVersionTest Class Doc Comment
  *
  * @category    Class
- * @description Update a per-deployment access-gate override&#39;s mode.
+ * @description VariableVersion
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DeploymentAccessGateJsonMergePatchTest extends TestCase
+class VariableVersionTest extends TestCase
 {
 
     /**
@@ -71,45 +71,63 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test "DeploymentAccessGateJsonMergePatch"
+     * Test "VariableVersion"
      */
-    public function testDeploymentAccessGateJsonMergePatch()
+    public function testVariableVersion()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "application"
+     * Test attribute "variable"
      */
-    public function testPropertyApplication()
+    public function testPropertyVariable()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "version"
      */
-    public function testPropertyName()
+    public function testPropertyVersion()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "access_gate"
+     * Test attribute "algo"
      */
-    public function testPropertyAccessGate()
+    public function testPropertyAlgo()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "key_id"
      */
-    public function testPropertyId()
+    public function testPropertyKeyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "nonce"
+     */
+    public function testPropertyNonce()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ciphertext"
+     */
+    public function testPropertyCiphertext()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -125,18 +143,36 @@ class DeploymentAccessGateJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test attribute "updated_at"
+     * Test attribute "created_by"
      */
-    public function testPropertyUpdatedAt()
+    public function testPropertyCreatedBy()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "access_gate_credential"
+     * Test attribute "id"
      */
-    public function testPropertyAccessGateCredential()
+    public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "encrypted"
+     */
+    public function testPropertyEncrypted()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "plaintext"
+     */
+    public function testPropertyPlaintext()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
