@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **service** | **string** | Which compose service, where the phase happens per-service. Null for the phases that fail the revision as a whole (placement, stranded) and for a deploy that never got as far as naming one. | [optional]
 **build_log_key** | **string** | Object key of the build log as it stood, or null when there was none. | [optional]
 **image_digest** | **string** | The digest a {@see FailurePhase::Scan} failure was quarantined over — null for every other phase. What lets the scan quarantine queue (docs/image-scanning.md, #816) resolve straight from a quarantined revision to the exact {@see \\App\\Entity\\ImageScan} an operator&#39;s Clear or Uphold acts on, without re-deriving it from a pinned image reference or a reason string meant for a person to read. | [optional]
-**share_token** | **string** | The capability that makes {@see \\App\\Controller\\FailureController::shared()} serve this to someone with no session, or null while it is private. | [optional] [readonly]
 **shared_at** | **\DateTime** |  | [optional] [readonly]
 **share_expires_at** | **\DateTime** | When the capability above stops working, 24 hours after it was minted. | [optional] [readonly]
 **shared_by** | [**\SomeonesComputer\Sdk\Model\User**](User.md) |  | [optional]

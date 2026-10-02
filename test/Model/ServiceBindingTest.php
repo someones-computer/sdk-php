@@ -159,13 +159,4 @@ class ServiceBindingTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
-
-    /**
-     * Test attribute "sidecar_credential"
-     */
-    public function testPropertySidecarCredential()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
 }

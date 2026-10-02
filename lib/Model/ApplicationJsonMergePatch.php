@@ -73,7 +73,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'build_bucket' => 'string',
         'build_key_id' => 'string',
         'deployments' => 'string[]',
-        'variables' => '\SomeonesComputer\Sdk\Model\Variable[]',
         'port_allocations' => '\SomeonesComputer\Sdk\Model\PortAllocation[]',
         'pool_domain' => 'string',
         'pool_label' => 'string',
@@ -81,8 +80,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'deleted_at' => '\DateTime',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
-        'build_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret',
-        'access_gate_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret',
         'icon' => 'string',
         'operator_chosen_icon' => 'bool',
         'icon_version' => 'string',
@@ -112,7 +109,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'build_bucket' => null,
         'build_key_id' => null,
         'deployments' => 'iri-reference',
-        'variables' => null,
         'port_allocations' => null,
         'pool_domain' => null,
         'pool_label' => null,
@@ -120,8 +116,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'deleted_at' => 'date-time',
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
-        'build_credential' => null,
-        'access_gate_credential' => null,
         'icon' => null,
         'operator_chosen_icon' => null,
         'icon_version' => null,
@@ -149,7 +143,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'build_bucket' => true,
         'build_key_id' => true,
         'deployments' => false,
-        'variables' => false,
         'port_allocations' => false,
         'pool_domain' => true,
         'pool_label' => true,
@@ -157,8 +150,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'deleted_at' => true,
         'created_at' => false,
         'updated_at' => true,
-        'build_credential' => false,
-        'access_gate_credential' => true,
         'icon' => true,
         'operator_chosen_icon' => false,
         'icon_version' => true,
@@ -266,7 +257,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'build_bucket' => 'buildBucket',
         'build_key_id' => 'buildKeyId',
         'deployments' => 'deployments',
-        'variables' => 'variables',
         'port_allocations' => 'portAllocations',
         'pool_domain' => 'poolDomain',
         'pool_label' => 'poolLabel',
@@ -274,8 +264,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'deleted_at' => 'deletedAt',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
-        'build_credential' => 'buildCredential',
-        'access_gate_credential' => 'accessGateCredential',
         'icon' => 'icon',
         'operator_chosen_icon' => 'operatorChosenIcon',
         'icon_version' => 'iconVersion',
@@ -303,7 +291,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'build_bucket' => 'setBuildBucket',
         'build_key_id' => 'setBuildKeyId',
         'deployments' => 'setDeployments',
-        'variables' => 'setVariables',
         'port_allocations' => 'setPortAllocations',
         'pool_domain' => 'setPoolDomain',
         'pool_label' => 'setPoolLabel',
@@ -311,8 +298,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'deleted_at' => 'setDeletedAt',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
-        'build_credential' => 'setBuildCredential',
-        'access_gate_credential' => 'setAccessGateCredential',
         'icon' => 'setIcon',
         'operator_chosen_icon' => 'setOperatorChosenIcon',
         'icon_version' => 'setIconVersion',
@@ -340,7 +325,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'build_bucket' => 'getBuildBucket',
         'build_key_id' => 'getBuildKeyId',
         'deployments' => 'getDeployments',
-        'variables' => 'getVariables',
         'port_allocations' => 'getPortAllocations',
         'pool_domain' => 'getPoolDomain',
         'pool_label' => 'getPoolLabel',
@@ -348,8 +332,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         'deleted_at' => 'getDeletedAt',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
-        'build_credential' => 'getBuildCredential',
-        'access_gate_credential' => 'getAccessGateCredential',
         'icon' => 'getIcon',
         'operator_chosen_icon' => 'getOperatorChosenIcon',
         'icon_version' => 'getIconVersion',
@@ -492,7 +474,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('build_bucket', $data ?? [], null);
         $this->setIfExists('build_key_id', $data ?? [], null);
         $this->setIfExists('deployments', $data ?? [], null);
-        $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('port_allocations', $data ?? [], null);
         $this->setIfExists('pool_domain', $data ?? [], null);
         $this->setIfExists('pool_label', $data ?? [], null);
@@ -500,8 +481,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
         $this->setIfExists('deleted_at', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('build_credential', $data ?? [], null);
-        $this->setIfExists('access_gate_credential', $data ?? [], null);
         $this->setIfExists('icon', $data ?? [], null);
         $this->setIfExists('operator_chosen_icon', $data ?? [], null);
         $this->setIfExists('icon_version', $data ?? [], null);
@@ -1088,33 +1067,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
     }
 
     /**
-     * Gets variables
-     *
-     * @return \SomeonesComputer\Sdk\Model\Variable[]|null
-     */
-    public function getVariables()
-    {
-        return $this->container['variables'];
-    }
-
-    /**
-     * Sets variables
-     *
-     * @param \SomeonesComputer\Sdk\Model\Variable[]|null $variables variables
-     *
-     * @return self
-     */
-    public function setVariables($variables)
-    {
-        if (is_null($variables)) {
-            throw new \InvalidArgumentException('non-nullable variables cannot be null');
-        }
-        $this->container['variables'] = $variables;
-
-        return $this;
-    }
-
-    /**
      * Gets port_allocations
      *
      * @return \SomeonesComputer\Sdk\Model\PortAllocation[]|null
@@ -1327,67 +1279,6 @@ class ApplicationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSer
             }
         }
         $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets build_credential
-     *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
-     */
-    public function getBuildCredential()
-    {
-        return $this->container['build_credential'];
-    }
-
-    /**
-     * Sets build_credential
-     *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $build_credential build_credential
-     *
-     * @return self
-     */
-    public function setBuildCredential($build_credential)
-    {
-        if (is_null($build_credential)) {
-            throw new \InvalidArgumentException('non-nullable build_credential cannot be null');
-        }
-        $this->container['build_credential'] = $build_credential;
-
-        return $this;
-    }
-
-    /**
-     * Gets access_gate_credential
-     *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
-     */
-    public function getAccessGateCredential()
-    {
-        return $this->container['access_gate_credential'];
-    }
-
-    /**
-     * Sets access_gate_credential
-     *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $access_gate_credential access_gate_credential
-     *
-     * @return self
-     */
-    public function setAccessGateCredential($access_gate_credential)
-    {
-        if (is_null($access_gate_credential)) {
-            array_push($this->openAPINullablesSetToNull, 'access_gate_credential');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('access_gate_credential', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['access_gate_credential'] = $access_gate_credential;
 
         return $this;
     }

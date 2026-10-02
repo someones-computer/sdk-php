@@ -74,7 +74,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         'swarms' => 'string[]',
         'machines' => '\SomeonesComputer\Sdk\Model\Machine[]',
         'credit_transactions' => 'string[]',
-        'variables' => '\SomeonesComputer\Sdk\Model\Variable[]',
         'signals' => '\SomeonesComputer\Sdk\Model\OrganizationSignal[]',
         'id' => 'string',
         'deleted_at' => '\DateTime',
@@ -108,7 +107,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         'swarms' => 'iri-reference',
         'machines' => null,
         'credit_transactions' => 'iri-reference',
-        'variables' => null,
         'signals' => null,
         'id' => 'uuid',
         'deleted_at' => 'date-time',
@@ -140,7 +138,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         'swarms' => false,
         'machines' => false,
         'credit_transactions' => false,
-        'variables' => false,
         'signals' => false,
         'id' => false,
         'deleted_at' => true,
@@ -252,7 +249,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         'swarms' => 'swarms',
         'machines' => 'machines',
         'credit_transactions' => 'creditTransactions',
-        'variables' => 'variables',
         'signals' => 'signals',
         'id' => 'id',
         'deleted_at' => 'deletedAt',
@@ -284,7 +280,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         'swarms' => 'setSwarms',
         'machines' => 'setMachines',
         'credit_transactions' => 'setCreditTransactions',
-        'variables' => 'setVariables',
         'signals' => 'setSignals',
         'id' => 'setId',
         'deleted_at' => 'setDeletedAt',
@@ -316,7 +311,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         'swarms' => 'getSwarms',
         'machines' => 'getMachines',
         'credit_transactions' => 'getCreditTransactions',
-        'variables' => 'getVariables',
         'signals' => 'getSignals',
         'id' => 'getId',
         'deleted_at' => 'getDeletedAt',
@@ -437,7 +431,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
         $this->setIfExists('swarms', $data ?? [], null);
         $this->setIfExists('machines', $data ?? [], null);
         $this->setIfExists('credit_transactions', $data ?? [], null);
-        $this->setIfExists('variables', $data ?? [], null);
         $this->setIfExists('signals', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('deleted_at', $data ?? [], null);
@@ -1018,33 +1011,6 @@ class OrganizationJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSe
             throw new \InvalidArgumentException('non-nullable credit_transactions cannot be null');
         }
         $this->container['credit_transactions'] = $credit_transactions;
-
-        return $this;
-    }
-
-    /**
-     * Gets variables
-     *
-     * @return \SomeonesComputer\Sdk\Model\Variable[]|null
-     */
-    public function getVariables()
-    {
-        return $this->container['variables'];
-    }
-
-    /**
-     * Sets variables
-     *
-     * @param \SomeonesComputer\Sdk\Model\Variable[]|null $variables variables
-     *
-     * @return self
-     */
-    public function setVariables($variables)
-    {
-        if (is_null($variables)) {
-            throw new \InvalidArgumentException('non-nullable variables cannot be null');
-        }
-        $this->container['variables'] = $variables;
 
         return $this;
     }

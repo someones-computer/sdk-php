@@ -66,8 +66,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'string',
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
-        'adopted' => 'bool',
-        'sidecar_credential' => '\SomeonesComputer\Sdk\Model\SealedSecret'
+        'adopted' => 'bool'
     ];
 
     /**
@@ -86,8 +85,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'uuid',
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
-        'adopted' => null,
-        'sidecar_credential' => null
+        'adopted' => null
     ];
 
     /**
@@ -104,8 +102,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => false,
         'created_at' => false,
         'updated_at' => true,
-        'adopted' => false,
-        'sidecar_credential' => false
+        'adopted' => false
     ];
 
     /**
@@ -202,8 +199,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'id',
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
-        'adopted' => 'adopted',
-        'sidecar_credential' => 'sidecarCredential'
+        'adopted' => 'adopted'
     ];
 
     /**
@@ -220,8 +216,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'setId',
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
-        'adopted' => 'setAdopted',
-        'sidecar_credential' => 'setSidecarCredential'
+        'adopted' => 'setAdopted'
     ];
 
     /**
@@ -238,8 +233,7 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         'id' => 'getId',
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
-        'adopted' => 'getAdopted',
-        'sidecar_credential' => 'getSidecarCredential'
+        'adopted' => 'getAdopted'
     ];
 
     /**
@@ -308,7 +302,6 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('adopted', $data ?? [], null);
-        $this->setIfExists('sidecar_credential', $data ?? [], null);
     }
 
     /**
@@ -606,33 +599,6 @@ class ServiceBinding implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable adopted cannot be null');
         }
         $this->container['adopted'] = $adopted;
-
-        return $this;
-    }
-
-    /**
-     * Gets sidecar_credential
-     *
-     * @return \SomeonesComputer\Sdk\Model\SealedSecret|null
-     */
-    public function getSidecarCredential()
-    {
-        return $this->container['sidecar_credential'];
-    }
-
-    /**
-     * Sets sidecar_credential
-     *
-     * @param \SomeonesComputer\Sdk\Model\SealedSecret|null $sidecar_credential sidecar_credential
-     *
-     * @return self
-     */
-    public function setSidecarCredential($sidecar_credential)
-    {
-        if (is_null($sidecar_credential)) {
-            throw new \InvalidArgumentException('non-nullable sidecar_credential cannot be null');
-        }
-        $this->container['sidecar_credential'] = $sidecar_credential;
 
         return $this;
     }

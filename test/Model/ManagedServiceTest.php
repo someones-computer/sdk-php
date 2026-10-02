@@ -296,15 +296,6 @@ class ManagedServiceTest extends TestCase
     }
 
     /**
-     * Test attribute "credential"
-     */
-    public function testPropertyCredential()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "available"
      */
     public function testPropertyAvailable()
