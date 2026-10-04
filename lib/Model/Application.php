@@ -76,9 +76,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'port_allocations' => '\SomeonesComputer\Sdk\Model\PortAllocation[]',
         'pool_domain' => 'string',
         'pool_label' => 'string',
-        'pool_short_name' => 'bool',
-        'pool_short_name_deployment' => 'string',
-        'pool_short_name_service' => 'string',
         'id' => 'string',
         'deleted_at' => '\DateTime',
         'created_at' => '\DateTime',
@@ -115,9 +112,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'port_allocations' => null,
         'pool_domain' => null,
         'pool_label' => null,
-        'pool_short_name' => null,
-        'pool_short_name_deployment' => null,
-        'pool_short_name_service' => null,
         'id' => 'uuid',
         'deleted_at' => 'date-time',
         'created_at' => 'date-time',
@@ -152,9 +146,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'port_allocations' => false,
         'pool_domain' => true,
         'pool_label' => true,
-        'pool_short_name' => false,
-        'pool_short_name_deployment' => true,
-        'pool_short_name_service' => true,
         'id' => false,
         'deleted_at' => true,
         'created_at' => false,
@@ -269,9 +260,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'port_allocations' => 'portAllocations',
         'pool_domain' => 'poolDomain',
         'pool_label' => 'poolLabel',
-        'pool_short_name' => 'poolShortName',
-        'pool_short_name_deployment' => 'poolShortNameDeployment',
-        'pool_short_name_service' => 'poolShortNameService',
         'id' => 'id',
         'deleted_at' => 'deletedAt',
         'created_at' => 'createdAt',
@@ -306,9 +294,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'port_allocations' => 'setPortAllocations',
         'pool_domain' => 'setPoolDomain',
         'pool_label' => 'setPoolLabel',
-        'pool_short_name' => 'setPoolShortName',
-        'pool_short_name_deployment' => 'setPoolShortNameDeployment',
-        'pool_short_name_service' => 'setPoolShortNameService',
         'id' => 'setId',
         'deleted_at' => 'setDeletedAt',
         'created_at' => 'setCreatedAt',
@@ -343,9 +328,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         'port_allocations' => 'getPortAllocations',
         'pool_domain' => 'getPoolDomain',
         'pool_label' => 'getPoolLabel',
-        'pool_short_name' => 'getPoolShortName',
-        'pool_short_name_deployment' => 'getPoolShortNameDeployment',
-        'pool_short_name_service' => 'getPoolShortNameService',
         'id' => 'getId',
         'deleted_at' => 'getDeletedAt',
         'created_at' => 'getCreatedAt',
@@ -495,9 +477,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('port_allocations', $data ?? [], null);
         $this->setIfExists('pool_domain', $data ?? [], null);
         $this->setIfExists('pool_label', $data ?? [], null);
-        $this->setIfExists('pool_short_name', $data ?? [], false);
-        $this->setIfExists('pool_short_name_deployment', $data ?? [], null);
-        $this->setIfExists('pool_short_name_service', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('deleted_at', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
@@ -1178,101 +1157,6 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['pool_label'] = $pool_label;
-
-        return $this;
-    }
-
-    /**
-     * Gets pool_short_name
-     *
-     * @return bool|null
-     */
-    public function getPoolShortName()
-    {
-        return $this->container['pool_short_name'];
-    }
-
-    /**
-     * Sets pool_short_name
-     *
-     * @param bool|null $pool_short_name Whether `{label}.{poolDomain}`, with no service or deployment level in front, answers for one deployment (#2030). See {@see poolShortHostname()}.
-     *
-     * @return self
-     */
-    public function setPoolShortName($pool_short_name)
-    {
-        if (is_null($pool_short_name)) {
-            throw new \InvalidArgumentException('non-nullable pool_short_name cannot be null');
-        }
-        $this->container['pool_short_name'] = $pool_short_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets pool_short_name_deployment
-     *
-     * @return string|null
-     */
-    public function getPoolShortNameDeployment()
-    {
-        return $this->container['pool_short_name_deployment'];
-    }
-
-    /**
-     * Sets pool_short_name_deployment
-     *
-     * @param string|null $pool_short_name_deployment The deployment the short name answers for. Null is the unnamed deployment.
-     *
-     * @return self
-     */
-    public function setPoolShortNameDeployment($pool_short_name_deployment)
-    {
-        if (is_null($pool_short_name_deployment)) {
-            array_push($this->openAPINullablesSetToNull, 'pool_short_name_deployment');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pool_short_name_deployment', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['pool_short_name_deployment'] = $pool_short_name_deployment;
-
-        return $this;
-    }
-
-    /**
-     * Gets pool_short_name_service
-     *
-     * @return string|null
-     */
-    public function getPoolShortNameService()
-    {
-        return $this->container['pool_short_name_service'];
-    }
-
-    /**
-     * Sets pool_short_name_service
-     *
-     * @param string|null $pool_short_name_service The compose service it routes to. Null is the only HTTP service.
-     *
-     * @return self
-     */
-    public function setPoolShortNameService($pool_short_name_service)
-    {
-        if (is_null($pool_short_name_service)) {
-            array_push($this->openAPINullablesSetToNull, 'pool_short_name_service');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pool_short_name_service', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['pool_short_name_service'] = $pool_short_name_service;
 
         return $this;
     }

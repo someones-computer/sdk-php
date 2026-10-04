@@ -116,15 +116,6 @@ class ManagedServiceTest extends TestCase
     }
 
     /**
-     * Test attribute "instance"
-     */
-    public function testPropertyInstance()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "backing_name"
      */
     public function testPropertyBackingName()
@@ -290,6 +281,15 @@ class ManagedServiceTest extends TestCase
      * Test attribute "catalogue_entry"
      */
     public function testPropertyCatalogueEntry()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "instance"
+     */
+    public function testPropertyInstance()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

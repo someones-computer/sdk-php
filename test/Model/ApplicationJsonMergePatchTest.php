@@ -242,33 +242,6 @@ class ApplicationJsonMergePatchTest extends TestCase
     }
 
     /**
-     * Test attribute "pool_short_name"
-     */
-    public function testPropertyPoolShortName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "pool_short_name_deployment"
-     */
-    public function testPropertyPoolShortNameDeployment()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "pool_short_name_service"
-     */
-    public function testPropertyPoolShortNameService()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "id"
      */
     public function testPropertyId()
