@@ -376,7 +376,7 @@ try {
 ## `deploymentsList()`
 
 ```php
-deploymentsList($page): \SomeonesComputer\Sdk\Model\Deployment[]
+deploymentsList($page, $application, $application2, $sequence, $sequence2, $name, $name2, $items_per_page): \SomeonesComputer\Sdk\Model\Deployment[]
 ```
 
 Retrieves the collection of Deployment resources.
@@ -401,9 +401,16 @@ $apiInstance = new SomeonesComputer\Sdk\Api\DeploymentApi(
     $config
 );
 $page = 1; // int | The collection page number
+$application = 'application_example'; // string | Only revisions of this application, by IRI (`/api/applications/{id}`).
+$application2 = array('application_example'); // string[] | Only revisions of this application, by IRI (`/api/applications/{id}`).
+$sequence = 'sequence_example'; // string | Only the revision with this sequence number.
+$sequence2 = array('sequence_example'); // string[] | Only the revision with this sequence number.
+$name = 'name_example'; // string | Only revisions with this exact name.
+$name2 = array('name_example'); // string[] | Only revisions with this exact name.
+$items_per_page = 'items_per_page_example'; // string | Rows per page.
 
 try {
-    $result = $apiInstance->deploymentsList($page);
+    $result = $apiInstance->deploymentsList($page, $application, $application2, $sequence, $sequence2, $name, $name2, $items_per_page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentApi->deploymentsList: ', $e->getMessage(), PHP_EOL;
@@ -415,6 +422,13 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **page** | **int**| The collection page number | [optional] [default to 1] |
+| **application** | **string**| Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). | [optional] |
+| **application2** | [**string[]**](../Model/string.md)| Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). | [optional] |
+| **sequence** | **string**| Only the revision with this sequence number. | [optional] |
+| **sequence2** | [**string[]**](../Model/string.md)| Only the revision with this sequence number. | [optional] |
+| **name** | **string**| Only revisions with this exact name. | [optional] |
+| **name2** | [**string[]**](../Model/string.md)| Only revisions with this exact name. | [optional] |
+| **items_per_page** | **string**| Rows per page. | [optional] |
 
 ### Return type
 
