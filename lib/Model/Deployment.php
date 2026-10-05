@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * Deployment Class Doc Comment
  *
  * @category Class
- * @description List an application&#39;s deployment revisions.
+ * @description List deployment revisions. Filter by application (IRI), sequence or name. Any other query parameter answers 400.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
