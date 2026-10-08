@@ -36,7 +36,6 @@ docs/Model/DeploymentBundleUploadDeclareOutput.md
 docs/Model/DeploymentDeploymentEndpoint.md
 docs/Model/DeploymentJsonMergePatch.md
 docs/Model/DeploymentJsonMergePatchBuildContextsValueValue.md
-docs/Model/DeploymentJsonMergePatchCanonicalSpecValue.md
 docs/Model/Error.md
 docs/Model/Failure.md
 docs/Model/Machine.md
@@ -102,7 +101,6 @@ lib/Model/DeploymentBundleUploadDeclareOutput.php
 lib/Model/DeploymentDeploymentEndpoint.php
 lib/Model/DeploymentJsonMergePatch.php
 lib/Model/DeploymentJsonMergePatchBuildContextsValueValue.php
-lib/Model/DeploymentJsonMergePatchCanonicalSpecValue.php
 lib/Model/Error.php
 lib/Model/Failure.php
 lib/Model/Machine.php
@@ -165,7 +163,6 @@ test/Model/DeploymentBundleUploadDeclareInputTest.php
 test/Model/DeploymentBundleUploadDeclareOutputTest.php
 test/Model/DeploymentDeploymentEndpointTest.php
 test/Model/DeploymentJsonMergePatchBuildContextsValueValueTest.php
-test/Model/DeploymentJsonMergePatchCanonicalSpecValueTest.php
 test/Model/DeploymentJsonMergePatchTest.php
 test/Model/DeploymentTest.php
 test/Model/ErrorTest.php

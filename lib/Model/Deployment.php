@@ -62,7 +62,7 @@ class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => 'int',
         'name' => 'string',
         'raw_compose' => 'string',
-        'canonical_spec' => 'array<string,\SomeonesComputer\Sdk\Model\DeploymentJsonMergePatchCanonicalSpecValue>',
+        'canonical_spec' => 'array<string,mixed>',
         'build_contexts' => 'array<string,array<string,\SomeonesComputer\Sdk\Model\DeploymentJsonMergePatchBuildContextsValueValue>>',
         'forwarded_images' => 'array<string,array<string,string>>',
         'target_swarm' => 'string',
@@ -600,7 +600,7 @@ class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets canonical_spec
      *
-     * @return array<string,\SomeonesComputer\Sdk\Model\DeploymentJsonMergePatchCanonicalSpecValue>|null
+     * @return array<string,mixed>|null
      */
     public function getCanonicalSpec()
     {
@@ -610,7 +610,7 @@ class Deployment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets canonical_spec
      *
-     * @param array<string,\SomeonesComputer\Sdk\Model\DeploymentJsonMergePatchCanonicalSpecValue>|null $canonical_spec Parsed, supported-subset-only canonical representation — what {@see \\App\\Service\\Compose\\ComposeParser::parse()} produced. Both keys are optional here and not there: a row is whatever was written when it was written, so a revision that predates a key still has to load.
+     * @param array<string,mixed>|null $canonical_spec Parsed, supported-subset-only canonical representation of the compose file, as the parser produced it. Keys are `services` and `warnings`. A revision that predates a key omits it.
      *
      * @return self
      */

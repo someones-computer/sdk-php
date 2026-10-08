@@ -152,7 +152,6 @@ Class | Method | HTTP request | Description
 - [DeploymentDeploymentEndpoint](docs/Model/DeploymentDeploymentEndpoint.md)
 - [DeploymentJsonMergePatch](docs/Model/DeploymentJsonMergePatch.md)
 - [DeploymentJsonMergePatchBuildContextsValueValue](docs/Model/DeploymentJsonMergePatchBuildContextsValueValue.md)
-- [DeploymentJsonMergePatchCanonicalSpecValue](docs/Model/DeploymentJsonMergePatchCanonicalSpecValue.md)
 - [Error](docs/Model/Error.md)
 - [Failure](docs/Model/Failure.md)
 - [Machine](docs/Model/Machine.md)
