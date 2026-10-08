@@ -2188,15 +2188,22 @@ class DeploymentApi
      * Retrieves the collection of Deployment resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $application Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string[]|null $application2 Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string|null $sequence Only the revision with this sequence number. (optional)
+     * @param  string[]|null $sequence2 Only the revision with this sequence number. (optional)
+     * @param  string|null $name Only revisions with this exact name. (optional)
+     * @param  string[]|null $name2 Only revisions with this exact name. (optional)
+     * @param  string|null $items_per_page Rows per page. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deploymentsList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \SomeonesComputer\Sdk\Model\Deployment[]
      */
-    public function deploymentsList($page = 1, string $contentType = self::contentTypes['deploymentsList'][0])
+    public function deploymentsList($page = 1, $application = null, $application2 = null, $sequence = null, $sequence2 = null, $name = null, $name2 = null, $items_per_page = null, string $contentType = self::contentTypes['deploymentsList'][0])
     {
-        list($response) = $this->deploymentsListWithHttpInfo($page, $contentType);
+        list($response) = $this->deploymentsListWithHttpInfo($page, $application, $application2, $sequence, $sequence2, $name, $name2, $items_per_page, $contentType);
         return $response;
     }
 
@@ -2206,15 +2213,22 @@ class DeploymentApi
      * Retrieves the collection of Deployment resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $application Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string[]|null $application2 Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string|null $sequence Only the revision with this sequence number. (optional)
+     * @param  string[]|null $sequence2 Only the revision with this sequence number. (optional)
+     * @param  string|null $name Only revisions with this exact name. (optional)
+     * @param  string[]|null $name2 Only revisions with this exact name. (optional)
+     * @param  string|null $items_per_page Rows per page. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deploymentsList'] to see the possible values for this operation
      *
      * @throws \SomeonesComputer\Sdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \SomeonesComputer\Sdk\Model\Deployment[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function deploymentsListWithHttpInfo($page = 1, string $contentType = self::contentTypes['deploymentsList'][0])
+    public function deploymentsListWithHttpInfo($page = 1, $application = null, $application2 = null, $sequence = null, $sequence2 = null, $name = null, $name2 = null, $items_per_page = null, string $contentType = self::contentTypes['deploymentsList'][0])
     {
-        $request = $this->deploymentsListRequest($page, $contentType);
+        $request = $this->deploymentsListRequest($page, $application, $application2, $sequence, $sequence2, $name, $name2, $items_per_page, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2331,14 +2345,21 @@ class DeploymentApi
      * Retrieves the collection of Deployment resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $application Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string[]|null $application2 Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string|null $sequence Only the revision with this sequence number. (optional)
+     * @param  string[]|null $sequence2 Only the revision with this sequence number. (optional)
+     * @param  string|null $name Only revisions with this exact name. (optional)
+     * @param  string[]|null $name2 Only revisions with this exact name. (optional)
+     * @param  string|null $items_per_page Rows per page. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deploymentsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deploymentsListAsync($page = 1, string $contentType = self::contentTypes['deploymentsList'][0])
+    public function deploymentsListAsync($page = 1, $application = null, $application2 = null, $sequence = null, $sequence2 = null, $name = null, $name2 = null, $items_per_page = null, string $contentType = self::contentTypes['deploymentsList'][0])
     {
-        return $this->deploymentsListAsyncWithHttpInfo($page, $contentType)
+        return $this->deploymentsListAsyncWithHttpInfo($page, $application, $application2, $sequence, $sequence2, $name, $name2, $items_per_page, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2352,15 +2373,22 @@ class DeploymentApi
      * Retrieves the collection of Deployment resources.
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $application Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string[]|null $application2 Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string|null $sequence Only the revision with this sequence number. (optional)
+     * @param  string[]|null $sequence2 Only the revision with this sequence number. (optional)
+     * @param  string|null $name Only revisions with this exact name. (optional)
+     * @param  string[]|null $name2 Only revisions with this exact name. (optional)
+     * @param  string|null $items_per_page Rows per page. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deploymentsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deploymentsListAsyncWithHttpInfo($page = 1, string $contentType = self::contentTypes['deploymentsList'][0])
+    public function deploymentsListAsyncWithHttpInfo($page = 1, $application = null, $application2 = null, $sequence = null, $sequence2 = null, $name = null, $name2 = null, $items_per_page = null, string $contentType = self::contentTypes['deploymentsList'][0])
     {
         $returnType = '\SomeonesComputer\Sdk\Model\Deployment[]';
-        $request = $this->deploymentsListRequest($page, $contentType);
+        $request = $this->deploymentsListRequest($page, $application, $application2, $sequence, $sequence2, $name, $name2, $items_per_page, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2402,13 +2430,27 @@ class DeploymentApi
      * Create request for operation 'deploymentsList'
      *
      * @param  int|null $page The collection page number (optional, default to 1)
+     * @param  string|null $application Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string[]|null $application2 Only revisions of this application, by IRI (&#x60;/api/applications/{id}&#x60;). (optional)
+     * @param  string|null $sequence Only the revision with this sequence number. (optional)
+     * @param  string[]|null $sequence2 Only the revision with this sequence number. (optional)
+     * @param  string|null $name Only revisions with this exact name. (optional)
+     * @param  string[]|null $name2 Only revisions with this exact name. (optional)
+     * @param  string|null $items_per_page Rows per page. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deploymentsList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deploymentsListRequest($page = 1, string $contentType = self::contentTypes['deploymentsList'][0])
+    public function deploymentsListRequest($page = 1, $application = null, $application2 = null, $sequence = null, $sequence2 = null, $name = null, $name2 = null, $items_per_page = null, string $contentType = self::contentTypes['deploymentsList'][0])
     {
+
+
+
+
+
+
+
 
 
 
@@ -2424,6 +2466,69 @@ class DeploymentApi
             $page,
             'page', // param base name
             'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $application,
+            'application', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $application2,
+            'application[]', // param base name
+            'array', // openApiType
+            'deepObject', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sequence,
+            'sequence', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sequence2,
+            'sequence[]', // param base name
+            'array', // openApiType
+            'deepObject', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $name,
+            'name', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $name2,
+            'name[]', // param base name
+            'array', // openApiType
+            'deepObject', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $items_per_page,
+            'itemsPerPage', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
