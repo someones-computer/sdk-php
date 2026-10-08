@@ -324,7 +324,7 @@ class DeploymentBundleUploadDeclareOutput implements ModelInterface, ArrayAccess
     /**
      * Sets contexts
      *
-     * @param \SomeonesComputer\Sdk\Model\BundleUploadTarget[]|null $contexts contexts
+     * @param \SomeonesComputer\Sdk\Model\BundleUploadTarget[]|null $contexts one per declared build context
      *
      * @return self
      */
@@ -351,7 +351,7 @@ class DeploymentBundleUploadDeclareOutput implements ModelInterface, ArrayAccess
     /**
      * Sets additional_contexts
      *
-     * @param \SomeonesComputer\Sdk\Model\BundleUploadTarget[]|null $additional_contexts additional_contexts
+     * @param \SomeonesComputer\Sdk\Model\BundleUploadTarget[]|null $additional_contexts one per declared named additional context
      *
      * @return self
      */
@@ -378,7 +378,7 @@ class DeploymentBundleUploadDeclareOutput implements ModelInterface, ArrayAccess
     /**
      * Sets images
      *
-     * @param \SomeonesComputer\Sdk\Model\BundleUploadTarget[]|null $images images
+     * @param \SomeonesComputer\Sdk\Model\BundleUploadTarget[]|null $images one per declared forwarded image
      *
      * @return self
      */

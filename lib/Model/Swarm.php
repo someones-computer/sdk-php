@@ -1036,7 +1036,7 @@ class Swarm implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets machines
      *
-     * @param \SomeonesComputer\Sdk\Model\Machine[]|null $machines machines
+     * @param \SomeonesComputer\Sdk\Model\Machine[]|null $machines The machines that serve this context. Mapped only so a delete can let go of them. See {@see self::markDeleted()}.
      *
      * @return self
      */

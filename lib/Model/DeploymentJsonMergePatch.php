@@ -952,7 +952,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets services
      *
-     * @param \SomeonesComputer\Sdk\Model\Service[]|null $services services
+     * @param \SomeonesComputer\Sdk\Model\Service[]|null $services Projection of the compose services.
      *
      * @return self
      */
@@ -979,7 +979,7 @@ class DeploymentJsonMergePatch implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets failures
      *
-     * @param \SomeonesComputer\Sdk\Model\Failure[]|null $failures failures
+     * @param \SomeonesComputer\Sdk\Model\Failure[]|null $failures Everything that has gone wrong with this revision, append-only. Distinct from {@see \\App\\Entity\\self::$statusReason}, which is only ever the latest. See {@see \\App\\Entity\\Failure} on why both exist.
      *
      * @return self
      */
