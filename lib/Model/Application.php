@@ -1100,7 +1100,7 @@ class Application implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets port_allocations
      *
-     * @param \SomeonesComputer\Sdk\Model\PortAllocation[]|null $port_allocations port_allocations
+     * @param \SomeonesComputer\Sdk\Model\PortAllocation[]|null $port_allocations the published ports this application holds cluster-wide, for as long as it exists ({@see \\App\\Entity\\PortAllocation})
      *
      * @return self
      */

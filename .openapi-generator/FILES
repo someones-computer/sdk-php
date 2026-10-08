@@ -41,6 +41,7 @@ docs/Model/Error.md
 docs/Model/Failure.md
 docs/Model/Machine.md
 docs/Model/ManagedService.md
+docs/Model/ManagedServiceEngine.md
 docs/Model/ManagedServiceLastLoadMillis.md
 docs/Model/ManagedServiceManagedServiceInput.md
 docs/Model/ManagedServicePendingLoadMillis.md
@@ -58,9 +59,6 @@ docs/Model/ServiceBindingServiceBindingInput.md
 docs/Model/ServiceCpuLimit.md
 docs/Model/ServiceCpuReservation.md
 docs/Model/ServiceHealthcheckValue.md
-docs/Model/ServiceInstance.md
-docs/Model/ServiceInstanceCapacityBytes.md
-docs/Model/ServiceInstanceObservedUsageBytes.md
 docs/Model/ServiceMemLimit.md
 docs/Model/ServiceMemReservation.md
 docs/Model/ServicePortsInnerValue.md
@@ -109,6 +107,7 @@ lib/Model/Error.php
 lib/Model/Failure.php
 lib/Model/Machine.php
 lib/Model/ManagedService.php
+lib/Model/ManagedServiceEngine.php
 lib/Model/ManagedServiceLastLoadMillis.php
 lib/Model/ManagedServiceManagedServiceInput.php
 lib/Model/ManagedServicePendingLoadMillis.php
@@ -127,9 +126,6 @@ lib/Model/ServiceBindingServiceBindingInput.php
 lib/Model/ServiceCpuLimit.php
 lib/Model/ServiceCpuReservation.php
 lib/Model/ServiceHealthcheckValue.php
-lib/Model/ServiceInstance.php
-lib/Model/ServiceInstanceCapacityBytes.php
-lib/Model/ServiceInstanceObservedUsageBytes.php
 lib/Model/ServiceMemLimit.php
 lib/Model/ServiceMemReservation.php
 lib/Model/ServicePortsInnerValue.php
@@ -175,6 +171,7 @@ test/Model/DeploymentTest.php
 test/Model/ErrorTest.php
 test/Model/FailureTest.php
 test/Model/MachineTest.php
+test/Model/ManagedServiceEngineTest.php
 test/Model/ManagedServiceLastLoadMillisTest.php
 test/Model/ManagedServiceManagedServiceInputTest.php
 test/Model/ManagedServicePendingLoadMillisTest.php
@@ -192,9 +189,6 @@ test/Model/ServiceBindingTest.php
 test/Model/ServiceCpuLimitTest.php
 test/Model/ServiceCpuReservationTest.php
 test/Model/ServiceHealthcheckValueTest.php
-test/Model/ServiceInstanceCapacityBytesTest.php
-test/Model/ServiceInstanceObservedUsageBytesTest.php
-test/Model/ServiceInstanceTest.php
 test/Model/ServiceMemLimitTest.php
 test/Model/ServiceMemReservationTest.php
 test/Model/ServicePortsInnerValueTest.php

@@ -62,7 +62,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'slug' => 'string',
         'kind' => 'string',
         'major_version' => 'string',
-        'instance' => '\SomeonesComputer\Sdk\Model\ServiceInstance',
         'backing_name' => 'string',
         'external_key_id' => 'string',
         'quota_bytes' => '\SomeonesComputer\Sdk\Model\ManagedServiceQuotaBytes',
@@ -82,6 +81,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => '\DateTime',
         'updated_at' => '\DateTime',
         'catalogue_entry' => 'string',
+        'instance' => '\SomeonesComputer\Sdk\Model\ManagedServiceEngine',
         'available' => 'bool',
         'deleted' => 'bool'
     ];
@@ -98,7 +98,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'slug' => null,
         'kind' => null,
         'major_version' => null,
-        'instance' => null,
         'backing_name' => null,
         'external_key_id' => null,
         'quota_bytes' => null,
@@ -118,6 +117,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'date-time',
         'updated_at' => 'date-time',
         'catalogue_entry' => null,
+        'instance' => null,
         'available' => null,
         'deleted' => null
     ];
@@ -132,7 +132,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'slug' => false,
         'kind' => false,
         'major_version' => false,
-        'instance' => true,
         'backing_name' => false,
         'external_key_id' => true,
         'quota_bytes' => true,
@@ -152,6 +151,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => false,
         'updated_at' => true,
         'catalogue_entry' => false,
+        'instance' => true,
         'available' => false,
         'deleted' => false
     ];
@@ -246,7 +246,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'slug' => 'slug',
         'kind' => 'kind',
         'major_version' => 'majorVersion',
-        'instance' => 'instance',
         'backing_name' => 'backingName',
         'external_key_id' => 'externalKeyId',
         'quota_bytes' => 'quotaBytes',
@@ -266,6 +265,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'createdAt',
         'updated_at' => 'updatedAt',
         'catalogue_entry' => 'catalogueEntry',
+        'instance' => 'instance',
         'available' => 'available',
         'deleted' => 'deleted'
     ];
@@ -280,7 +280,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'slug' => 'setSlug',
         'kind' => 'setKind',
         'major_version' => 'setMajorVersion',
-        'instance' => 'setInstance',
         'backing_name' => 'setBackingName',
         'external_key_id' => 'setExternalKeyId',
         'quota_bytes' => 'setQuotaBytes',
@@ -300,6 +299,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'setCreatedAt',
         'updated_at' => 'setUpdatedAt',
         'catalogue_entry' => 'setCatalogueEntry',
+        'instance' => 'setInstance',
         'available' => 'setAvailable',
         'deleted' => 'setDeleted'
     ];
@@ -314,7 +314,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'slug' => 'getSlug',
         'kind' => 'getKind',
         'major_version' => 'getMajorVersion',
-        'instance' => 'getInstance',
         'backing_name' => 'getBackingName',
         'external_key_id' => 'getExternalKeyId',
         'quota_bytes' => 'getQuotaBytes',
@@ -334,6 +333,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         'created_at' => 'getCreatedAt',
         'updated_at' => 'getUpdatedAt',
         'catalogue_entry' => 'getCatalogueEntry',
+        'instance' => 'getInstance',
         'available' => 'getAvailable',
         'deleted' => 'getDeleted'
     ];
@@ -460,7 +460,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('slug', $data ?? [], null);
         $this->setIfExists('kind', $data ?? [], null);
         $this->setIfExists('major_version', $data ?? [], null);
-        $this->setIfExists('instance', $data ?? [], null);
         $this->setIfExists('backing_name', $data ?? [], null);
         $this->setIfExists('external_key_id', $data ?? [], null);
         $this->setIfExists('quota_bytes', $data ?? [], null);
@@ -480,6 +479,7 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('catalogue_entry', $data ?? [], null);
+        $this->setIfExists('instance', $data ?? [], null);
         $this->setIfExists('available', $data ?? [], null);
         $this->setIfExists('deleted', $data ?? [], null);
     }
@@ -667,40 +667,6 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable major_version cannot be null');
         }
         $this->container['major_version'] = $major_version;
-
-        return $this;
-    }
-
-    /**
-     * Gets instance
-     *
-     * @return \SomeonesComputer\Sdk\Model\ServiceInstance|null
-     */
-    public function getInstance()
-    {
-        return $this->container['instance'];
-    }
-
-    /**
-     * Sets instance
-     *
-     * @param \SomeonesComputer\Sdk\Model\ServiceInstance|null $instance instance
-     *
-     * @return self
-     */
-    public function setInstance($instance)
-    {
-        if (is_null($instance)) {
-            array_push($this->openAPINullablesSetToNull, 'instance');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('instance', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['instance'] = $instance;
 
         return $this;
     }
@@ -1318,6 +1284,40 @@ class ManagedService implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable catalogue_entry cannot be null');
         }
         $this->container['catalogue_entry'] = $catalogue_entry;
+
+        return $this;
+    }
+
+    /**
+     * Gets instance
+     *
+     * @return \SomeonesComputer\Sdk\Model\ManagedServiceEngine|null
+     */
+    public function getInstance()
+    {
+        return $this->container['instance'];
+    }
+
+    /**
+     * Sets instance
+     *
+     * @param \SomeonesComputer\Sdk\Model\ManagedServiceEngine|null $instance instance
+     *
+     * @return self
+     */
+    public function setInstance($instance)
+    {
+        if (is_null($instance)) {
+            array_push($this->openAPINullablesSetToNull, 'instance');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('instance', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['instance'] = $instance;
 
         return $this;
     }

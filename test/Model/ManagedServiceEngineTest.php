@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceInstanceCapacityBytesTest
+ * ManagedServiceEngineTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace SomeonesComputer\Sdk\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ServiceInstanceCapacityBytesTest Class Doc Comment
+ * ManagedServiceEngineTest Class Doc Comment
  *
  * @category    Class
- * @description Bytes the underlying volume can hold, when the driver can say.
+ * @description ManagedServiceEngine
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ServiceInstanceCapacityBytesTest extends TestCase
+class ManagedServiceEngineTest extends TestCase
 {
 
     /**
@@ -71,9 +71,27 @@ class ServiceInstanceCapacityBytesTest extends TestCase
     }
 
     /**
-     * Test "ServiceInstanceCapacityBytes"
+     * Test "ManagedServiceEngine"
      */
-    public function testServiceInstanceCapacityBytes()
+    public function testManagedServiceEngine()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "name"
+     */
+    public function testPropertyName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "state"
+     */
+    public function testPropertyState()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

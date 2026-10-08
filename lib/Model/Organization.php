@@ -974,7 +974,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets machines
      *
-     * @param \SomeonesComputer\Sdk\Model\Machine[]|null $machines machines
+     * @param \SomeonesComputer\Sdk\Model\Machine[]|null $machines Machines self-service-provisioned for this organization.
      *
      * @return self
      */
@@ -1028,7 +1028,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets signals
      *
-     * @param \SomeonesComputer\Sdk\Model\OrganizationSignal[]|null $signals signals
+     * @param \SomeonesComputer\Sdk\Model\OrganizationSignal[]|null $signals What this organization's own compose files have told the platform about it (#818).
      *
      * @return self
      */

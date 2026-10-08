@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **ingress_verified_at** | **\DateTime** | When the edge was last *observed* routing — the overlay present, the edge service on it, watching it, with a task running ({@see \\App\\Service\\Ingress\\IngressVerifier}). | [optional] [readonly]
 **ingress_verification_error** | **string** | What the last verification found wrong, or null when the edge was routing. | [optional] [readonly]
 **nodes** | [**\SomeonesComputer\Sdk\Model\SwarmNode[]**](SwarmNode.md) |  | [optional]
-**machines** | [**\SomeonesComputer\Sdk\Model\Machine[]**](Machine.md) |  | [optional]
+**machines** | [**\SomeonesComputer\Sdk\Model\Machine[]**](Machine.md) | The machines that serve this context. Mapped only so a delete can let go of them. See {@see self::markDeleted()}. | [optional]
 **deployments** | **string[]** | The revisions placed here. Mapped for the same single reason as {@see self::$machines} — so a delete can let go of them — rather than as a collection anything reads; {@see \\App\\Repository\\DeploymentRepository} is where a caller asks what is on a context. | [optional]
 **id** | **string** |  | [optional] [readonly]
 **deleted_at** | **\DateTime** |  | [optional] [readonly]

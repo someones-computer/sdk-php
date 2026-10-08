@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceInstanceObservedUsageBytes
+ * ManagedServiceEngine
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \SomeonesComputer\Sdk\ObjectSerializer;
 
 /**
- * ServiceInstanceObservedUsageBytes Class Doc Comment
+ * ManagedServiceEngine Class Doc Comment
  *
  * @category Class
- * @description Bytes observed in use across every tenant on this instance.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, \JsonSerializable
+class ManagedServiceEngine implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ServiceInstance_observedUsageBytes';
+    protected static $openAPIModelName = 'ManagedServiceEngine';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +57,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
       * @var string[]
       */
     protected static $openAPITypes = [
-        
+        'name' => 'string',
+        'state' => 'string'
     ];
 
     /**
@@ -69,7 +69,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        
+        'name' => null,
+        'state' => null
     ];
 
     /**
@@ -78,7 +79,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        
+        'name' => false,
+        'state' => false
     ];
 
     /**
@@ -167,7 +169,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'name' => 'name',
+        'state' => 'state'
     ];
 
     /**
@@ -176,7 +179,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
      * @var string[]
      */
     protected static $setters = [
-        
+        'name' => 'setName',
+        'state' => 'setState'
     ];
 
     /**
@@ -185,7 +189,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
      * @var string[]
      */
     protected static $getters = [
-        
+        'name' => 'getName',
+        'state' => 'getState'
     ];
 
     /**
@@ -229,6 +234,31 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
         return self::$openAPIModelName;
     }
 
+    public const STATE_REQUESTED = 'requested';
+    public const STATE_DEPLOYING = 'deploying';
+    public const STATE_HEALTHCHECKING = 'healthchecking';
+    public const STATE_SERVING = 'serving';
+    public const STATE_DRAINING = 'draining';
+    public const STATE_RETIRED = 'retired';
+    public const STATE_FAILED = 'failed';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStateAllowableValues()
+    {
+        return [
+            self::STATE_REQUESTED,
+            self::STATE_DEPLOYING,
+            self::STATE_HEALTHCHECKING,
+            self::STATE_SERVING,
+            self::STATE_DRAINING,
+            self::STATE_RETIRED,
+            self::STATE_FAILED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -245,6 +275,8 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
     }
 
     /**
@@ -274,6 +306,15 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
     {
         $invalidProperties = [];
 
+        $allowedValues = $this->getStateAllowableValues();
+        if (!is_null($this->container['state']) && !in_array($this->container['state'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'state', must be one of '%s'",
+                $this->container['state'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -288,6 +329,70 @@ class ServiceInstanceObservedUsageBytes implements ModelInterface, ArrayAccess, 
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name The engine's handle, such as `pg17-1`.
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets state
+     *
+     * @return string|null
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     *
+     * @param string|null $state The state of the engine, such as `serving` or `failed`.
+     *
+     * @return self
+     */
+    public function setState($state)
+    {
+        if (is_null($state)) {
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
+        }
+        $allowedValues = $this->getStateAllowableValues();
+        if (!in_array($state, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'state', must be one of '%s'",
+                    $state,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['state'] = $state;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
