@@ -1,4 +1,4 @@
-# # ServiceMemReservation
+# ServiceMemReservation
 
 ## Properties
 

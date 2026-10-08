@@ -1,5 +1,7 @@
 # SomeonesComputer\Sdk\OrganizationApi
 
+Ownership and (future) billing boundary. Owns applications, may own BYO swarms.
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

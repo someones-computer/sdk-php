@@ -1,4 +1,4 @@
-# # DeploymentBundleUploadDeclareOutput
+# DeploymentBundleUploadDeclareOutput
 
 ## Properties
 

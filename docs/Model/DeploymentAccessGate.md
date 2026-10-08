@@ -1,4 +1,4 @@
-# # DeploymentAccessGate
+# DeploymentAccessGate
 
 ## Properties
 

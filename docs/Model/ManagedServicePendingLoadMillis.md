@@ -1,4 +1,4 @@
-# # ManagedServicePendingLoadMillis
+# ManagedServicePendingLoadMillis
 
 ## Properties
 

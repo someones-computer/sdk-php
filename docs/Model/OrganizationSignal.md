@@ -1,4 +1,4 @@
-# # OrganizationSignal
+# OrganizationSignal
 
 ## Properties
 

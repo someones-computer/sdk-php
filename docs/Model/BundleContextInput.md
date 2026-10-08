@@ -1,4 +1,4 @@
-# # BundleContextInput
+# BundleContextInput
 
 ## Properties
 

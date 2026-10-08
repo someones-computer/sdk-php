@@ -1,4 +1,4 @@
-# # ServiceCpuReservation
+# ServiceCpuReservation
 
 ## Properties
 

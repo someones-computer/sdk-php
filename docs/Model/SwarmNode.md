@@ -1,4 +1,4 @@
-# # SwarmNode
+# SwarmNode
 
 ## Properties
 

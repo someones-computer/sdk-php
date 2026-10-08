@@ -1,4 +1,4 @@
-# # ServiceCpuLimit
+# ServiceCpuLimit
 
 ## Properties
 

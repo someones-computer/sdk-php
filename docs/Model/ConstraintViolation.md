@@ -1,4 +1,4 @@
-# # ConstraintViolation
+# ConstraintViolation
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # ManagedServiceQuotaBytes
+# ManagedServiceQuotaBytes
 
 ## Properties
 

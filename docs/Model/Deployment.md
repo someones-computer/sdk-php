@@ -1,4 +1,4 @@
-# # Deployment
+# Deployment
 
 ## Properties
 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **digest** | **string** | Content digest of the canonical spec, for dedupe/audit. | [optional]
 **created_by** | [**\SomeonesComputer\Sdk\Model\User**](User.md) |  | [optional]
 **services** | [**\SomeonesComputer\Sdk\Model\Service[]**](Service.md) | Projection of the compose services. | [optional]
-**failures** | [**\SomeonesComputer\Sdk\Model\Failure[]**](Failure.md) | Everything that has gone wrong with this revision, append-only. Distinct from {@see \\App\\Entity\\self::$statusReason}, which is only ever the latest. See {@see \\App\\Entity\\Failure} on why both exist. | [optional]
+**failures** | [**\SomeonesComputer\Sdk\Model\Failure[]**](Failure.md) | Everything that has gone wrong with this revision, append-only. Distinct from {@see \\App\\Entity\\self::$statusReason}, which is only ever the latest. See {@see \\App\\Entity\\Failure} on why both exist. | [optional] [readonly]
 **id** | **string** |  | [optional] [readonly]
 **deleted_at** | **\DateTime** |  | [optional] [readonly]
 **created_at** | **\DateTime** |  | [optional] [readonly]

@@ -1,4 +1,4 @@
-# # Machine
+# Machine
 
 ## Properties
 

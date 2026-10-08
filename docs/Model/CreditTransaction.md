@@ -1,4 +1,4 @@
-# # CreditTransaction
+# CreditTransaction
 
 ## Properties
 

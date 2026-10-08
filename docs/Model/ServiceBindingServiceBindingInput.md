@@ -1,4 +1,4 @@
-# # ServiceBindingServiceBindingInput
+# ServiceBindingServiceBindingInput
 
 ## Properties
 

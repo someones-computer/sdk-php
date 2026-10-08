@@ -1,5 +1,7 @@
 # SomeonesComputer\Sdk\DeploymentAccessGateApi
 
+A per-deployment-name override of {@see Application::$accessGate} — &#x60;App\\Service\\AccessGate\\AccessGateResolver&#x60; prefers this row, keyed by &#x60;(application, name)&#x60;, over the application&#39;s own default whenever one exists for the deployment name being resolved. &#x60;$name&#x60; matches {@see Deployment::$name}: a branch/environment, not one immutable revision, so redeploying the same branch keeps whatever gate was set for it.  Absence, not a &#x60;None&#x60; row, is what \&quot;inherit the application default\&quot; means — &#x60;App\\Service\\AccessGate\\AccessGateModeSwitcher::clearOverride()&#x60; deletes the row rather than setting its mode to &#x60;None&#x60;, so a later change to the application&#39;s own default is picked up by every deployment that never overrode it.
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

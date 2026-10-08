@@ -1,4 +1,4 @@
-# # ServiceHealthcheckValue
+# ServiceHealthcheckValue
 
 ## Properties
 

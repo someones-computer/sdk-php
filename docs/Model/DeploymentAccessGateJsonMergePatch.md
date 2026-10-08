@@ -1,4 +1,4 @@
-# # DeploymentAccessGateJsonMergePatch
+# DeploymentAccessGateJsonMergePatch
 
 ## Properties
 

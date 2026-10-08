@@ -1,4 +1,4 @@
-# # CreditTransactionUsageBytes
+# CreditTransactionUsageBytes
 
 ## Properties
 
