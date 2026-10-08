@@ -1,5 +1,7 @@
 # SomeonesComputer\Sdk\ApplicationApi
 
+A deployable \&quot;island\&quot;: one logical app, defined by a compose file, deployed as a swarm stack. Holds a pointer to the current (immutable) deployment; history lives in the deployment revisions.
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

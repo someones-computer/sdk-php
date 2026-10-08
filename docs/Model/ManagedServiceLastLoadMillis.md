@@ -1,4 +1,4 @@
-# # ManagedServiceLastLoadMillis
+# ManagedServiceLastLoadMillis
 
 ## Properties
 

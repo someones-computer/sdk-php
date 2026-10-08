@@ -1,4 +1,4 @@
-# # ServicePortsInnerValue
+# ServicePortsInnerValue
 
 ## Properties
 

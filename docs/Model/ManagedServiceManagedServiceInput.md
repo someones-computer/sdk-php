@@ -1,4 +1,4 @@
-# # ManagedServiceManagedServiceInput
+# ManagedServiceManagedServiceInput
 
 ## Properties
 

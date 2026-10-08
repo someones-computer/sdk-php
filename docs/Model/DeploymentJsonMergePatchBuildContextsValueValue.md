@@ -1,4 +1,4 @@
-# # DeploymentJsonMergePatchBuildContextsValueValue
+# DeploymentJsonMergePatchBuildContextsValueValue
 
 ## Properties
 

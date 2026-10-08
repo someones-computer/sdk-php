@@ -1,4 +1,4 @@
-# # AdoptionApproval
+# AdoptionApproval
 
 ## Properties
 

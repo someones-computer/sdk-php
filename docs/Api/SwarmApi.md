@@ -1,5 +1,7 @@
 # SomeonesComputer\Sdk\SwarmApi
 
+A Docker Swarm we can deploy onto. The trust boundary of the platform.  owner &#x3D;&#x3D;&#x3D; null  &#x3D;&gt; PLATFORM pool (shared infra we run). owner !&#x3D;&#x3D; null  &#x3D;&gt; CUSTOMER BYO cluster (untrusted, outbound-only).
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

@@ -1,4 +1,4 @@
-# # ManagedServiceUsageBytes
+# ManagedServiceUsageBytes
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # ServiceBinding
+# ServiceBinding
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # ManagedService
+# ManagedService
 
 ## Properties
 
@@ -21,13 +21,13 @@ Name | Type | Description | Notes
 **last_load_millis** | [**\SomeonesComputer\Sdk\Model\ManagedServiceLastLoadMillis**](ManagedServiceLastLoadMillis.md) |  | [optional]
 **last_load_sampled_at** | **\DateTime** |  | [optional] [readonly]
 **pending_load_millis** | [**\SomeonesComputer\Sdk\Model\ManagedServicePendingLoadMillis**](ManagedServicePendingLoadMillis.md) |  | [optional]
-**bindings** | **string[]** |  | [optional]
+**bindings** | **string[]** |  | [optional] [readonly]
 **id** | **string** |  | [optional] [readonly]
 **deleted_at** | **\DateTime** |  | [optional] [readonly]
 **created_at** | **\DateTime** |  | [optional] [readonly]
 **updated_at** | **\DateTime** |  | [optional] [readonly]
 **catalogue_entry** | **string** | &#x60;postgres 17&#x60;, &#x60;mysql 8.0&#x60; — the catalogue entry, as one string. | [optional] [readonly]
-**instance** | [**\SomeonesComputer\Sdk\Model\ManagedServiceEngine**](ManagedServiceEngine.md) |  | [optional]
+**instance** | [**\SomeonesComputer\Sdk\Model\ManagedServiceEngine**](ManagedServiceEngine.md) | The engine as a tenant reads it: its name and its state, and nothing else. | [optional] [readonly]
 **available** | **bool** |  | [optional] [readonly]
 **deleted** | **bool** |  | [optional] [readonly]
 

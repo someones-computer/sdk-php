@@ -1,4 +1,4 @@
-# # ServiceMemLimit
+# ServiceMemLimit
 
 ## Properties
 

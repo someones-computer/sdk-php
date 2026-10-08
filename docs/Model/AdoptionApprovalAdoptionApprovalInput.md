@@ -1,4 +1,4 @@
-# # AdoptionApprovalAdoptionApprovalInput
+# AdoptionApprovalAdoptionApprovalInput
 
 ## Properties
 

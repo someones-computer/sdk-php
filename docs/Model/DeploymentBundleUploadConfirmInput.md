@@ -1,4 +1,4 @@
-# # DeploymentBundleUploadConfirmInput
+# DeploymentBundleUploadConfirmInput
 
 ## Properties
 
