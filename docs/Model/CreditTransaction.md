@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **usage_bytes** | [**\SomeonesComputer\Sdk\Model\CreditTransactionUsageBytes**](CreditTransactionUsageBytes.md) |  | [optional]
 **engine_millis** | [**\SomeonesComputer\Sdk\Model\CreditTransactionEngineMillis**](CreditTransactionEngineMillis.md) |  | [optional]
 **usage_rows** | **int** | The row count an API-access-log-volume debit was computed from — the evidence a per-row charge can be checked against, the same role {@see $usageBytes} plays for a storage debit. Null on anything but that kind of debit. | [optional] [readonly]
+**stripe_payment_intent_id** | **string** | The Stripe PaymentIntent that paid a top-up. Set when the payment clears. | [optional]
 **stripe_event_id** | **string** | Stripe Event id that last transitioned this row; secondary idempotency guard for webhook delivery. | [optional]
 **created_by** | [**\SomeonesComputer\Sdk\Model\User**](User.md) |  | [optional]
 **id** | **string** |  | [optional] [readonly]

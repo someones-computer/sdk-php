@@ -71,6 +71,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'usage_bytes' => '\SomeonesComputer\Sdk\Model\CreditTransactionUsageBytes',
         'engine_millis' => '\SomeonesComputer\Sdk\Model\CreditTransactionEngineMillis',
         'usage_rows' => 'int',
+        'stripe_payment_intent_id' => 'string',
         'stripe_event_id' => 'string',
         'created_by' => '\SomeonesComputer\Sdk\Model\User',
         'id' => 'string',
@@ -99,6 +100,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'usage_bytes' => null,
         'engine_millis' => null,
         'usage_rows' => null,
+        'stripe_payment_intent_id' => null,
         'stripe_event_id' => null,
         'created_by' => null,
         'id' => 'uuid',
@@ -125,6 +127,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'usage_bytes' => true,
         'engine_millis' => true,
         'usage_rows' => true,
+        'stripe_payment_intent_id' => true,
         'stripe_event_id' => true,
         'created_by' => true,
         'id' => false,
@@ -231,6 +234,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'usage_bytes' => 'usageBytes',
         'engine_millis' => 'engineMillis',
         'usage_rows' => 'usageRows',
+        'stripe_payment_intent_id' => 'stripePaymentIntentId',
         'stripe_event_id' => 'stripeEventId',
         'created_by' => 'createdBy',
         'id' => 'id',
@@ -257,6 +261,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'usage_bytes' => 'setUsageBytes',
         'engine_millis' => 'setEngineMillis',
         'usage_rows' => 'setUsageRows',
+        'stripe_payment_intent_id' => 'setStripePaymentIntentId',
         'stripe_event_id' => 'setStripeEventId',
         'created_by' => 'setCreatedBy',
         'id' => 'setId',
@@ -283,6 +288,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         'usage_bytes' => 'getUsageBytes',
         'engine_millis' => 'getEngineMillis',
         'usage_rows' => 'getUsageRows',
+        'stripe_payment_intent_id' => 'getStripePaymentIntentId',
         'stripe_event_id' => 'getStripeEventId',
         'created_by' => 'getCreatedBy',
         'id' => 'getId',
@@ -338,6 +344,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const STATUS_PENDING = 'pending';
     public const STATUS_SUCCEEDED = 'succeeded';
     public const STATUS_FAILED = 'failed';
+    public const STATUS_REVERSED = 'reversed';
     public const RESOURCE_KIND_COMPUTE = 'compute';
     public const RESOURCE_KIND_STORAGE = 'storage';
     public const RESOURCE_KIND_ENGINE_LOAD = 'engine_load';
@@ -371,6 +378,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::STATUS_PENDING,
             self::STATUS_SUCCEEDED,
             self::STATUS_FAILED,
+            self::STATUS_REVERSED,
         ];
     }
 
@@ -419,6 +427,7 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('usage_bytes', $data ?? [], null);
         $this->setIfExists('engine_millis', $data ?? [], null);
         $this->setIfExists('usage_rows', $data ?? [], null);
+        $this->setIfExists('stripe_payment_intent_id', $data ?? [], null);
         $this->setIfExists('stripe_event_id', $data ?? [], null);
         $this->setIfExists('created_by', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -928,6 +937,40 @@ class CreditTransaction implements ModelInterface, ArrayAccess, \JsonSerializabl
             }
         }
         $this->container['usage_rows'] = $usage_rows;
+
+        return $this;
+    }
+
+    /**
+     * Gets stripe_payment_intent_id
+     *
+     * @return string|null
+     */
+    public function getStripePaymentIntentId()
+    {
+        return $this->container['stripe_payment_intent_id'];
+    }
+
+    /**
+     * Sets stripe_payment_intent_id
+     *
+     * @param string|null $stripe_payment_intent_id The Stripe PaymentIntent that paid a top-up. Set when the payment clears.
+     *
+     * @return self
+     */
+    public function setStripePaymentIntentId($stripe_payment_intent_id)
+    {
+        if (is_null($stripe_payment_intent_id)) {
+            array_push($this->openAPINullablesSetToNull, 'stripe_payment_intent_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('stripe_payment_intent_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['stripe_payment_intent_id'] = $stripe_payment_intent_id;
 
         return $this;
     }
