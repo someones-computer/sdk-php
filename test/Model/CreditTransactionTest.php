@@ -197,6 +197,15 @@ class CreditTransactionTest extends TestCase
     }
 
     /**
+     * Test attribute "stripe_payment_intent_id"
+     */
+    public function testPropertyStripePaymentIntentId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "stripe_event_id"
      */
     public function testPropertyStripeEventId()
