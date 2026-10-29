@@ -13,6 +13,7 @@ docs/Api/ManagedServiceApi.md
 docs/Api/OrganizationApi.md
 docs/Api/ServiceBindingApi.md
 docs/Api/SwarmApi.md
+docs/Api/VolumeApi.md
 docs/Model/AdoptionApproval.md
 docs/Model/AdoptionApprovalAdoptionApprovalInput.md
 docs/Model/Application.md
@@ -65,6 +66,8 @@ docs/Model/Swarm.md
 docs/Model/SwarmJsonMergePatch.md
 docs/Model/SwarmNode.md
 docs/Model/User.md
+docs/Model/Volume.md
+docs/Model/VolumeVolumeInput.md
 git_push.sh
 lib/Api/AdoptionApprovalApi.php
 lib/Api/ApplicationApi.php
@@ -75,6 +78,7 @@ lib/Api/ManagedServiceApi.php
 lib/Api/OrganizationApi.php
 lib/Api/ServiceBindingApi.php
 lib/Api/SwarmApi.php
+lib/Api/VolumeApi.php
 lib/ApiException.php
 lib/Configuration.php
 lib/FormDataProcessor.php
@@ -132,6 +136,8 @@ lib/Model/Swarm.php
 lib/Model/SwarmJsonMergePatch.php
 lib/Model/SwarmNode.php
 lib/Model/User.php
+lib/Model/Volume.php
+lib/Model/VolumeVolumeInput.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/AdoptionApprovalApiTest.php
@@ -143,6 +149,7 @@ test/Api/ManagedServiceApiTest.php
 test/Api/OrganizationApiTest.php
 test/Api/ServiceBindingApiTest.php
 test/Api/SwarmApiTest.php
+test/Api/VolumeApiTest.php
 test/Model/AdoptionApprovalAdoptionApprovalInputTest.php
 test/Model/AdoptionApprovalTest.php
 test/Model/ApplicationJsonMergePatchTest.php
@@ -195,3 +202,5 @@ test/Model/SwarmJsonMergePatchTest.php
 test/Model/SwarmNodeTest.php
 test/Model/SwarmTest.php
 test/Model/UserTest.php
+test/Model/VolumeTest.php
+test/Model/VolumeVolumeInputTest.php
