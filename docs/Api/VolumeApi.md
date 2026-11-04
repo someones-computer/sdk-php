@@ -1,6 +1,6 @@
 # SomeonesComputer\Sdk\VolumeApi
 
-A named store of files that S3 holds, for a game server to keep its data in.  **A volume is a bucket with a name the tenant chose.** The bytes live in the {@see ManagedService} of kind Garage that this row owns. That reuses the quota, the metering, the credit gate and the retirement grace period that a bucket already has. It builds no second storage path. See docs/managed-game-servers.md.  The services list and &#x60;/managed_services&#x60; leave out the backing bucket ({@see \\App\\Repository\\ManagedServiceRepository::findForOrganization()} and {@see \\App\\ApiResource\\ManagedServiceOwnerExtension}). A tenant who retired it there would break the volume without a word.  Soft-deleted together with the bucket. Retiring a volume retires its bucket, so the data stays restorable for the grace period of {@see \\App\\Repository\\ManagedServiceRepository::GRACE_PERIOD}.  Unique per organization by slug, among live rows. A partial unique index in Version20261029101425&#39;s raw SQL does this, and the entity doesn&#39;t map it, for the reason {@see ManagedService} gives: DBAL drops the &#x60;WHERE&#x60; clause on SQLite. {@see VolumeRepository::findOneBySlug()} is the portable half of the rule.
+A named store of files that S3 holds, for a game server to keep its data in.  **A volume is a bucket with a name the tenant chose.** The bytes live in the {@see ManagedService} of kind Garage that this row owns. That reuses the quota, the metering, the credit gate and the retirement grace period that a bucket already has. It builds no second storage path. See docs/managed-game-servers.md.  The services list and &#x60;/managed_services&#x60; leave out the backing bucket ({@see \\App\\Repository\\ManagedServiceRepository::findForOrganization()} and {@see \\App\\ApiResource\\ManagedServiceOwnerExtension}). A tenant who retired it there would break the volume without a word.  Soft-deleted together with the bucket. Retiring a volume retires its bucket, so the data stays restorable for the grace period of {@see \\App\\Repository\\ManagedServiceRepository::GRACE_PERIOD}.  Unique per organization by slug, among live rows. A partial unique index in Version20261029101425&#39;s raw SQL does this, and the entity doesn&#39;t map it, for the reason {@see ManagedService} gives: DBAL drops the &#x60;WHERE&#x60; clause on SQLite. {@see VolumeRepository::findOneBySlug()} is the portable half of the rule.  **Membership limits a read, and a role limits a write**, as for a managed service: {@see \\App\\ApiResource\\TenantOwnedExtension} filters the query, so another tenant&#39;s id answers 404, and {@see \\App\\Security\\Voter\\ManageVoter} governs each write inside its processor. The representation leaves the backing bucket out and carries its state and size instead. Delete retires, and skips the generic soft-delete processor, for the reason {@see ManagedService} gives.
 
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
@@ -10,6 +10,8 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**volumesDelete()**](VolumeApi.md#volumesDelete) | **DELETE** /api/volumes/{id} | Removes the Volume resource. |
 | [**volumesGet()**](VolumeApi.md#volumesGet) | **GET** /api/volumes/{id} | Retrieves a Volume resource. |
 | [**volumesList()**](VolumeApi.md#volumesList) | **GET** /api/volumes | Retrieves the collection of Volume resources. |
+| [**volumesListRetired()**](VolumeApi.md#volumesListRetired) | **GET** /api/volumes/retired | Retrieves the collection of Volume resources. |
+| [**volumesRestore()**](VolumeApi.md#volumesRestore) | **POST** /api/volumes/{id}/restore | Creates a Volume resource. |
 
 
 ## `volumesCreate()`
@@ -246,6 +248,123 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `volumesListRetired()`
+
+```php
+volumesListRetired(): \SomeonesComputer\Sdk\Model\Volume[]
+```
+
+Retrieves the collection of Volume resources.
+
+Retrieves the collection of Volume resources.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearerAuth
+$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new SomeonesComputer\Sdk\Api\VolumeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->volumesListRetired();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling VolumeApi->volumesListRetired: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\SomeonesComputer\Sdk\Model\Volume[]**](../Model/Volume.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `volumesRestore()`
+
+```php
+volumesRestore($id): \SomeonesComputer\Sdk\Model\Volume
+```
+
+Creates a Volume resource.
+
+Creates a Volume resource.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure Bearer authorization: bearerAuth
+$config = SomeonesComputer\Sdk\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new SomeonesComputer\Sdk\Api\VolumeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Volume identifier
+
+try {
+    $result = $apiInstance->volumesRestore($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling VolumeApi->volumesRestore: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Volume identifier | |
+
+### Return type
+
+[**\SomeonesComputer\Sdk\Model\Volume**](../Model/Volume.md)
+
+### Authorization
+
+[bearerAuth](../../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`, `application/problem+json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

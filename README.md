@@ -98,6 +98,11 @@ Class | Method | HTTP request | Description
 *DeploymentApi* | [**deploymentsGet**](docs/Api/DeploymentApi.md#deploymentsget) | **GET** /api/deployments/{id} | Retrieves a Deployment resource.
 *DeploymentApi* | [**deploymentsList**](docs/Api/DeploymentApi.md#deploymentslist) | **GET** /api/deployments | Retrieves the collection of Deployment resources.
 *DeploymentApi* | [**deploymentsUpdate**](docs/Api/DeploymentApi.md#deploymentsupdate) | **PATCH** /api/deployments/{id} | Updates the Deployment resource.
+*DeploymentAccessGateApi* | [**deploymentAccessGatesCreate**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgatescreate) | **POST** /api/deployment_access_gates | Creates a DeploymentAccessGate resource.
+*DeploymentAccessGateApi* | [**deploymentAccessGatesDelete**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgatesdelete) | **DELETE** /api/deployment_access_gates/{id} | Removes the DeploymentAccessGate resource.
+*DeploymentAccessGateApi* | [**deploymentAccessGatesGet**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgatesget) | **GET** /api/deployment_access_gates/{id} | Retrieves a DeploymentAccessGate resource.
+*DeploymentAccessGateApi* | [**deploymentAccessGatesList**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgateslist) | **GET** /api/deployment_access_gates | Retrieves the collection of DeploymentAccessGate resources.
+*DeploymentAccessGateApi* | [**deploymentAccessGatesUpdate**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgatesupdate) | **PATCH** /api/deployment_access_gates/{id} | Updates the DeploymentAccessGate resource.
 *ManagedServiceApi* | [**managedServicesCreate**](docs/Api/ManagedServiceApi.md#managedservicescreate) | **POST** /api/managed_services | Creates a ManagedService resource.
 *ManagedServiceApi* | [**managedServicesDelete**](docs/Api/ManagedServiceApi.md#managedservicesdelete) | **DELETE** /api/managed_services/{id} | Removes the ManagedService resource.
 *ManagedServiceApi* | [**managedServicesGet**](docs/Api/ManagedServiceApi.md#managedservicesget) | **GET** /api/managed_services/{id} | Retrieves a ManagedService resource.
@@ -124,6 +129,8 @@ Class | Method | HTTP request | Description
 *VolumeApi* | [**volumesDelete**](docs/Api/VolumeApi.md#volumesdelete) | **DELETE** /api/volumes/{id} | Removes the Volume resource.
 *VolumeApi* | [**volumesGet**](docs/Api/VolumeApi.md#volumesget) | **GET** /api/volumes/{id} | Retrieves a Volume resource.
 *VolumeApi* | [**volumesList**](docs/Api/VolumeApi.md#volumeslist) | **GET** /api/volumes | Retrieves the collection of Volume resources.
+*VolumeApi* | [**volumesListRetired**](docs/Api/VolumeApi.md#volumeslistretired) | **GET** /api/volumes/retired | Retrieves the collection of Volume resources.
+*VolumeApi* | [**volumesRestore**](docs/Api/VolumeApi.md#volumesrestore) | **POST** /api/volumes/{id}/restore | Creates a Volume resource.
 
 ## Models
 
@@ -141,6 +148,8 @@ Class | Method | HTTP request | Description
 - [CreditTransactionEngineMillis](docs/Model/CreditTransactionEngineMillis.md)
 - [CreditTransactionUsageBytes](docs/Model/CreditTransactionUsageBytes.md)
 - [Deployment](docs/Model/Deployment.md)
+- [DeploymentAccessGate](docs/Model/DeploymentAccessGate.md)
+- [DeploymentAccessGateJsonMergePatch](docs/Model/DeploymentAccessGateJsonMergePatch.md)
 - [DeploymentBundleUploadConfirmInput](docs/Model/DeploymentBundleUploadConfirmInput.md)
 - [DeploymentBundleUploadConfirmOutput](docs/Model/DeploymentBundleUploadConfirmOutput.md)
 - [DeploymentBundleUploadDeclareInput](docs/Model/DeploymentBundleUploadDeclareInput.md)
