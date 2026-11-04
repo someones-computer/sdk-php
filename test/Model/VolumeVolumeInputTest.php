@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * VolumeVolumeInputTest Class Doc Comment
  *
  * @category    Class
- * @description Create a volume: a named store for a game server, held in a Garage bucket.
+ * @description Create a volume: a named store of files that S3 holds.
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

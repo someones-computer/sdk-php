@@ -35,7 +35,7 @@ use \SomeonesComputer\Sdk\ObjectSerializer;
  * Volume Class Doc Comment
  *
  * @category Class
- * @description List the volumes the caller can see.
+ * @description List retired volumes that a restore can still bring back. A volume stays restorable for 7 days after deletedAt.
  * @package  SomeonesComputer\Sdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -66,6 +66,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => '\DateTime',
         'state' => 'string',
         'usage_bytes' => 'int',
+        'failure_reason' => 'string',
         'deleted' => 'bool'
     ];
 
@@ -85,6 +86,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'date-time',
         'state' => null,
         'usage_bytes' => null,
+        'failure_reason' => null,
         'deleted' => null
     ];
 
@@ -102,6 +104,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => true,
         'state' => false,
         'usage_bytes' => true,
+        'failure_reason' => true,
         'deleted' => false
     ];
 
@@ -199,6 +202,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'updatedAt',
         'state' => 'state',
         'usage_bytes' => 'usageBytes',
+        'failure_reason' => 'failureReason',
         'deleted' => 'deleted'
     ];
 
@@ -216,6 +220,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'setUpdatedAt',
         'state' => 'setState',
         'usage_bytes' => 'setUsageBytes',
+        'failure_reason' => 'setFailureReason',
         'deleted' => 'setDeleted'
     ];
 
@@ -233,6 +238,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         'updated_at' => 'getUpdatedAt',
         'state' => 'getState',
         'usage_bytes' => 'getUsageBytes',
+        'failure_reason' => 'getFailureReason',
         'deleted' => 'getDeleted'
     ];
 
@@ -326,6 +332,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('state', $data ?? [], null);
         $this->setIfExists('usage_bytes', $data ?? [], null);
+        $this->setIfExists('failure_reason', $data ?? [], null);
         $this->setIfExists('deleted', $data ?? [], null);
     }
 
@@ -569,7 +576,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets state
      *
-     * @param string|null $state The bucket's state, as the volume's own.
+     * @param string|null $state The bucket's state, which is the volume's.
      *
      * @return self
      */
@@ -606,7 +613,7 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets usage_bytes
      *
-     * @param int|null $usage_bytes Bytes the bucket holds at the last measurement, or null before the first.
+     * @param int|null $usage_bytes usage_bytes
      *
      * @return self
      */
@@ -623,6 +630,40 @@ class Volume implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['usage_bytes'] = $usage_bytes;
+
+        return $this;
+    }
+
+    /**
+     * Gets failure_reason
+     *
+     * @return string|null
+     */
+    public function getFailureReason()
+    {
+        return $this->container['failure_reason'];
+    }
+
+    /**
+     * Sets failure_reason
+     *
+     * @param string|null $failure_reason failure_reason
+     *
+     * @return self
+     */
+    public function setFailureReason($failure_reason)
+    {
+        if (is_null($failure_reason)) {
+            array_push($this->openAPINullablesSetToNull, 'failure_reason');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('failure_reason', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['failure_reason'] = $failure_reason;
 
         return $this;
     }

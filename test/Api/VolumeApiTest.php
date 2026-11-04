@@ -118,4 +118,28 @@ class VolumeApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for volumesListRetired
+     *
+     * Retrieves the collection of Volume resources..
+     *
+     */
+    public function testVolumesListRetired()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for volumesRestore
+     *
+     * Creates a Volume resource..
+     *
+     */
+    public function testVolumesRestore()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }
