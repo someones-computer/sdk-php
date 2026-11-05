@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * VolumeTest Class Doc Comment
  *
  * @category    Class
- * @description List the volumes the caller can see.
+ * @description List retired volumes that a restore can still bring back. A volume stays restorable for 7 days after deletedAt.
  * @package     SomeonesComputer\Sdk
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -146,6 +146,15 @@ class VolumeTest extends TestCase
      * Test attribute "usage_bytes"
      */
     public function testPropertyUsageBytes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "failure_reason"
+     */
+    public function testPropertyFailureReason()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
