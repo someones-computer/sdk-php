@@ -103,6 +103,14 @@ Class | Method | HTTP request | Description
 *DeploymentAccessGateApi* | [**deploymentAccessGatesGet**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgatesget) | **GET** /api/deployment_access_gates/{id} | Retrieves a DeploymentAccessGate resource.
 *DeploymentAccessGateApi* | [**deploymentAccessGatesList**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgateslist) | **GET** /api/deployment_access_gates | Retrieves the collection of DeploymentAccessGate resources.
 *DeploymentAccessGateApi* | [**deploymentAccessGatesUpdate**](docs/Api/DeploymentAccessGateApi.md#deploymentaccessgatesupdate) | **PATCH** /api/deployment_access_gates/{id} | Updates the DeploymentAccessGate resource.
+*GameServerApi* | [**gameServersCreate**](docs/Api/GameServerApi.md#gameserverscreate) | **POST** /api/game_servers | Creates a GameServer resource.
+*GameServerApi* | [**gameServersDelete**](docs/Api/GameServerApi.md#gameserversdelete) | **DELETE** /api/game_servers/{id} | Removes the GameServer resource.
+*GameServerApi* | [**gameServersGet**](docs/Api/GameServerApi.md#gameserversget) | **GET** /api/game_servers/{id} | Retrieves a GameServer resource.
+*GameServerApi* | [**gameServersList**](docs/Api/GameServerApi.md#gameserverslist) | **GET** /api/game_servers | Retrieves the collection of GameServer resources.
+*GameServerApi* | [**gameServersRestart**](docs/Api/GameServerApi.md#gameserversrestart) | **POST** /api/game_servers/{id}/restart | Creates a GameServer resource.
+*GameServerApi* | [**gameServersStart**](docs/Api/GameServerApi.md#gameserversstart) | **POST** /api/game_servers/{id}/start | Creates a GameServer resource.
+*GameServerApi* | [**gameServersStop**](docs/Api/GameServerApi.md#gameserversstop) | **POST** /api/game_servers/{id}/stop | Creates a GameServer resource.
+*GameServerApi* | [**gameServersUpdate**](docs/Api/GameServerApi.md#gameserversupdate) | **PATCH** /api/game_servers/{id} | Updates the GameServer resource.
 *ManagedServiceApi* | [**managedServicesCreate**](docs/Api/ManagedServiceApi.md#managedservicescreate) | **POST** /api/managed_services | Creates a ManagedService resource.
 *ManagedServiceApi* | [**managedServicesDelete**](docs/Api/ManagedServiceApi.md#managedservicesdelete) | **DELETE** /api/managed_services/{id} | Removes the ManagedService resource.
 *ManagedServiceApi* | [**managedServicesGet**](docs/Api/ManagedServiceApi.md#managedservicesget) | **GET** /api/managed_services/{id} | Retrieves a ManagedService resource.
@@ -159,6 +167,10 @@ Class | Method | HTTP request | Description
 - [DeploymentJsonMergePatchBuildContextsValueValue](docs/Model/DeploymentJsonMergePatchBuildContextsValueValue.md)
 - [Error](docs/Model/Error.md)
 - [Failure](docs/Model/Failure.md)
+- [GameServerGameServerInput](docs/Model/GameServerGameServerInput.md)
+- [GameServerGameServerRead](docs/Model/GameServerGameServerRead.md)
+- [GameServerGameServerReadSettingsValue](docs/Model/GameServerGameServerReadSettingsValue.md)
+- [GameServerGameServerSettingsInputJsonMergePatch](docs/Model/GameServerGameServerSettingsInputJsonMergePatch.md)
 - [Machine](docs/Model/Machine.md)
 - [ManagedService](docs/Model/ManagedService.md)
 - [ManagedServiceEngine](docs/Model/ManagedServiceEngine.md)

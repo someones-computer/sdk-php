@@ -9,6 +9,7 @@ docs/Api/ApplicationApi.md
 docs/Api/CreditTransactionApi.md
 docs/Api/DeploymentAccessGateApi.md
 docs/Api/DeploymentApi.md
+docs/Api/GameServerApi.md
 docs/Api/ManagedServiceApi.md
 docs/Api/OrganizationApi.md
 docs/Api/ServiceBindingApi.md
@@ -39,6 +40,10 @@ docs/Model/DeploymentJsonMergePatch.md
 docs/Model/DeploymentJsonMergePatchBuildContextsValueValue.md
 docs/Model/Error.md
 docs/Model/Failure.md
+docs/Model/GameServerGameServerInput.md
+docs/Model/GameServerGameServerRead.md
+docs/Model/GameServerGameServerReadSettingsValue.md
+docs/Model/GameServerGameServerSettingsInputJsonMergePatch.md
 docs/Model/Machine.md
 docs/Model/ManagedService.md
 docs/Model/ManagedServiceEngine.md
@@ -74,6 +79,7 @@ lib/Api/ApplicationApi.php
 lib/Api/CreditTransactionApi.php
 lib/Api/DeploymentAccessGateApi.php
 lib/Api/DeploymentApi.php
+lib/Api/GameServerApi.php
 lib/Api/ManagedServiceApi.php
 lib/Api/OrganizationApi.php
 lib/Api/ServiceBindingApi.php
@@ -108,6 +114,10 @@ lib/Model/DeploymentJsonMergePatch.php
 lib/Model/DeploymentJsonMergePatchBuildContextsValueValue.php
 lib/Model/Error.php
 lib/Model/Failure.php
+lib/Model/GameServerGameServerInput.php
+lib/Model/GameServerGameServerRead.php
+lib/Model/GameServerGameServerReadSettingsValue.php
+lib/Model/GameServerGameServerSettingsInputJsonMergePatch.php
 lib/Model/Machine.php
 lib/Model/ManagedService.php
 lib/Model/ManagedServiceEngine.php
@@ -145,6 +155,7 @@ test/Api/ApplicationApiTest.php
 test/Api/CreditTransactionApiTest.php
 test/Api/DeploymentAccessGateApiTest.php
 test/Api/DeploymentApiTest.php
+test/Api/GameServerApiTest.php
 test/Api/ManagedServiceApiTest.php
 test/Api/OrganizationApiTest.php
 test/Api/ServiceBindingApiTest.php
@@ -175,6 +186,10 @@ test/Model/DeploymentJsonMergePatchTest.php
 test/Model/DeploymentTest.php
 test/Model/ErrorTest.php
 test/Model/FailureTest.php
+test/Model/GameServerGameServerInputTest.php
+test/Model/GameServerGameServerReadSettingsValueTest.php
+test/Model/GameServerGameServerReadTest.php
+test/Model/GameServerGameServerSettingsInputJsonMergePatchTest.php
 test/Model/MachineTest.php
 test/Model/ManagedServiceEngineTest.php
 test/Model/ManagedServiceLastLoadMillisTest.php
