@@ -267,6 +267,9 @@ class GameServerGameServerInput implements ModelInterface, ArrayAccess, \JsonSer
 
     public const KIND_MINECRAFT = 'minecraft';
     public const KIND_FACTORIO = 'factorio';
+    public const KIND_TERRARIA = 'terraria';
+    public const KIND_MINECRAFT_BEDROCK = 'minecraft-bedrock';
+    public const KIND_VALHEIM = 'valheim';
 
     /**
      * Gets allowable values of the enum
@@ -278,6 +281,9 @@ class GameServerGameServerInput implements ModelInterface, ArrayAccess, \JsonSer
         return [
             self::KIND_MINECRAFT,
             self::KIND_FACTORIO,
+            self::KIND_TERRARIA,
+            self::KIND_MINECRAFT_BEDROCK,
+            self::KIND_VALHEIM,
         ];
     }
 
