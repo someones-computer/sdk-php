@@ -282,6 +282,7 @@ class GameServerGameServerRead implements ModelInterface, ArrayAccess, \JsonSeri
     public const KIND_TERRARIA = 'terraria';
     public const KIND_MINECRAFT_BEDROCK = 'minecraft-bedrock';
     public const KIND_VALHEIM = 'valheim';
+    public const KIND_FREELANCER = 'freelancer';
     public const STATE_STOPPED = 'stopped';
     public const STATE_STARTING = 'starting';
     public const STATE_RUNNING = 'running';
@@ -301,6 +302,7 @@ class GameServerGameServerRead implements ModelInterface, ArrayAccess, \JsonSeri
             self::KIND_TERRARIA,
             self::KIND_MINECRAFT_BEDROCK,
             self::KIND_VALHEIM,
+            self::KIND_FREELANCER,
         ];
     }
 
