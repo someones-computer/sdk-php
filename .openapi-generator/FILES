@@ -6,10 +6,12 @@ README.md
 composer.json
 docs/Api/AdoptionApprovalApi.md
 docs/Api/ApplicationApi.md
+docs/Api/ApplicationVolumeApi.md
 docs/Api/CreditTransactionApi.md
 docs/Api/DeploymentAccessGateApi.md
 docs/Api/DeploymentApi.md
 docs/Api/GameServerApi.md
+docs/Api/GateRouteExemptionApi.md
 docs/Api/ManagedServiceApi.md
 docs/Api/OrganizationApi.md
 docs/Api/ServiceBindingApi.md
@@ -19,6 +21,7 @@ docs/Model/AdoptionApproval.md
 docs/Model/AdoptionApprovalAdoptionApprovalInput.md
 docs/Model/Application.md
 docs/Model/ApplicationJsonMergePatch.md
+docs/Model/ApplicationVolume.md
 docs/Model/BundleAdditionalContextInput.md
 docs/Model/BundleContextInput.md
 docs/Model/BundleForwardedImageInput.md
@@ -44,6 +47,8 @@ docs/Model/GameServerGameServerInput.md
 docs/Model/GameServerGameServerRead.md
 docs/Model/GameServerGameServerReadSettingsValue.md
 docs/Model/GameServerGameServerSettingsInputJsonMergePatch.md
+docs/Model/GateRouteExemption.md
+docs/Model/GateRouteExemptionGateRouteExemptionInput.md
 docs/Model/Machine.md
 docs/Model/ManagedService.md
 docs/Model/ManagedServiceEngine.md
@@ -76,10 +81,12 @@ docs/Model/VolumeVolumeInput.md
 git_push.sh
 lib/Api/AdoptionApprovalApi.php
 lib/Api/ApplicationApi.php
+lib/Api/ApplicationVolumeApi.php
 lib/Api/CreditTransactionApi.php
 lib/Api/DeploymentAccessGateApi.php
 lib/Api/DeploymentApi.php
 lib/Api/GameServerApi.php
+lib/Api/GateRouteExemptionApi.php
 lib/Api/ManagedServiceApi.php
 lib/Api/OrganizationApi.php
 lib/Api/ServiceBindingApi.php
@@ -93,6 +100,7 @@ lib/Model/AdoptionApproval.php
 lib/Model/AdoptionApprovalAdoptionApprovalInput.php
 lib/Model/Application.php
 lib/Model/ApplicationJsonMergePatch.php
+lib/Model/ApplicationVolume.php
 lib/Model/BundleAdditionalContextInput.php
 lib/Model/BundleContextInput.php
 lib/Model/BundleForwardedImageInput.php
@@ -118,6 +126,8 @@ lib/Model/GameServerGameServerInput.php
 lib/Model/GameServerGameServerRead.php
 lib/Model/GameServerGameServerReadSettingsValue.php
 lib/Model/GameServerGameServerSettingsInputJsonMergePatch.php
+lib/Model/GateRouteExemption.php
+lib/Model/GateRouteExemptionGateRouteExemptionInput.php
 lib/Model/Machine.php
 lib/Model/ManagedService.php
 lib/Model/ManagedServiceEngine.php
@@ -152,10 +162,12 @@ lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/AdoptionApprovalApiTest.php
 test/Api/ApplicationApiTest.php
+test/Api/ApplicationVolumeApiTest.php
 test/Api/CreditTransactionApiTest.php
 test/Api/DeploymentAccessGateApiTest.php
 test/Api/DeploymentApiTest.php
 test/Api/GameServerApiTest.php
+test/Api/GateRouteExemptionApiTest.php
 test/Api/ManagedServiceApiTest.php
 test/Api/OrganizationApiTest.php
 test/Api/ServiceBindingApiTest.php
@@ -165,6 +177,7 @@ test/Model/AdoptionApprovalAdoptionApprovalInputTest.php
 test/Model/AdoptionApprovalTest.php
 test/Model/ApplicationJsonMergePatchTest.php
 test/Model/ApplicationTest.php
+test/Model/ApplicationVolumeTest.php
 test/Model/BundleAdditionalContextInputTest.php
 test/Model/BundleContextInputTest.php
 test/Model/BundleForwardedImageInputTest.php
@@ -190,6 +203,8 @@ test/Model/GameServerGameServerInputTest.php
 test/Model/GameServerGameServerReadSettingsValueTest.php
 test/Model/GameServerGameServerReadTest.php
 test/Model/GameServerGameServerSettingsInputJsonMergePatchTest.php
+test/Model/GateRouteExemptionGateRouteExemptionInputTest.php
+test/Model/GateRouteExemptionTest.php
 test/Model/MachineTest.php
 test/Model/ManagedServiceEngineTest.php
 test/Model/ManagedServiceLastLoadMillisTest.php

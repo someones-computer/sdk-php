@@ -88,6 +88,9 @@ Class | Method | HTTP request | Description
 *ApplicationApi* | [**applicationsGet**](docs/Api/ApplicationApi.md#applicationsget) | **GET** /api/applications/{id} | Retrieves a Application resource.
 *ApplicationApi* | [**applicationsList**](docs/Api/ApplicationApi.md#applicationslist) | **GET** /api/applications | Retrieves the collection of Application resources.
 *ApplicationApi* | [**applicationsUpdate**](docs/Api/ApplicationApi.md#applicationsupdate) | **PATCH** /api/applications/{id} | Updates the Application resource.
+*ApplicationVolumeApi* | [**apiApplicationVolumesGetCollection**](docs/Api/ApplicationVolumeApi.md#apiapplicationvolumesgetcollection) | **GET** /api/application_volumes | Retrieves the collection of ApplicationVolume resources.
+*ApplicationVolumeApi* | [**apiApplicationVolumesIdDelete**](docs/Api/ApplicationVolumeApi.md#apiapplicationvolumesiddelete) | **DELETE** /api/application_volumes/{id} | Removes the ApplicationVolume resource.
+*ApplicationVolumeApi* | [**apiApplicationVolumesIdGet**](docs/Api/ApplicationVolumeApi.md#apiapplicationvolumesidget) | **GET** /api/application_volumes/{id} | Retrieves a ApplicationVolume resource.
 *CreditTransactionApi* | [**creditTransactionsGet**](docs/Api/CreditTransactionApi.md#credittransactionsget) | **GET** /api/credit_transactions/{id} | Retrieves a CreditTransaction resource.
 *CreditTransactionApi* | [**creditTransactionsList**](docs/Api/CreditTransactionApi.md#credittransactionslist) | **GET** /api/credit_transactions | Retrieves the collection of CreditTransaction resources.
 *DeploymentApi* | [**deploymentsBundleUploadConfirm**](docs/Api/DeploymentApi.md#deploymentsbundleuploadconfirm) | **POST** /api/deployments/bundle_uploads/confirm | Creates a Deployment resource.
@@ -111,6 +114,10 @@ Class | Method | HTTP request | Description
 *GameServerApi* | [**gameServersStart**](docs/Api/GameServerApi.md#gameserversstart) | **POST** /api/game_servers/{id}/start | Creates a GameServer resource.
 *GameServerApi* | [**gameServersStop**](docs/Api/GameServerApi.md#gameserversstop) | **POST** /api/game_servers/{id}/stop | Creates a GameServer resource.
 *GameServerApi* | [**gameServersUpdate**](docs/Api/GameServerApi.md#gameserversupdate) | **PATCH** /api/game_servers/{id} | Updates the GameServer resource.
+*GateRouteExemptionApi* | [**apiGateRouteExemptionsGetCollection**](docs/Api/GateRouteExemptionApi.md#apigaterouteexemptionsgetcollection) | **GET** /api/gate_route_exemptions | Retrieves the collection of GateRouteExemption resources.
+*GateRouteExemptionApi* | [**apiGateRouteExemptionsIdDelete**](docs/Api/GateRouteExemptionApi.md#apigaterouteexemptionsiddelete) | **DELETE** /api/gate_route_exemptions/{id} | Removes the GateRouteExemption resource.
+*GateRouteExemptionApi* | [**apiGateRouteExemptionsIdGet**](docs/Api/GateRouteExemptionApi.md#apigaterouteexemptionsidget) | **GET** /api/gate_route_exemptions/{id} | Retrieves a GateRouteExemption resource.
+*GateRouteExemptionApi* | [**apiGateRouteExemptionsPost**](docs/Api/GateRouteExemptionApi.md#apigaterouteexemptionspost) | **POST** /api/gate_route_exemptions | Creates a GateRouteExemption resource.
 *ManagedServiceApi* | [**managedServicesCreate**](docs/Api/ManagedServiceApi.md#managedservicescreate) | **POST** /api/managed_services | Creates a ManagedService resource.
 *ManagedServiceApi* | [**managedServicesDelete**](docs/Api/ManagedServiceApi.md#managedservicesdelete) | **DELETE** /api/managed_services/{id} | Removes the ManagedService resource.
 *ManagedServiceApi* | [**managedServicesGet**](docs/Api/ManagedServiceApi.md#managedservicesget) | **GET** /api/managed_services/{id} | Retrieves a ManagedService resource.
@@ -146,6 +153,7 @@ Class | Method | HTTP request | Description
 - [AdoptionApprovalAdoptionApprovalInput](docs/Model/AdoptionApprovalAdoptionApprovalInput.md)
 - [Application](docs/Model/Application.md)
 - [ApplicationJsonMergePatch](docs/Model/ApplicationJsonMergePatch.md)
+- [ApplicationVolume](docs/Model/ApplicationVolume.md)
 - [BundleAdditionalContextInput](docs/Model/BundleAdditionalContextInput.md)
 - [BundleContextInput](docs/Model/BundleContextInput.md)
 - [BundleForwardedImageInput](docs/Model/BundleForwardedImageInput.md)
@@ -171,6 +179,8 @@ Class | Method | HTTP request | Description
 - [GameServerGameServerRead](docs/Model/GameServerGameServerRead.md)
 - [GameServerGameServerReadSettingsValue](docs/Model/GameServerGameServerReadSettingsValue.md)
 - [GameServerGameServerSettingsInputJsonMergePatch](docs/Model/GameServerGameServerSettingsInputJsonMergePatch.md)
+- [GateRouteExemption](docs/Model/GateRouteExemption.md)
+- [GateRouteExemptionGateRouteExemptionInput](docs/Model/GateRouteExemptionGateRouteExemptionInput.md)
 - [Machine](docs/Model/Machine.md)
 - [ManagedService](docs/Model/ManagedService.md)
 - [ManagedServiceEngine](docs/Model/ManagedServiceEngine.md)
